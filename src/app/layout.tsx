@@ -160,7 +160,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark scroll-smooth">
+    <html lang="en" className="dark scroll-smooth" suppressHydrationWarning>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
@@ -172,6 +172,7 @@ export default function RootLayout({
       </head>
       <body
         className={`${inter.variable} font-sans antialiased bg-zinc-950 text-zinc-100 selection:bg-blue-500/30`}
+        suppressHydrationWarning
       >
         <div className="fixed inset-0 -z-10 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(59,130,246,0.15),rgba(255,255,255,0))]" />
         {children}
