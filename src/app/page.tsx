@@ -4,6 +4,7 @@ import {
   HeroSection,
   StatsSection,
   AboutSection,
+  EngineeringMindsetSection,
   ExperienceSection,
   EducationSection,
   SkillsSection,
@@ -21,6 +22,7 @@ export default function Home() {
         <HeroSection />
         <StatsSection />
         <AboutSection />
+        <EngineeringMindsetSection />
         <ExperienceSection />
         <EducationSection />
         <SkillsSection />
@@ -31,3 +33,4 @@ export default function Home() {
     </>
   );
 }
+

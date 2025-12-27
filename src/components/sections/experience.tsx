@@ -13,7 +13,7 @@ export function ExperienceSection() {
                     </span>
                 </h2>
                 <p className="text-zinc-400 text-center mb-16 max-w-2xl mx-auto">
-                    8.5 years of building scalable enterprise applications with modern technologies
+                    8.5+ years building scalable enterprise systems with modern technologies
                 </p>
 
                 <div className="relative">
@@ -41,6 +41,9 @@ export function ExperienceSection() {
                                                 {exp.role}
                                             </h3>
                                             <p className="text-blue-400 font-medium">{exp.company}</p>
+                                            {exp.client && (
+                                                <p className="text-zinc-500 text-sm">Client: {exp.client}</p>
+                                            )}
                                         </div>
                                         <span className="text-sm text-zinc-500 whitespace-nowrap">
                                             {exp.period}
@@ -51,7 +54,7 @@ export function ExperienceSection() {
                                         {exp.description}
                                     </p>
 
-                                    <div className="flex flex-wrap gap-2">
+                                    <div className="flex flex-wrap gap-2 mb-4">
                                         {exp.technologies.map((tech) => (
                                             <Badge
                                                 key={tech}
@@ -62,6 +65,40 @@ export function ExperienceSection() {
                                             </Badge>
                                         ))}
                                     </div>
+
+                                    {/* Case Study Block */}
+                                    {exp.caseStudy && (
+                                        <div className="mt-6 pt-6 border-t border-zinc-800/50">
+                                            <div className="flex items-center gap-2 mb-4">
+                                                <span className="text-lg">🧩</span>
+                                                <h4 className="text-sm font-semibold text-cyan-400 uppercase tracking-wide">
+                                                    Architectural Impact
+                                                </h4>
+                                            </div>
+                                            <div className="space-y-3 text-sm">
+                                                <div>
+                                                    <span className="text-zinc-500 font-medium">Problem: </span>
+                                                    <span className="text-zinc-400">{exp.caseStudy.problem}</span>
+                                                </div>
+                                                <div>
+                                                    <span className="text-zinc-500 font-medium">Constraints: </span>
+                                                    <span className="text-zinc-400">{exp.caseStudy.constraints}</span>
+                                                </div>
+                                                <div>
+                                                    <span className="text-zinc-500 font-medium">Decision: </span>
+                                                    <span className="text-zinc-400">{exp.caseStudy.decision}</span>
+                                                </div>
+                                                <div>
+                                                    <span className="text-zinc-500 font-medium">Trade-offs: </span>
+                                                    <span className="text-zinc-400">{exp.caseStudy.tradeoffs}</span>
+                                                </div>
+                                                <div className="pt-2 border-t border-zinc-800/30">
+                                                    <span className="text-green-500 font-medium">Result: </span>
+                                                    <span className="text-zinc-300">{exp.caseStudy.result}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    )}
                                 </div>
                             </div>
 

@@ -20,13 +20,23 @@ export interface BlogPost {
     featured?: boolean;
 }
 
+export interface CaseStudy {
+    problem: string;
+    constraints: string;
+    decision: string;
+    tradeoffs: string;
+    result: string;
+}
+
 export interface Experience {
     company: string;
     role: string;
     period: string;
+    client?: string;
     description: string;
     technologies: string[];
     logo?: string;
+    caseStudy?: CaseStudy;
 }
 
 export interface Education {
@@ -53,6 +63,7 @@ export interface SocialLink {
 export interface SiteConfig {
     name: string;
     title: string;
+    headline?: string;
     description: string;
     url: string;
     ogImage: string;

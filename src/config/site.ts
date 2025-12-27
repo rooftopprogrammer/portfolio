@@ -2,9 +2,10 @@ import type { SiteConfig, Experience, Education, Skill } from "@/types";
 
 export const siteConfig: SiteConfig = {
   name: "Ravi Kumar Nersu",
-  title: "Software Engineering Specialist",
+  title: "Specialist Software Engineer",
+  headline: "I design and scale frontend-heavy enterprise systems used by millions of users.",
   description:
-    "Full Stack Developer specializing in React, Next.js, and Node.js with 8.5 years of experience building scalable enterprise web applications. Expert in performance optimization, microservices architecture, and modern frontend technologies.",
+    "Specialist Software Engineer with 8.5+ years of experience building performance-critical web platforms using React, Next.js, and Node.js. I specialize in architectural decisions, frontend performance systems, and microservice-driven platforms at global scale.",
   url: "https://ravikumarnersu.vercel.app",
   ogImage: "/og-image.png",
   links: [
@@ -36,8 +37,9 @@ export const experiences: Experience[] = [
     company: "LTIMindtree",
     role: "Specialist Software Engineer",
     period: "Jan 2024 - Present",
+    client: "Avis Budget Group",
     description:
-      "Working on global digital platforms for Avis Budget Group - developing modern React 19 applications using Next.js 15 App Router. Architected microservices-based monorepo handling millions of customer interactions across multiple countries.",
+      "Leading frontend architecture for global digital platforms serving millions of customers across multiple countries. Designed and implemented a microservices-based monorepo using Next.js 15 App Router and NestJS, with a focus on rendering strategy, API boundaries, and cache behavior.",
     technologies: [
       "React 19",
       "Next.js 15",
@@ -50,13 +52,21 @@ export const experiences: Experience[] = [
       "AWS",
     ],
     logo: "/logos/ltimindtree.png",
+    caseStudy: {
+      problem: "The existing frontend ecosystem struggled with load times, scalability, and tightly coupled services across regions.",
+      constraints: "Global traffic, multi-market localization, legacy integrations, and strict uptime requirements.",
+      decision: "Moved to a microservices-driven frontend architecture using Next.js App Router, BFF-style NestJS services, and aggressive caching strategies.",
+      tradeoffs: "Increased architectural complexity in exchange for long-term scalability and independent deployability.",
+      result: "Achieved ~50% reduction in load times, improved developer velocity, and enabled safer feature rollout across markets.",
+    },
   },
   {
     company: "LTIMindtree",
     role: "Specialist Software Engineer",
     period: "Jan 2024 - Present",
+    client: "Ingram Micro",
     description:
-      "Developed and maintained enterprise web portals for Ingram Micro (X4C & X4V), streamlining vendor and channel partner operations. Built responsive and reusable UI components.",
+      "Developed and maintained enterprise web portals (X4C & X4V), streamlining vendor and channel partner operations with modular, testable component architecture.",
     technologies: [
       "React.js",
       "Redux",
@@ -71,8 +81,9 @@ export const experiences: Experience[] = [
     company: "MSR COSMOS IT LLP",
     role: "Senior Software Engineer",
     period: "Aug 2020 - Dec 2023",
+    client: "TMILL (Tata Martrade)",
     description:
-      "Developed end-to-end web modules for TMILL (Tata Martrade International Logistics), automating logistics workflows for Railways, SCM, and MLS projects. Integrated Google Maps for live rake tracking and dashboard visualizations.",
+      "Built end-to-end web modules for logistics automation across Railways, SCM, and MLS projects. Designed live tracking dashboards with Google Maps integration and optimized data-heavy interfaces for operational efficiency.",
     technologies: [
       "React.js",
       "Node.js",
@@ -157,23 +168,23 @@ export const skills: Skill[] = [
 
 export const highlights = [
   {
-    metric: "8.5",
+    metric: "8.5+",
     label: "Years Experience",
-    description: "Building enterprise applications",
+    description: "Delivering production systems in enterprise environments",
   },
   {
     metric: "50%",
     label: "Performance Boost",
-    description: "Through code splitting & caching",
+    description: "Frontend load-time reduction via architectural decisions",
   },
   {
     metric: "80%+",
     label: "Test Coverage",
-    description: "With automated testing frameworks",
+    description: "Automated coverage across unit, integration, and E2E layers",
   },
   {
     metric: "6+",
     label: "Microservices",
-    description: "Architected in monorepo setup",
+    description: "Production NestJS services in a monorepo architecture",
   },
 ];

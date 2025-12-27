@@ -130,8 +130,11 @@ export function SkillsSection() {
                         Technical Skills
                     </span>
                 </h2>
+                <p className="text-zinc-500 text-center mb-4 max-w-2xl mx-auto italic">
+                    Tools matter — but judgment matters more.
+                </p>
                 <p className="text-zinc-400 text-center mb-16 max-w-2xl mx-auto">
-                    A comprehensive toolkit for building modern, scalable web applications
+                    These are the tools I&apos;ve used to deliver real systems in production.
                 </p>
 
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">

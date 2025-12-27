@@ -56,11 +56,18 @@ export function HeroSection() {
                     </span>
                 </h1>
 
-                <h2 className="text-2xl md:text-3xl font-medium text-blue-400 mb-6 animate-fade-in-up animation-delay-200">
+                <h2 className="text-2xl md:text-3xl font-medium text-blue-400 mb-8 animate-fade-in-up animation-delay-200">
                     {siteConfig.title}
                 </h2>
 
-                <p className="text-lg md:text-xl text-zinc-400 max-w-2xl mx-auto mb-8 leading-relaxed animate-fade-in-up animation-delay-300">
+                {/* Positioning Statement */}
+                {siteConfig.headline && (
+                    <p className="text-xl md:text-2xl font-medium text-zinc-100 max-w-xl mx-auto mb-4 leading-snug animate-fade-in-up animation-delay-300">
+                        {siteConfig.headline}
+                    </p>
+                )}
+
+                <p className="text-base md:text-lg text-zinc-400 max-w-xl mx-auto mb-8 leading-relaxed animate-fade-in-up animation-delay-400">
                     {siteConfig.description}
                 </p>
 

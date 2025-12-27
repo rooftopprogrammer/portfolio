@@ -1,21 +1,16 @@
 "use client";
 
-import { siteConfig } from "@/config/site";
-
 export function AboutSection() {
     return (
         <section id="about" className="py-24 px-6 bg-zinc-900/30">
             <div className="max-w-4xl mx-auto">
-                <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">
+                <h2 className="text-3xl md:text-4xl font-bold text-center mb-16">
                     <span className="bg-gradient-to-r from-white to-zinc-400 bg-clip-text text-transparent">
                         About Me
                     </span>
                 </h2>
-                <p className="text-zinc-400 text-center mb-16 max-w-2xl mx-auto">
-                    Passionate about building exceptional digital experiences
-                </p>
 
-                <div className="grid md:grid-cols-2 gap-12 items-center">
+                <div className="grid md:grid-cols-2 gap-12 items-start">
                     {/* Avatar/Image placeholder */}
                     <div className="relative">
                         <div className="aspect-square rounded-3xl bg-gradient-to-br from-blue-500/20 via-cyan-500/20 to-purple-500/20 p-1">
@@ -30,31 +25,24 @@ export function AboutSection() {
                         <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-cyan-500/10 rounded-full blur-2xl" />
                     </div>
 
-                    {/* Content */}
+                    {/* Content - Staff-level positioning */}
                     <div className="space-y-6">
-                        <p className="text-zinc-300 leading-relaxed">
-                            I&apos;m a <span className="text-blue-400 font-medium">Software Engineering Specialist</span> with
-                            over 8.5 years of experience in building scalable enterprise applications. Currently working
-                            at <span className="text-blue-400 font-medium">LTIMindtree</span>, where I architect and
-                            develop modern web platforms for global clients.
+                        <p className="text-lg text-zinc-200 leading-relaxed font-medium">
+                            I work at the intersection of frontend architecture, performance engineering, and large-scale system design.
                         </p>
 
                         <p className="text-zinc-400 leading-relaxed">
-                            My expertise lies in the React ecosystem, particularly with Next.js and TypeScript.
-                            I specialize in performance optimization - having achieved 50% improvements in load times
-                            through strategic code splitting, caching layers, and lazy-loading strategies.
+                            Over the past 8.5 years, I&apos;ve built and evolved enterprise platforms for global clients where frontend performance, maintainability, and architectural clarity directly impact business outcomes. My core strength lies in making high-leverage technical decisions — especially around rendering strategy, state management, API boundaries, and microservice composition.
                         </p>
 
                         <p className="text-zinc-400 leading-relaxed">
-                            Beyond coding, I&apos;m a strong collaborator with excellent communication and analytical skills.
-                            I enjoy mentoring developers and working within cross-functional teams following Agile/Scrum
-                            methodologies.
+                            I have led frontend-heavy initiatives within microservices ecosystems, reduced real-world load times by 50%, and helped teams move from tightly coupled implementations to scalable, testable systems. I value clarity over cleverness and long-term system health over short-term speed.
                         </p>
 
                         {/* Quick facts */}
                         <div className="grid grid-cols-2 gap-4 pt-4">
                             <div className="p-4 bg-zinc-800/30 rounded-xl border border-zinc-800/50">
-                                <p className="text-2xl font-bold text-blue-400">8.5</p>
+                                <p className="text-2xl font-bold text-blue-400">8.5+</p>
                                 <p className="text-sm text-zinc-500">Years Experience</p>
                             </div>
                             <div className="p-4 bg-zinc-800/30 rounded-xl border border-zinc-800/50">
