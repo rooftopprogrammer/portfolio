@@ -59,7 +59,7 @@ export function ContactSection() {
                             {socialIcons.mail}
                         </div>
                         <div className="text-left">
-                            <p className="text-sm text-zinc-500">Email</p>
+                            <p className="text-sm text-zinc-400">Email</p>
                             <p className="text-zinc-200 group-hover:text-blue-400 transition-colors">
                                 raviknersu96@gmail.com
                             </p>
@@ -74,7 +74,7 @@ export function ContactSection() {
                             {socialIcons.phone}
                         </div>
                         <div className="text-left">
-                            <p className="text-sm text-zinc-500">Phone</p>
+                            <p className="text-sm text-zinc-400">Phone</p>
                             <p className="text-zinc-200 group-hover:text-blue-400 transition-colors">
                                 +91 98859 57899
                             </p>
@@ -109,7 +109,7 @@ export function Footer() {
     return (
         <footer className="py-8 px-6 border-t border-zinc-800/50">
             <div className="max-w-6xl mx-auto flex items-center justify-center">
-                <p className="text-sm text-zinc-500">
+                <p className="text-sm text-zinc-400">
                     © {currentYear} {siteConfig.name}. All rights reserved.
                 </p>
             </div>

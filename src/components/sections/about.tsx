@@ -43,19 +43,19 @@ export function AboutSection() {
                         <div className="grid grid-cols-2 gap-4 pt-4">
                             <div className="p-4 bg-zinc-800/30 rounded-xl border border-zinc-800/50">
                                 <p className="text-2xl font-bold text-blue-400">8.5+</p>
-                                <p className="text-sm text-zinc-500">Years Experience</p>
+                                <p className="text-sm text-zinc-400">Years Experience</p>
                             </div>
                             <div className="p-4 bg-zinc-800/30 rounded-xl border border-zinc-800/50">
                                 <p className="text-2xl font-bold text-cyan-400">5+</p>
-                                <p className="text-sm text-zinc-500">Companies</p>
+                                <p className="text-sm text-zinc-400">Companies</p>
                             </div>
                             <div className="p-4 bg-zinc-800/30 rounded-xl border border-zinc-800/50">
                                 <p className="text-2xl font-bold text-purple-400">10+</p>
-                                <p className="text-sm text-zinc-500">Projects Delivered</p>
+                                <p className="text-sm text-zinc-400">Projects Delivered</p>
                             </div>
                             <div className="p-4 bg-zinc-800/30 rounded-xl border border-zinc-800/50">
                                 <p className="text-2xl font-bold text-pink-400">Global</p>
-                                <p className="text-sm text-zinc-500">Client Reach</p>
+                                <p className="text-sm text-zinc-400">Client Reach</p>
                             </div>
                         </div>
                     </div>

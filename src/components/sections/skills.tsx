@@ -130,7 +130,7 @@ export function SkillsSection() {
                         Technical Skills
                     </span>
                 </h2>
-                <p className="text-zinc-500 text-center mb-4 max-w-2xl mx-auto italic">
+                <p className="text-zinc-400 text-center mb-4 max-w-2xl mx-auto italic">
                     Tools matter — but judgment matters more.
                 </p>
                 <p className="text-zinc-400 text-center mb-16 max-w-2xl mx-auto">
@@ -155,7 +155,7 @@ export function SkillsSection() {
                                     <div key={skill.name}>
                                         <div className="flex items-center justify-between mb-1.5">
                                             <span className="text-sm text-zinc-300">{skill.name}</span>
-                                            <span className="text-xs text-zinc-500 capitalize">
+                                            <span className="text-xs text-zinc-400 capitalize">
                                                 {skill.level}
                                             </span>
                                         </div>

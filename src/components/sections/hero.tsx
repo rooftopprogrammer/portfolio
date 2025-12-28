@@ -72,7 +72,7 @@ export function HeroSection() {
                 </p>
 
                 {/* Location */}
-                <p className="flex items-center justify-center gap-2 text-zinc-500 mb-8 animate-fade-in-up animation-delay-400">
+                <p className="flex items-center justify-center gap-2 text-zinc-400 mb-8 animate-fade-in-up animation-delay-400">
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path
                             strokeLinecap="round"
@@ -109,7 +109,7 @@ export function HeroSection() {
                 {/* Scroll indicator */}
                 <div className="animate-bounce mt-8">
                     <svg
-                        className="w-6 h-6 mx-auto text-zinc-600"
+                        className="w-6 h-6 mx-auto text-zinc-400"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -146,7 +146,7 @@ export function StatsSection() {
                                 <div className="text-sm font-semibold text-zinc-200 mb-1">
                                     {stat.label}
                                 </div>
-                                <div className="text-xs text-zinc-500">{stat.description}</div>
+                                <div className="text-xs text-zinc-400">{stat.description}</div>
                             </div>
                         </div>
                     ))}

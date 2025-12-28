@@ -42,10 +42,10 @@ export function ExperienceSection() {
                                             </h3>
                                             <p className="text-blue-400 font-medium">{exp.company}</p>
                                             {exp.client && (
-                                                <p className="text-zinc-500 text-sm">Client: {exp.client}</p>
+                                                <p className="text-zinc-400 text-sm">Client: {exp.client}</p>
                                             )}
                                         </div>
-                                        <span className="text-sm text-zinc-500 whitespace-nowrap">
+                                        <span className="text-sm text-zinc-400 whitespace-nowrap">
                                             {exp.period}
                                         </span>
                                     </div>
@@ -77,19 +77,19 @@ export function ExperienceSection() {
                                             </div>
                                             <div className="space-y-3 text-sm">
                                                 <div>
-                                                    <span className="text-zinc-500 font-medium">Problem: </span>
+                                                    <span className="text-zinc-400 font-medium">Problem: </span>
                                                     <span className="text-zinc-400">{exp.caseStudy.problem}</span>
                                                 </div>
                                                 <div>
-                                                    <span className="text-zinc-500 font-medium">Constraints: </span>
+                                                    <span className="text-zinc-400 font-medium">Constraints: </span>
                                                     <span className="text-zinc-400">{exp.caseStudy.constraints}</span>
                                                 </div>
                                                 <div>
-                                                    <span className="text-zinc-500 font-medium">Decision: </span>
+                                                    <span className="text-zinc-400 font-medium">Decision: </span>
                                                     <span className="text-zinc-400">{exp.caseStudy.decision}</span>
                                                 </div>
                                                 <div>
-                                                    <span className="text-zinc-500 font-medium">Trade-offs: </span>
+                                                    <span className="text-zinc-400 font-medium">Trade-offs: </span>
                                                     <span className="text-zinc-400">{exp.caseStudy.tradeoffs}</span>
                                                 </div>
                                                 <div className="pt-2 border-t border-zinc-800/30">
@@ -152,7 +152,7 @@ export function EducationSection() {
                                     </h3>
                                     <p className="text-blue-400">{edu.field}</p>
                                     <p className="text-zinc-400 text-sm">{edu.institution}</p>
-                                    <p className="text-zinc-500 text-sm mt-1">{edu.period}</p>
+                                    <p className="text-zinc-400 text-sm mt-1">{edu.period}</p>
                                 </div>
                             </div>
                         </div>
