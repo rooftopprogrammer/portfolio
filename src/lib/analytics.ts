@@ -1,7 +1,7 @@
 // Portfolio Analytics - Tracks visitor interactions
 // Data is stored in Firebase and accessible from notesapp
 
-const ANALYTICS_ENDPOINT = process.env.NEXT_PUBLIC_ANALYTICS_ENDPOINT || 'https://notesapp-ravinersu.vercel.app/api/portfolio-analytics';
+const ANALYTICS_ENDPOINT = process.env.NEXT_PUBLIC_ANALYTICS_ENDPOINT || 'https://notesapp-one-tau.vercel.app/api/portfolio-analytics';
 
 export interface AnalyticsEvent {
     type: 'page_view' | 'scroll_depth' | 'time_spent' | 'resume_download';
