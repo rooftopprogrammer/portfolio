@@ -5,7 +5,17 @@ const ANALYTICS_BACKEND_URL = process.env.ANALYTICS_BACKEND_URL || 'https://note
 const ANALYTICS_SECRET = process.env.ANALYTICS_SECRET || '';
 
 // Allowed analytics event types
-const ALLOWED_EVENT_TYPES = ['page_view', 'scroll_depth', 'time_spent', 'resume_download'];
+const ALLOWED_EVENT_TYPES = [
+    'page_view',
+    'scroll_depth',
+    'time_spent',
+    'resume_download',
+    'linkedin_click',
+    'email_click',
+    'phone_click',
+    'email_copy',
+    'phone_copy'
+];
 
 // Rate limiting: Track requests per session
 const requestCounts = new Map<string, { count: number; resetTime: number }>();

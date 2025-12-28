@@ -4,8 +4,19 @@
 
 const ANALYTICS_ENDPOINT = '/api/analytics'; // Local proxy - secure!
 
+export type AnalyticsEventType =
+    | 'page_view'
+    | 'scroll_depth'
+    | 'time_spent'
+    | 'resume_download'
+    | 'linkedin_click'
+    | 'email_click'
+    | 'phone_click'
+    | 'email_copy'
+    | 'phone_copy';
+
 export interface AnalyticsEvent {
-    type: 'page_view' | 'scroll_depth' | 'time_spent' | 'resume_download';
+    type: AnalyticsEventType;
     timestamp: number;
     date: string; // YYYY-MM-DD format for grouping
     sessionId: string;
@@ -15,6 +26,7 @@ export interface AnalyticsEvent {
     referrer?: string;
     screenWidth?: number;
     screenHeight?: number;
+    action?: string; // For contact tracking (e.g., 'gmail', 'outlook')
 }
 
 // Generate a unique session ID
@@ -113,6 +125,78 @@ export function trackResumeDownload(): void {
 
     sendAnalyticsEvent(event);
 }
+
+// Track LinkedIn click
+export function trackLinkedInClick(): void {
+    if (typeof window === 'undefined') return;
+
+    const event: AnalyticsEvent = {
+        type: 'linkedin_click',
+        timestamp: Date.now(),
+        date: getCurrentDate(),
+        sessionId: getSessionId(),
+    };
+
+    sendAnalyticsEvent(event);
+}
+
+// Track email click
+export function trackEmailClick(mailClient?: string): void {
+    if (typeof window === 'undefined') return;
+
+    const event: AnalyticsEvent = {
+        type: 'email_click',
+        timestamp: Date.now(),
+        date: getCurrentDate(),
+        sessionId: getSessionId(),
+        action: mailClient, // 'gmail' or 'outlook'
+    };
+
+    sendAnalyticsEvent(event);
+}
+
+// Track phone click
+export function trackPhoneClick(): void {
+    if (typeof window === 'undefined') return;
+
+    const event: AnalyticsEvent = {
+        type: 'phone_click',
+        timestamp: Date.now(),
+        date: getCurrentDate(),
+        sessionId: getSessionId(),
+    };
+
+    sendAnalyticsEvent(event);
+}
+
+// Track email copy
+export function trackEmailCopy(): void {
+    if (typeof window === 'undefined') return;
+
+    const event: AnalyticsEvent = {
+        type: 'email_copy',
+        timestamp: Date.now(),
+        date: getCurrentDate(),
+        sessionId: getSessionId(),
+    };
+
+    sendAnalyticsEvent(event);
+}
+
+// Track phone copy
+export function trackPhoneCopy(): void {
+    if (typeof window === 'undefined') return;
+
+    const event: AnalyticsEvent = {
+        type: 'phone_copy',
+        timestamp: Date.now(),
+        date: getCurrentDate(),
+        sessionId: getSessionId(),
+    };
+
+    sendAnalyticsEvent(event);
+}
+
 
 // Analytics Tracker class for managing page lifecycle events
 export class AnalyticsTracker {
