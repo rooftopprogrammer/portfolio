@@ -123,7 +123,7 @@ const jsonLd = {
   description: siteConfig.description,
   sameAs: [
     "https://github.com/ravikumarnersu",
-    "https://linkedin.com/in/ravikumarnersu",
+    "https://www.linkedin.com/in/ravi-kumar-nersu-8a00b3163",
   ],
   knowsAbout: [
     "React.js",

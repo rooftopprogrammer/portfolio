@@ -16,7 +16,7 @@ export const siteConfig: SiteConfig = {
     },
     {
       name: "LinkedIn",
-      url: "https://linkedin.com/in/ravikumarnersu",
+      url: "https://www.linkedin.com/in/ravi-kumar-nersu-8a00b3163",
       icon: "linkedin",
     },
     {
