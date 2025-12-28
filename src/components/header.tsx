@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
+import { trackResumeDownload } from "@/lib/analytics";
 
 const navItems = [
     { name: "About", href: "#about" },
@@ -78,6 +79,7 @@ export function Header() {
                 <Link
                     href="/Ravi_Kumar_Nersu_Specialist_Software_Engineer.pdf"
                     target="_blank"
+                    onClick={trackResumeDownload}
                     className="hidden md:flex items-center gap-2 px-4 py-2 text-sm font-medium text-zinc-100 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-full hover:from-blue-500 hover:to-cyan-500 transition-all shadow-lg shadow-blue-500/25"
                 >
                     <svg
