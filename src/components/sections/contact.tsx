@@ -108,40 +108,9 @@ export function Footer() {
 
     return (
         <footer className="py-8 px-6 border-t border-zinc-800/50">
-            <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+            <div className="max-w-6xl mx-auto flex items-center justify-center">
                 <p className="text-sm text-zinc-500">
                     © {currentYear} {siteConfig.name}. All rights reserved.
-                </p>
-
-                <p className="text-sm text-zinc-600">
-                    Built with{" "}
-                    <span className="text-red-500">♥</span> using{" "}
-                    <a
-                        href="https://nextjs.org"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-zinc-400 hover:text-white transition-colors"
-                    >
-                        Next.js
-                    </a>
-                    ,{" "}
-                    <a
-                        href="https://tailwindcss.com"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-zinc-400 hover:text-white transition-colors"
-                    >
-                        Tailwind CSS
-                    </a>
-                    , and{" "}
-                    <a
-                        href="https://ui.shadcn.com"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-zinc-400 hover:text-white transition-colors"
-                    >
-                        shadcn/ui
-                    </a>
                 </p>
             </div>
         </footer>
