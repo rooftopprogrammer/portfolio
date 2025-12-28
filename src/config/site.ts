@@ -5,7 +5,7 @@ export const siteConfig: SiteConfig = {
   title: "Specialist Software Engineer",
   headline: "I design and scale frontend-heavy enterprise systems used by millions of users.",
   description:
-    "Specialist Software Engineer with 8.5+ years of experience building performance-critical web platforms using React, Next.js, and Node.js. I specialize in architectural decisions, frontend performance systems, and microservice-driven platforms at global scale.",
+    "Specialist Software Engineer with 8.5+ years of experience designing and scaling performance-critical web platforms using React, Next.js, and Node.js — with a focus on architectural ownership, frontend performance systems, and microservice-driven platforms at global scale.",
   url: "https://ravikumarnersu.vercel.app",
   ogImage: "/og-image.png",
   links: [
@@ -39,7 +39,7 @@ export const experiences: Experience[] = [
     period: "Jan 2024 - Present",
     client: "Avis Budget Group",
     description:
-      "Leading frontend architecture for global digital platforms serving millions of customers across multiple countries. Designed and implemented a microservices-based monorepo using Next.js 15 App Router and NestJS, with a focus on rendering strategy, API boundaries, and cache behavior.",
+      "Primary frontend architecture owner for global digital platforms serving millions of customers across multiple countries. Designed and implemented a microservices-based monorepo using Next.js 15 App Router and NestJS, with a focus on rendering strategy, API boundaries, and cache behavior.",
     technologies: [
       "React 19",
       "Next.js 15",
@@ -130,11 +130,11 @@ export const skills: Skill[] = [
   { name: "React.js", level: "expert", category: "Frontend" },
   { name: "Next.js 15", level: "expert", category: "Frontend" },
   { name: "TypeScript", level: "expert", category: "Languages" },
-  { name: "JavaScript (ES6+)", level: "expert", category: "Languages" },
+  { name: "JavaScript (ES6+)", level: "advanced", category: "Languages" },
   { name: "Redux", level: "advanced", category: "Frontend" },
   { name: "Zustand", level: "advanced", category: "Frontend" },
   { name: "HTML5", level: "expert", category: "Frontend" },
-  { name: "CSS3", level: "expert", category: "Frontend" },
+  { name: "CSS3", level: "advanced", category: "Frontend" },
   { name: "Material-UI", level: "expert", category: "Frontend" },
 
   // Backend
