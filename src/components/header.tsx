@@ -2,9 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { toast } from "sonner";
 import { cn } from "@/lib/utils";
-import { trackResumeDownload } from "@/lib/analytics";
 
 const navItems = [
     { name: "About", href: "#about" },
@@ -76,34 +74,6 @@ export function Header() {
                         </li>
                     ))}
                 </ul>
-
-                <Link
-                    href="/Ravi_Kumar_Nersu_Specialist_Software_Engineer.pdf"
-                    target="_blank"
-                    onClick={() => {
-                        trackResumeDownload();
-                        toast.success('📄 Resume downloading!', {
-                            description: 'Thank you for your interest in my profile.',
-                            duration: 4000,
-                        });
-                    }}
-                    className="hidden md:flex items-center gap-2 px-4 py-2 text-sm font-medium text-zinc-100 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-full hover:from-blue-500 hover:to-cyan-500 transition-all shadow-lg shadow-blue-500/25"
-                >
-                    <svg
-                        className="w-4 h-4"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                    >
-                        <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-                        />
-                    </svg>
-                    Resume
-                </Link>
 
                 {/* Mobile menu button */}
                 <button

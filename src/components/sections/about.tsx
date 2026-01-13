@@ -1,5 +1,7 @@
 "use client";
 
+import Image from "next/image";
+
 export function AboutSection() {
     return (
         <section id="about" className="py-24 px-6 bg-zinc-900/30">
@@ -11,13 +13,18 @@ export function AboutSection() {
                 </h2>
 
                 <div className="grid md:grid-cols-2 gap-12 items-start">
-                    {/* Avatar/Image placeholder */}
+                    {/* Profile Photo */}
                     <div className="relative">
                         <div className="aspect-square rounded-3xl bg-gradient-to-br from-blue-500/20 via-cyan-500/20 to-purple-500/20 p-1">
-                            <div className="w-full h-full rounded-3xl bg-zinc-900 flex items-center justify-center overflow-hidden">
-                                <div className="text-8xl font-bold bg-gradient-to-br from-blue-400 to-cyan-400 bg-clip-text text-transparent">
-                                    RK
-                                </div>
+                            <div className="w-full h-full rounded-3xl bg-zinc-900 overflow-hidden">
+                                <Image
+                                    src="/profile-photo.jpg"
+                                    alt="Ravi Kumar Nersu - Staff Software Engineer"
+                                    width={500}
+                                    height={500}
+                                    className="w-full h-full object-cover rounded-3xl"
+                                    priority
+                                />
                             </div>
                         </div>
                         {/* Decorative elements */}
