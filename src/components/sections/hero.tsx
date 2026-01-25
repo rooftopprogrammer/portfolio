@@ -1,9 +1,10 @@
 "use client";
 
-import React from "react";
+import React, { useRef, useCallback, useEffect, useState } from "react";
 import Image from "next/image";
 import { siteConfig, highlights } from "@/config/site";
 import { trackLinkedInClick } from "@/lib/analytics";
+import { useScrollReveal, useAnimatedCounter } from "@/hooks/use-animations";
 
 const socialIcons: Record<string, React.JSX.Element> = {
     linkedin: (
@@ -41,9 +42,49 @@ const clientLogos = [
     { name: "Ingram Micro", abbr: "IM" },
 ];
 
+// Magnetic Button Component
+function MagneticButton({ children, className, ...props }: React.AnchorHTMLAttributes<HTMLAnchorElement> & { children: React.ReactNode }) {
+    const buttonRef = useRef<HTMLAnchorElement>(null);
+
+    const handleMouseMove = useCallback((e: React.MouseEvent<HTMLAnchorElement>) => {
+        const button = buttonRef.current;
+        if (!button) return;
+
+        const rect = button.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+
+        button.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
+    }, []);
+
+    const handleMouseLeave = useCallback(() => {
+        const button = buttonRef.current;
+        if (!button) return;
+        button.style.transform = 'translate(0, 0)';
+    }, []);
+
+    return (
+        <a
+            ref={buttonRef}
+            className={`magnetic-btn ${className}`}
+            onMouseMove={handleMouseMove}
+            onMouseLeave={handleMouseLeave}
+            {...props}
+        >
+            {children}
+        </a>
+    );
+}
+
 export function HeroSection() {
     // Filter out GitHub, only show LinkedIn
     const visibleLinks = siteConfig.links.filter(link => link.icon !== 'github');
+    const { ref: sectionRef, isVisible } = useScrollReveal<HTMLElement>({ threshold: 0.1 });
+    const [mounted, setMounted] = useState(false);
+
+    useEffect(() => {
+        setMounted(true);
+    }, []);
 
     const handleLinkClick = (linkIcon: string) => {
         if (linkIcon === 'linkedin') {
@@ -52,11 +93,18 @@ export function HeroSection() {
     };
 
     return (
-        <section className="min-h-screen flex items-center px-6 pt-24 pb-12 relative overflow-hidden">
-            {/* Decorative elements */}
-            <div className="absolute top-32 left-[45%] w-3 h-3 rounded-full bg-[#FF6B35] opacity-60 animate-bounce-soft" />
-            <div className="absolute top-48 right-[15%] w-4 h-4 rounded-full border-2 border-[#8B5CF6] opacity-40" />
-            <div className="absolute bottom-40 left-[10%] w-5 h-5 text-[#06B6D4] animate-float-slow">✦</div>
+        <section
+            ref={sectionRef}
+            className={`min-h-screen flex items-center px-6 pt-24 pb-12 relative overflow-hidden ${mounted ? 'page-enter' : 'opacity-0'}`}
+        >
+            {/* Decorative elements with parallax */}
+            <div className="absolute top-32 left-[45%] w-3 h-3 rounded-full bg-[#FF6B35] opacity-60 float-parallax" />
+            <div className="absolute top-48 right-[15%] w-4 h-4 rounded-full border-2 border-[#8B5CF6] opacity-40 float-parallax-reverse" />
+            <div className="absolute bottom-40 left-[10%] w-5 h-5 text-[#06B6D4] float-parallax">✦</div>
+
+            {/* Blur background effect */}
+            <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-gradient-to-br from-[#FF6B35]/20 to-purple-500/10 rounded-full filter blur-3xl pointer-events-none" />
+            <div className="absolute bottom-1/4 left-1/4 w-64 h-64 bg-gradient-to-br from-purple-500/15 to-cyan-500/10 rounded-full filter blur-3xl pointer-events-none" />
 
             {/* Purple gradient on right side */}
             <div className="absolute right-0 top-0 w-1/3 h-full bg-gradient-to-l from-purple-500/10 via-purple-500/5 to-transparent pointer-events-none" />
@@ -66,7 +114,7 @@ export function HeroSection() {
                     {/* Left Content */}
                     <div className="order-2 lg:order-1">
                         {/* Status badge */}
-                        <div className="inline-flex items-center gap-2 px-4 py-2 mb-6 text-sm font-medium text-[#FF6B35] bg-[#FF6B35]/10 rounded-full border border-[#FF6B35]/20 animate-fade-in-up">
+                        <div className={`inline-flex items-center gap-2 px-4 py-2 mb-6 text-sm font-medium text-[#FF6B35] glass-orange rounded-full scroll-reveal ${isVisible ? 'visible' : ''}`}>
                             <span className="relative flex h-2 w-2">
                                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
                                 <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
@@ -75,29 +123,29 @@ export function HeroSection() {
                         </div>
 
                         {/* Name and Title */}
-                        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 animate-fade-in-up animation-delay-100">
+                        <h1 className={`text-4xl md:text-5xl lg:text-6xl font-bold mb-4 scroll-reveal stagger-1 ${isVisible ? 'visible' : ''}`}>
                             <span className="text-[#1A1A2E]">Hy! I Am</span>
                             <br />
-                            <span className="text-[#FF6B35]">{siteConfig.name.split(' ')[0]} {siteConfig.name.split(' ')[1]}</span>
+                            <span className="text-gradient-animated">{siteConfig.name.split(' ')[0]} {siteConfig.name.split(' ')[1]}</span>
                         </h1>
 
-                        <h2 className="text-xl md:text-2xl font-semibold text-[#4B5563] mb-6 animate-fade-in-up animation-delay-200">
+                        <h2 className={`text-xl md:text-2xl font-semibold text-[#4B5563] mb-6 scroll-reveal stagger-2 ${isVisible ? 'visible' : ''}`}>
                             {siteConfig.title}
                         </h2>
 
                         {/* Headline & Description */}
                         {siteConfig.headline && (
-                            <p className="text-lg md:text-xl text-[#1A1A2E] max-w-xl mb-4 leading-relaxed font-medium animate-fade-in-up animation-delay-300">
+                            <p className={`text-lg md:text-xl text-[#1A1A2E] max-w-xl mb-4 leading-relaxed font-medium scroll-reveal stagger-3 ${isVisible ? 'visible' : ''}`}>
                                 {siteConfig.headline}
                             </p>
                         )}
 
-                        <p className="text-base text-[#6B7280] max-w-xl mb-6 leading-relaxed animate-fade-in-up animation-delay-400">
+                        <p className={`text-base text-[#6B7280] max-w-xl mb-6 leading-relaxed scroll-reveal stagger-3 ${isVisible ? 'visible' : ''}`}>
                             {siteConfig.description}
                         </p>
 
                         {/* Location */}
-                        <p className="flex items-center gap-2 text-[#6B7280] mb-8 animate-fade-in-up animation-delay-400">
+                        <p className={`flex items-center gap-2 text-[#6B7280] mb-8 scroll-reveal stagger-4 ${isVisible ? 'visible' : ''}`}>
                             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path
                                     strokeLinecap="round"
@@ -116,13 +164,16 @@ export function HeroSection() {
                         </p>
 
                         {/* CTA Button & Social Links */}
-                        <div className="flex flex-wrap items-center gap-4 mb-12 animate-fade-in-up animation-delay-500">
-                            <a
+                        <div className={`flex flex-wrap items-center gap-4 mb-12 scroll-reveal stagger-5 ${isVisible ? 'visible' : ''}`}>
+                            <MagneticButton
                                 href="#contact"
-                                className="inline-flex items-center gap-2 px-8 py-3 bg-gradient-to-r from-[#FF6B35] to-[#FF8F6B] text-white font-semibold rounded-full hover:shadow-lg hover:shadow-orange-500/30 transition-all hover:-translate-y-1"
+                                className="inline-flex items-center gap-2 px-8 py-3 bg-gradient-to-r from-[#FF6B35] to-[#FF8F6B] text-white font-semibold rounded-full shadow-premium hover:shadow-premium-lg transition-all animate-glow"
                             >
                                 Hire Me
-                            </a>
+                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                                </svg>
+                            </MagneticButton>
 
                             <div className="flex items-center gap-3">
                                 {visibleLinks.map((link) => (
@@ -132,7 +183,7 @@ export function HeroSection() {
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         onClick={() => handleLinkClick(link.icon)}
-                                        className="p-3 text-[#6B7280] hover:text-[#FF6B35] bg-white hover:bg-[#FFF2EE] rounded-full transition-all hover:scale-110 shadow-sm border border-[#FFE8E0]"
+                                        className="p-3 text-[#6B7280] hover:text-[#FF6B35] glass hover:bg-[#FFF2EE] rounded-full transition-all hover:scale-110 hover:shadow-premium"
                                         aria-label={link.name}
                                     >
                                         {socialIcons[link.icon]}
@@ -142,18 +193,19 @@ export function HeroSection() {
                         </div>
 
                         {/* Clients/Brands Section */}
-                        <div className="animate-fade-in-up animation-delay-700">
+                        <div className={`scroll-reveal stagger-6 ${isVisible ? 'visible' : ''}`}>
                             <p className="text-sm font-semibold text-[#1A1A2E] mb-4">
                                 Worked With These Brands & Clients
                             </p>
                             <div className="flex flex-wrap items-center gap-6">
-                                {clientLogos.map((client) => (
+                                {clientLogos.map((client, index) => (
                                     <div
                                         key={client.name}
-                                        className="flex items-center justify-center w-12 h-12 rounded-lg bg-white shadow-sm border border-[#FFE8E0] text-[#6B7280] hover:text-[#FF6B35] hover:border-[#FF6B35]/30 transition-all cursor-default"
+                                        className="flex items-center justify-center w-12 h-12 rounded-lg glass hover:bg-[#FFF2EE] hover:scale-110 transition-all cursor-default card-3d"
                                         title={client.name}
+                                        style={{ transitionDelay: `${index * 50}ms` }}
                                     >
-                                        <span className="text-xs font-bold">{client.abbr}</span>
+                                        <span className="text-xs font-bold text-[#6B7280]">{client.abbr}</span>
                                     </div>
                                 ))}
                             </div>
@@ -161,11 +213,11 @@ export function HeroSection() {
                     </div>
 
                     {/* Right Content - Photo & Floating Cards */}
-                    <div className="order-1 lg:order-2 relative">
+                    <div className="order-1 lg:order-2 relative perspective-container">
                         {/* Main Photo Container */}
-                        <div className="relative mx-auto w-[280px] md:w-[350px] lg:w-[400px]">
+                        <div className={`relative mx-auto w-[280px] md:w-[350px] lg:w-[400px] scroll-reveal-scale ${isVisible ? 'visible' : ''}`}>
                             {/* Background gradient blob */}
-                            <div className="absolute inset-0 bg-gradient-to-br from-[#FFE8E0] via-[#FFF2EE] to-purple-100 rounded-[40%_60%_70%_30%/60%_30%_70%_40%] transform scale-110" />
+                            <div className="absolute inset-0 bg-gradient-to-br from-[#FFE8E0] via-[#FFF2EE] to-purple-100 rounded-[40%_60%_70%_30%/60%_30%_70%_40%] transform scale-110 animate-pulse" style={{ animationDuration: '4s' }} />
 
                             {/* Profile Image */}
                             <div className="relative z-10">
@@ -174,15 +226,15 @@ export function HeroSection() {
                                     alt={`${siteConfig.name} - ${siteConfig.title}`}
                                     width={400}
                                     height={500}
-                                    className="w-full h-auto object-cover rounded-2xl"
+                                    className="w-full h-auto object-cover rounded-2xl shadow-premium-lg"
                                     priority
                                 />
                             </div>
 
                             {/* Floating Badge - Top Right: Years Experience */}
-                            <div className="absolute -top-2 -right-4 md:right-0 lg:-right-8 bg-white rounded-xl shadow-lg p-3 animate-float z-20 border border-[#FFE8E0]">
+                            <div className="absolute -top-2 -right-4 md:right-0 lg:-right-8 glass-strong rounded-xl shadow-premium p-3 float-parallax z-20 card-3d">
                                 <div className="flex items-center gap-2">
-                                    <div className="w-8 h-8 bg-gradient-to-br from-yellow-400 to-orange-400 rounded-lg flex items-center justify-center">
+                                    <div className="w-8 h-8 bg-gradient-to-br from-yellow-400 to-orange-400 rounded-lg flex items-center justify-center shadow-glow">
                                         <span className="text-white text-sm">🏆</span>
                                     </div>
                                     <div>
@@ -193,7 +245,7 @@ export function HeroSection() {
                             </div>
 
                             {/* Floating Badge - Bottom Left: Frontend Expert */}
-                            <div className="absolute -bottom-4 -left-4 md:left-0 lg:-left-12 bg-white rounded-xl shadow-lg p-3 animate-float animation-delay-200 z-20 border border-[#FFE8E0]">
+                            <div className="absolute -bottom-4 -left-4 md:left-0 lg:-left-12 glass-strong rounded-xl shadow-premium p-3 float-parallax-reverse z-20 card-3d">
                                 <div className="flex items-center gap-2">
                                     <div className="w-8 h-8 bg-gradient-to-br from-[#FF6B35] to-[#FF8F6B] rounded-lg flex items-center justify-center">
                                         <span className="text-white text-xs">⚛️</span>
@@ -206,7 +258,7 @@ export function HeroSection() {
                             </div>
 
                             {/* Floating Badge - Right Side: Performance */}
-                            <div className="absolute top-1/2 -right-4 md:right-0 lg:-right-16 bg-gradient-to-br from-[#8B5CF6] to-[#A78BFA] rounded-xl shadow-lg p-3 animate-float animation-delay-400 z-20">
+                            <div className="absolute top-1/2 -right-4 md:right-0 lg:-right-16 bg-gradient-to-br from-[#8B5CF6] to-[#A78BFA] rounded-xl shadow-glow-purple p-3 float-parallax z-20 card-3d">
                                 <div className="flex items-center gap-2">
                                     <span className="text-white text-lg">🚀</span>
                                     <div>
@@ -217,7 +269,7 @@ export function HeroSection() {
                             </div>
 
                             {/* Decorative emoji */}
-                            <div className="absolute -top-8 left-1/4 text-3xl animate-bounce-soft animation-delay-300">
+                            <div className="absolute -top-8 left-1/4 text-3xl float-parallax-reverse">
                                 🎯
                             </div>
                         </div>
@@ -228,28 +280,52 @@ export function HeroSection() {
     );
 }
 
-export function StatsSection() {
+// Animated Counter Component
+function AnimatedStat({ metric, label, description, index }: { metric: string; label: string; description: string; index: number }) {
+    const { ref, isVisible } = useScrollReveal<HTMLDivElement>({ threshold: 0.3 });
+
+    // Extract number from metric (e.g., "8.5+" -> 8.5, "50%" -> 50)
+    const numericValue = parseFloat(metric.replace(/[^0-9.]/g, '')) || 0;
+    const suffix = metric.replace(/[0-9.]/g, '');
+    const animatedValue = useAnimatedCounter(numericValue, isVisible, { duration: 2000, delay: index * 100 });
+
+    // Format the number properly
+    const displayValue = numericValue % 1 !== 0 ? animatedValue.toFixed(1) : animatedValue.toString();
+
     return (
-        <section className="py-16 px-6">
+        <div
+            ref={ref}
+            className={`group relative p-6 glass rounded-2xl hover:bg-white transition-all duration-500 hover:shadow-premium-lg hover:-translate-y-2 card-3d card-glare scroll-reveal stagger-${index + 1} ${isVisible ? 'visible' : ''}`}
+        >
+            <div className="absolute inset-0 bg-gradient-to-br from-[#FF6B35]/5 to-purple-500/5 opacity-0 group-hover:opacity-100 rounded-2xl transition-opacity" />
+            <div className="relative">
+                <div className="text-3xl md:text-4xl font-bold text-gradient-orange mb-2">
+                    {displayValue}{suffix}
+                </div>
+                <div className="text-sm font-semibold text-[#1A1A2E] mb-1">
+                    {label}
+                </div>
+                <div className="text-xs text-[#6B7280]">{description}</div>
+            </div>
+        </div>
+    );
+}
+
+export function StatsSection() {
+    const { ref: sectionRef, isVisible } = useScrollReveal<HTMLElement>({ threshold: 0.2 });
+
+    return (
+        <section ref={sectionRef} className="py-16 px-6">
             <div className="max-w-6xl mx-auto">
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
                     {highlights.map((stat, index) => (
-                        <div
+                        <AnimatedStat
                             key={stat.label}
-                            className="group relative p-6 bg-white rounded-2xl border border-[#FFE8E0] hover:border-[#FF6B35]/30 transition-all duration-300 hover:shadow-xl hover:shadow-orange-500/5 hover:-translate-y-1"
-                            style={{ animationDelay: `${index * 100}ms` }}
-                        >
-                            <div className="absolute inset-0 bg-gradient-to-br from-[#FF6B35]/5 to-transparent opacity-0 group-hover:opacity-100 rounded-2xl transition-opacity" />
-                            <div className="relative">
-                                <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-[#FF6B35] to-[#FF8F6B] bg-clip-text text-transparent mb-2">
-                                    {stat.metric}
-                                </div>
-                                <div className="text-sm font-semibold text-[#1A1A2E] mb-1">
-                                    {stat.label}
-                                </div>
-                                <div className="text-xs text-[#6B7280]">{stat.description}</div>
-                            </div>
-                        </div>
+                            metric={stat.metric}
+                            label={stat.label}
+                            description={stat.description}
+                            index={index}
+                        />
                     ))}
                 </div>
             </div>

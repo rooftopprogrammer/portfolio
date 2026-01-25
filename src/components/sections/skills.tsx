@@ -3,6 +3,7 @@
 import React from "react";
 import { skills } from "@/config/site";
 import { cn } from "@/lib/utils";
+import { useScrollReveal } from "@/hooks/use-animations";
 
 const categoryIcons: Record<string, React.JSX.Element> = {
     Languages: (
@@ -100,14 +101,88 @@ const levelColors = {
     expert: "from-[#8B5CF6] to-[#A78BFA]",
 };
 
-const levelWidths = {
-    beginner: "w-1/4",
-    intermediate: "w-2/4",
-    advanced: "w-3/4",
-    expert: "w-full",
+const levelPercentages = {
+    beginner: 25,
+    intermediate: 50,
+    advanced: 75,
+    expert: 100,
 };
 
+// Animated progress bar component
+function AnimatedProgressBar({ level, isVisible, delay }: { level: keyof typeof levelColors; isVisible: boolean; delay: number }) {
+    const percentage = levelPercentages[level];
+
+    return (
+        <div className="h-2.5 bg-[#FFE8E0] rounded-full overflow-hidden relative">
+            {/* Shimmer background */}
+            <div className="absolute inset-0 shimmer opacity-30" />
+
+            {/* Progress bar with glow */}
+            <div
+                className={cn(
+                    "h-full rounded-full bg-gradient-to-r transition-all duration-1000 ease-out relative",
+                    levelColors[level]
+                )}
+                style={{
+                    width: isVisible ? `${percentage}%` : '0%',
+                    transitionDelay: `${delay}ms`,
+                    boxShadow: isVisible ? `0 0 10px ${level === 'expert' ? 'rgba(139, 92, 246, 0.4)' : 'rgba(255, 107, 53, 0.4)'}` : 'none'
+                }}
+            >
+                {/* Inner glow */}
+                <div className="absolute inset-0 bg-gradient-to-b from-white/30 to-transparent rounded-full" />
+            </div>
+        </div>
+    );
+}
+
+// Skill card component with 3D effects
+function SkillCard({ category, categorySkills, index }: { category: string; categorySkills: typeof skills; index: number }) {
+    const { ref, isVisible } = useScrollReveal<HTMLDivElement>({ threshold: 0.2 });
+
+    return (
+        <div
+            ref={ref}
+            className={`group p-6 glass rounded-2xl hover:bg-white transition-all duration-500 hover:shadow-premium-lg hover:-translate-y-2 card-3d card-glare scroll-reveal stagger-${(index % 6) + 1} ${isVisible ? 'visible' : ''}`}
+            style={{ transitionDelay: `${index * 80}ms` }}
+        >
+            <div className="flex items-center gap-3 mb-6">
+                <div className="p-2 bg-gradient-to-br from-[#FF6B35] to-[#FF8F6B] rounded-lg text-white shadow-lg group-hover:scale-110 group-hover:shadow-glow transition-all duration-300">
+                    {categoryIcons[category] || categoryIcons.Tools}
+                </div>
+                <h3 className="text-lg font-semibold text-[#1A1A2E] group-hover:text-[#FF6B35] transition-colors">{category}</h3>
+            </div>
+
+            <div className="space-y-4">
+                {categorySkills.map((skill, skillIndex) => (
+                    <div key={skill.name}>
+                        <div className="flex items-center justify-between mb-1.5">
+                            <span className="text-sm text-[#4B5563] font-medium">{skill.name}</span>
+                            <span className={cn(
+                                "text-xs capitalize glass px-2 py-0.5 rounded-full transition-all duration-300",
+                                skill.level === 'expert' && "text-[#8B5CF6]",
+                                skill.level === 'advanced' && "text-[#FF6B35]",
+                                skill.level === 'intermediate' && "text-[#F59E0B]",
+                                skill.level === 'beginner' && "text-[#6B7280]"
+                            )}>
+                                {skill.level}
+                            </span>
+                        </div>
+                        <AnimatedProgressBar
+                            level={skill.level}
+                            isVisible={isVisible}
+                            delay={skillIndex * 100 + 200}
+                        />
+                    </div>
+                ))}
+            </div>
+        </div>
+    );
+}
+
 export function SkillsSection() {
+    const { ref: sectionRef, isVisible } = useScrollReveal<HTMLElement>({ threshold: 0.05 });
+
     // Group skills by category
     const groupedSkills = skills.reduce(
         (acc, skill) => {
@@ -123,54 +198,31 @@ export function SkillsSection() {
     const categories = Object.keys(groupedSkills);
 
     return (
-        <section id="skills" className="py-24 px-6 bg-white">
-            <div className="max-w-6xl mx-auto">
-                <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">
+        <section id="skills" ref={sectionRef} className="py-24 px-6 bg-white relative overflow-hidden">
+            {/* Decorative elements */}
+            <div className="absolute top-20 left-10 w-80 h-80 bg-gradient-to-br from-[#FF6B35]/10 to-transparent rounded-full filter blur-3xl pointer-events-none float-parallax" />
+            <div className="absolute bottom-20 right-10 w-96 h-96 bg-gradient-to-br from-purple-500/10 to-transparent rounded-full filter blur-3xl pointer-events-none float-parallax-reverse" />
+
+            <div className="max-w-6xl mx-auto relative">
+                <h2 className={`text-3xl md:text-4xl font-bold text-center mb-4 scroll-reveal ${isVisible ? 'visible' : ''}`}>
                     <span className="text-[#1A1A2E]">Technical </span>
-                    <span className="text-[#FF6B35]">Skills</span>
+                    <span className="text-gradient-animated">Skills</span>
                 </h2>
-                <p className="text-[#6B7280] text-center mb-4 max-w-2xl mx-auto italic">
+                <p className={`text-[#6B7280] text-center mb-4 max-w-2xl mx-auto italic scroll-reveal stagger-1 ${isVisible ? 'visible' : ''}`}>
                     Tools matter — but judgment matters more.
                 </p>
-                <p className="text-[#6B7280] text-center mb-16 max-w-2xl mx-auto">
+                <p className={`text-[#6B7280] text-center mb-16 max-w-2xl mx-auto scroll-reveal stagger-2 ${isVisible ? 'visible' : ''}`}>
                     These are the tools I&apos;ve used to deliver real systems in production.
                 </p>
 
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {categories.map((category) => (
-                        <div
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 perspective-container">
+                    {categories.map((category, index) => (
+                        <SkillCard
                             key={category}
-                            className="group p-6 bg-[#FFFBF8] rounded-2xl border border-[#FFE8E0] hover:border-[#FF6B35]/30 transition-all duration-300 hover:shadow-lg hover:shadow-orange-500/5 hover:-translate-y-1"
-                        >
-                            <div className="flex items-center gap-3 mb-6">
-                                <div className="p-2 bg-gradient-to-br from-[#FF6B35] to-[#FF8F6B] rounded-lg text-white shadow-lg">
-                                    {categoryIcons[category] || categoryIcons.Tools}
-                                </div>
-                                <h3 className="text-lg font-semibold text-[#1A1A2E]">{category}</h3>
-                            </div>
-
-                            <div className="space-y-4">
-                                {groupedSkills[category].map((skill) => (
-                                    <div key={skill.name}>
-                                        <div className="flex items-center justify-between mb-1.5">
-                                            <span className="text-sm text-[#4B5563]">{skill.name}</span>
-                                            <span className="text-xs text-[#6B7280] capitalize bg-[#FFF2EE] px-2 py-0.5 rounded-full">
-                                                {skill.level}
-                                            </span>
-                                        </div>
-                                        <div className="h-2 bg-[#FFE8E0] rounded-full overflow-hidden">
-                                            <div
-                                                className={cn(
-                                                    "h-full rounded-full bg-gradient-to-r transition-all duration-500",
-                                                    levelColors[skill.level],
-                                                    levelWidths[skill.level]
-                                                )}
-                                            />
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
+                            category={category}
+                            categorySkills={groupedSkills[category]}
+                            index={index}
+                        />
                     ))}
                 </div>
             </div>

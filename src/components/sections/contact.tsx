@@ -1,8 +1,9 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useRef, useCallback } from "react";
 import { toast } from "sonner";
 import { siteConfig } from "@/config/site";
+import { useScrollReveal } from "@/hooks/use-animations";
 import {
     trackLinkedInClick,
     trackEmailClick,
@@ -76,16 +77,16 @@ function EmailModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void 
     };
 
     return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm" onClick={onClose}>
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm animate-fade-in" onClick={onClose}>
             <div
-                className="bg-white border border-[#FFE8E0] rounded-2xl p-6 max-w-sm w-full mx-4 shadow-2xl"
+                className="glass-strong border border-[#FFE8E0] rounded-2xl p-6 max-w-sm w-full mx-4 shadow-premium-lg scroll-reveal-scale visible"
                 onClick={(e) => e.stopPropagation()}
             >
                 <h3 className="text-xl font-semibold text-[#1A1A2E] mb-4 text-center">Open with</h3>
                 <div className="space-y-3">
                     <button
                         onClick={handleGmail}
-                        className="w-full flex items-center gap-3 px-4 py-3 bg-[#FFF8F5] hover:bg-[#FFE8E0] rounded-xl transition-colors border border-[#FFE8E0]"
+                        className="w-full flex items-center gap-3 px-4 py-3 glass hover:bg-[#FFE8E0] rounded-xl transition-all hover:scale-[1.02] border border-[#FFE8E0]"
                     >
                         <div className="w-10 h-10 rounded-lg bg-red-500/10 flex items-center justify-center">
                             <svg className="w-6 h-6 text-red-500" viewBox="0 0 24 24" fill="currentColor">
@@ -97,7 +98,7 @@ function EmailModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void 
 
                     <button
                         onClick={handleOutlook}
-                        className="w-full flex items-center gap-3 px-4 py-3 bg-[#FFF8F5] hover:bg-[#FFE8E0] rounded-xl transition-colors border border-[#FFE8E0]"
+                        className="w-full flex items-center gap-3 px-4 py-3 glass hover:bg-[#FFE8E0] rounded-xl transition-all hover:scale-[1.02] border border-[#FFE8E0]"
                     >
                         <div className="w-10 h-10 rounded-lg bg-blue-500/10 flex items-center justify-center">
                             <svg className="w-6 h-6 text-blue-500" viewBox="0 0 24 24" fill="currentColor">
@@ -109,7 +110,7 @@ function EmailModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void 
 
                     <button
                         onClick={handleDefault}
-                        className="w-full flex items-center gap-3 px-4 py-3 bg-[#FFF8F5] hover:bg-[#FFE8E0] rounded-xl transition-colors border border-[#FFE8E0]"
+                        className="w-full flex items-center gap-3 px-4 py-3 glass hover:bg-[#FFE8E0] rounded-xl transition-all hover:scale-[1.02] border border-[#FFE8E0]"
                     >
                         <div className="w-10 h-10 rounded-lg bg-[#FF6B35]/10 flex items-center justify-center text-[#FF6B35]">
                             {socialIcons.mail}
@@ -120,7 +121,7 @@ function EmailModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void 
 
                 <button
                     onClick={onClose}
-                    className="mt-4 w-full py-2 text-sm text-[#6B7280] hover:text-[#1A1A2E] transition-colors"
+                    className="mt-4 w-full py-2 text-sm text-[#6B7280] hover:text-[#1A1A2E] transition-colors underline-animate"
                 >
                     Cancel
                 </button>
@@ -129,8 +130,91 @@ function EmailModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void 
     );
 }
 
+// Magnetic button component
+function MagneticButton({ children, className, onClick, ...props }: React.ButtonHTMLAttributes<HTMLButtonElement> & { children: React.ReactNode }) {
+    const buttonRef = useRef<HTMLButtonElement>(null);
+
+    const handleMouseMove = useCallback((e: React.MouseEvent<HTMLButtonElement>) => {
+        const button = buttonRef.current;
+        if (!button) return;
+
+        const rect = button.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+
+        button.style.transform = `translate(${x * 0.2}px, ${y * 0.2}px)`;
+    }, []);
+
+    const handleMouseLeave = useCallback(() => {
+        const button = buttonRef.current;
+        if (!button) return;
+        button.style.transform = 'translate(0, 0)';
+    }, []);
+
+    return (
+        <button
+            ref={buttonRef}
+            className={`magnetic-btn ${className}`}
+            onMouseMove={handleMouseMove}
+            onMouseLeave={handleMouseLeave}
+            onClick={onClick}
+            style={{ transition: 'transform 0.2s ease-out' }}
+            {...props}
+        >
+            {children}
+        </button>
+    );
+}
+
+// Contact card with 3D effect
+function ContactCard({ children, className, index }: { children: React.ReactNode; className?: string; index: number }) {
+    const cardRef = useRef<HTMLDivElement>(null);
+    const { ref, isVisible } = useScrollReveal<HTMLDivElement>({ threshold: 0.3 });
+
+    const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+        const card = cardRef.current;
+        if (!card) return;
+
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+
+        const rotateX = ((y - centerY) / centerY) * -5;
+        const rotateY = ((x - centerX) / centerX) * 5;
+
+        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02) translateY(-4px)`;
+    }, []);
+
+    const handleMouseLeave = useCallback(() => {
+        const card = cardRef.current;
+        if (!card) return;
+        card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1) translateY(0)';
+    }, []);
+
+    return (
+        <div
+            ref={ref}
+            className={`scroll-reveal stagger-${index + 1} ${isVisible ? 'visible' : ''}`}
+        >
+            <div
+                ref={cardRef}
+                className={`${className} card-glare`}
+                onMouseMove={handleMouseMove}
+                onMouseLeave={handleMouseLeave}
+                style={{ transformStyle: 'preserve-3d', transition: 'transform 0.15s ease-out' }}
+            >
+                {children}
+            </div>
+        </div>
+    );
+}
+
 export function ContactSection() {
     const [emailModalOpen, setEmailModalOpen] = useState(false);
+    const { ref: sectionRef, isVisible } = useScrollReveal<HTMLElement>({ threshold: 0.1 });
 
     const handleEmailClick = () => {
         setEmailModalOpen(true);
@@ -172,25 +256,29 @@ export function ContactSection() {
         <>
             <EmailModal isOpen={emailModalOpen} onClose={() => setEmailModalOpen(false)} />
 
-            <section id="contact" className="py-24 px-6 bg-gradient-to-br from-[#FFFBF8] to-[#FFF8F5]">
-                <div className="max-w-4xl mx-auto text-center">
-                    <h2 className="text-3xl md:text-4xl font-bold mb-4">
+            <section id="contact" ref={sectionRef} className="py-24 px-6 bg-gradient-to-br from-[#FFFBF8] to-[#FFF8F5] relative overflow-hidden">
+                {/* Decorative blur blobs */}
+                <div className="absolute top-10 left-10 w-64 h-64 bg-gradient-to-br from-[#FF6B35]/15 to-transparent rounded-full filter blur-3xl pointer-events-none float-parallax" />
+                <div className="absolute bottom-10 right-10 w-80 h-80 bg-gradient-to-br from-purple-500/10 to-transparent rounded-full filter blur-3xl pointer-events-none float-parallax-reverse" />
+
+                <div className="max-w-4xl mx-auto text-center relative">
+                    <h2 className={`text-3xl md:text-4xl font-bold mb-4 scroll-reveal ${isVisible ? 'visible' : ''}`}>
                         <span className="text-[#1A1A2E]">Let&apos;s Work </span>
-                        <span className="text-[#FF6B35]">Together</span>
+                        <span className="text-gradient-animated">Together</span>
                     </h2>
-                    <p className="text-[#6B7280] mb-12 max-w-2xl mx-auto">
+                    <p className={`text-[#6B7280] mb-12 max-w-2xl mx-auto scroll-reveal stagger-1 ${isVisible ? 'visible' : ''}`}>
                         Interested in solving high-impact frontend architecture and performance problems at scale.
                     </p>
 
-                    <div className="grid md:grid-cols-2 gap-6 mb-12">
+                    <div className="grid md:grid-cols-2 gap-6 mb-12 perspective-container">
                         {/* Email Card */}
-                        <div className="group p-6 bg-white rounded-2xl border border-[#FFE8E0] hover:border-[#FF6B35]/30 transition-all duration-300 hover:shadow-lg hover:shadow-orange-500/5 hover:-translate-y-1">
+                        <ContactCard className="group p-6 glass rounded-2xl hover:bg-white transition-all duration-300 hover:shadow-premium-lg" index={1}>
                             <div className="flex items-center justify-between">
-                                <button
+                                <MagneticButton
                                     onClick={handleEmailClick}
                                     className="flex items-center gap-4 flex-1 text-left"
                                 >
-                                    <div className="p-3 bg-gradient-to-br from-[#FF6B35] to-[#FF8F6B] rounded-xl text-white group-hover:shadow-lg group-hover:shadow-orange-500/20 transition-all">
+                                    <div className="p-3 bg-gradient-to-br from-[#FF6B35] to-[#FF8F6B] rounded-xl text-white group-hover:shadow-glow transition-all group-hover:scale-110 duration-300">
                                         {socialIcons.mail}
                                     </div>
                                     <div>
@@ -199,25 +287,25 @@ export function ContactSection() {
                                             {EMAIL}
                                         </p>
                                     </div>
-                                </button>
+                                </MagneticButton>
                                 <button
                                     onClick={() => copyToClipboard(EMAIL, 'email')}
-                                    className="p-2 text-[#6B7280] hover:text-[#FF6B35] hover:bg-[#FFF8F5] rounded-lg transition-all"
+                                    className="p-2 text-[#6B7280] hover:text-[#FF6B35] glass hover:bg-[#FFF8F5] rounded-lg transition-all hover:scale-110"
                                     aria-label="Copy email to clipboard"
                                 >
                                     {socialIcons.copy}
                                 </button>
                             </div>
-                        </div>
+                        </ContactCard>
 
                         {/* Phone Card */}
-                        <div className="group p-6 bg-white rounded-2xl border border-[#FFE8E0] hover:border-[#FF6B35]/30 transition-all duration-300 hover:shadow-lg hover:shadow-orange-500/5 hover:-translate-y-1">
+                        <ContactCard className="group p-6 glass rounded-2xl hover:bg-white transition-all duration-300 hover:shadow-premium-lg" index={2}>
                             <div className="flex items-center justify-between">
-                                <button
+                                <MagneticButton
                                     onClick={handlePhoneClick}
                                     className="flex items-center gap-4 flex-1 text-left"
                                 >
-                                    <div className="p-3 bg-gradient-to-br from-[#FF6B35] to-[#FF8F6B] rounded-xl text-white group-hover:shadow-lg group-hover:shadow-orange-500/20 transition-all">
+                                    <div className="p-3 bg-gradient-to-br from-[#FF6B35] to-[#FF8F6B] rounded-xl text-white group-hover:shadow-glow transition-all group-hover:scale-110 duration-300">
                                         {socialIcons.phone}
                                     </div>
                                     <div>
@@ -226,27 +314,27 @@ export function ContactSection() {
                                             {PHONE_DISPLAY}
                                         </p>
                                     </div>
-                                </button>
+                                </MagneticButton>
                                 <button
                                     onClick={() => copyToClipboard(PHONE_DISPLAY, 'phone')}
-                                    className="p-2 text-[#6B7280] hover:text-[#FF6B35] hover:bg-[#FFF8F5] rounded-lg transition-all"
+                                    className="p-2 text-[#6B7280] hover:text-[#FF6B35] glass hover:bg-[#FFF8F5] rounded-lg transition-all hover:scale-110"
                                     aria-label="Copy phone number to clipboard"
                                 >
                                     {socialIcons.copy}
                                 </button>
                             </div>
-                        </div>
+                        </ContactCard>
                     </div>
 
-                    {/* Social Links - Only LinkedIn (GitHub hidden) */}
-                    <div className="flex items-center justify-center gap-4">
+                    {/* Social Links with glow */}
+                    <div className={`flex items-center justify-center gap-4 scroll-reveal stagger-4 ${isVisible ? 'visible' : ''}`}>
                         {linkedInLink && (
                             <a
                                 href={linkedInLink.url}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 onClick={handleLinkedInClick}
-                                className="p-4 text-white bg-gradient-to-br from-[#FF6B35] to-[#FF8F6B] rounded-full transition-all hover:scale-110 hover:shadow-lg hover:shadow-orange-500/30"
+                                className="p-4 text-white bg-gradient-to-br from-[#FF6B35] to-[#FF8F6B] rounded-full transition-all hover:scale-110 shadow-premium hover:shadow-premium-lg animate-glow"
                                 aria-label={linkedInLink.name}
                             >
                                 {socialIcons.linkedin}
@@ -261,9 +349,10 @@ export function ContactSection() {
 
 export function Footer() {
     const currentYear = new Date().getFullYear();
+    const { ref, isVisible } = useScrollReveal<HTMLElement>({ threshold: 0.5 });
 
     return (
-        <footer className="py-8 px-6 border-t border-[#FFE8E0] bg-white">
+        <footer ref={ref} className={`py-8 px-6 border-t border-[#FFE8E0] bg-white scroll-reveal ${isVisible ? 'visible' : ''}`}>
             <div className="max-w-6xl mx-auto flex items-center justify-center">
                 <p className="text-sm text-[#6B7280]">
                     © {currentYear} {siteConfig.name}. All rights reserved.
