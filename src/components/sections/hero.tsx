@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import { siteConfig, highlights } from "@/config/site";
 import { trackLinkedInClick } from "@/lib/analytics";
 
@@ -32,6 +33,14 @@ const socialIcons: Record<string, React.JSX.Element> = {
     ),
 };
 
+// Client/Company logos the person has worked with
+const clientLogos = [
+    { name: "LTIMindtree", abbr: "LTI" },
+    { name: "Avis Budget Group", abbr: "ABG" },
+    { name: "Tata Group", abbr: "TATA" },
+    { name: "Ingram Micro", abbr: "IM" },
+];
+
 export function HeroSection() {
     // Filter out GitHub, only show LinkedIn
     const visibleLinks = siteConfig.links.filter(link => link.icon !== 'github');
@@ -43,90 +52,176 @@ export function HeroSection() {
     };
 
     return (
-        <section className="min-h-screen flex items-center justify-center px-6 pt-20">
-            <div className="max-w-4xl mx-auto text-center">
-                {/* Status badge */}
-                <div className="inline-flex items-center gap-2 px-4 py-2 mb-8 text-sm font-medium text-blue-400 bg-blue-500/10 rounded-full border border-blue-500/20 animate-fade-in-up">
-                    <span className="relative flex h-2 w-2">
-                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                        <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
-                    </span>
-                    Available for new opportunities
-                </div>
+        <section className="min-h-screen flex items-center px-6 pt-24 pb-12 relative overflow-hidden">
+            {/* Decorative elements */}
+            <div className="absolute top-32 left-[45%] w-3 h-3 rounded-full bg-[#FF6B35] opacity-60 animate-bounce-soft" />
+            <div className="absolute top-48 right-[15%] w-4 h-4 rounded-full border-2 border-[#8B5CF6] opacity-40" />
+            <div className="absolute bottom-40 left-[10%] w-5 h-5 text-[#06B6D4] animate-float-slow">✦</div>
 
-                {/* Name and Title */}
-                <h1 className="text-5xl md:text-7xl font-bold mb-6 animate-fade-in-up animation-delay-100">
-                    <span className="bg-gradient-to-r from-white via-zinc-200 to-zinc-400 bg-clip-text text-transparent">
-                        {siteConfig.name}
-                    </span>
-                </h1>
+            {/* Purple gradient on right side */}
+            <div className="absolute right-0 top-0 w-1/3 h-full bg-gradient-to-l from-purple-500/10 via-purple-500/5 to-transparent pointer-events-none" />
 
-                <h2 className="text-2xl md:text-3xl font-medium text-blue-400 mb-8 animate-fade-in-up animation-delay-200">
-                    {siteConfig.title}
-                </h2>
+            <div className="max-w-6xl mx-auto w-full">
+                <div className="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
+                    {/* Left Content */}
+                    <div className="order-2 lg:order-1">
+                        {/* Status badge */}
+                        <div className="inline-flex items-center gap-2 px-4 py-2 mb-6 text-sm font-medium text-[#FF6B35] bg-[#FF6B35]/10 rounded-full border border-[#FF6B35]/20 animate-fade-in-up">
+                            <span className="relative flex h-2 w-2">
+                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                                <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                            </span>
+                            Available for new opportunities
+                        </div>
 
-                {/* Positioning Statement */}
-                {siteConfig.headline && (
-                    <p className="text-xl md:text-2xl font-medium text-zinc-100 max-w-xl mx-auto mb-4 leading-snug animate-fade-in-up animation-delay-300">
-                        {siteConfig.headline}
-                    </p>
-                )}
+                        {/* Name and Title */}
+                        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 animate-fade-in-up animation-delay-100">
+                            <span className="text-[#1A1A2E]">Hy! I Am</span>
+                            <br />
+                            <span className="text-[#FF6B35]">{siteConfig.name.split(' ')[0]} {siteConfig.name.split(' ')[1]}</span>
+                        </h1>
 
-                <p className="text-base md:text-lg text-zinc-400 max-w-xl mx-auto mb-8 leading-relaxed animate-fade-in-up animation-delay-400">
-                    {siteConfig.description}
-                </p>
+                        <h2 className="text-xl md:text-2xl font-semibold text-[#4B5563] mb-6 animate-fade-in-up animation-delay-200">
+                            {siteConfig.title}
+                        </h2>
 
-                {/* Location */}
-                <p className="flex items-center justify-center gap-2 text-zinc-400 mb-8 animate-fade-in-up animation-delay-400">
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-                        />
-                        <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-                        />
-                    </svg>
-                    Hyderabad, India
-                </p>
+                        {/* Headline & Description */}
+                        {siteConfig.headline && (
+                            <p className="text-lg md:text-xl text-[#1A1A2E] max-w-xl mb-4 leading-relaxed font-medium animate-fade-in-up animation-delay-300">
+                                {siteConfig.headline}
+                            </p>
+                        )}
 
-                {/* Social Links - GitHub hidden */}
-                <div className="flex items-center justify-center gap-4 mb-12 animate-fade-in-up animation-delay-500">
-                    {visibleLinks.map((link) => (
-                        <a
-                            key={link.name}
-                            href={link.url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            onClick={() => handleLinkClick(link.icon)}
-                            className="p-3 text-zinc-400 hover:text-white bg-zinc-800/50 hover:bg-zinc-700/50 rounded-full transition-all hover:scale-110 hover:shadow-lg hover:shadow-blue-500/10"
-                            aria-label={link.name}
-                        >
-                            {socialIcons[link.icon]}
-                        </a>
-                    ))}
-                </div>
+                        <p className="text-base text-[#6B7280] max-w-xl mb-6 leading-relaxed animate-fade-in-up animation-delay-400">
+                            {siteConfig.description}
+                        </p>
 
-                {/* Scroll indicator */}
-                <div className="animate-bounce mt-8">
-                    <svg
-                        className="w-6 h-6 mx-auto text-zinc-400"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                    >
-                        <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M19 14l-7 7m0 0l-7-7m7 7V3"
-                        />
-                    </svg>
+                        {/* Location */}
+                        <p className="flex items-center gap-2 text-[#6B7280] mb-8 animate-fade-in-up animation-delay-400">
+                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth={2}
+                                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                                />
+                                <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth={2}
+                                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+                                />
+                            </svg>
+                            Hyderabad, India
+                        </p>
+
+                        {/* CTA Button & Social Links */}
+                        <div className="flex flex-wrap items-center gap-4 mb-12 animate-fade-in-up animation-delay-500">
+                            <a
+                                href="#contact"
+                                className="inline-flex items-center gap-2 px-8 py-3 bg-gradient-to-r from-[#FF6B35] to-[#FF8F6B] text-white font-semibold rounded-full hover:shadow-lg hover:shadow-orange-500/30 transition-all hover:-translate-y-1"
+                            >
+                                Hire Me
+                            </a>
+
+                            <div className="flex items-center gap-3">
+                                {visibleLinks.map((link) => (
+                                    <a
+                                        key={link.name}
+                                        href={link.url}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        onClick={() => handleLinkClick(link.icon)}
+                                        className="p-3 text-[#6B7280] hover:text-[#FF6B35] bg-white hover:bg-[#FFF2EE] rounded-full transition-all hover:scale-110 shadow-sm border border-[#FFE8E0]"
+                                        aria-label={link.name}
+                                    >
+                                        {socialIcons[link.icon]}
+                                    </a>
+                                ))}
+                            </div>
+                        </div>
+
+                        {/* Clients/Brands Section */}
+                        <div className="animate-fade-in-up animation-delay-700">
+                            <p className="text-sm font-semibold text-[#1A1A2E] mb-4">
+                                Worked With These Brands & Clients
+                            </p>
+                            <div className="flex flex-wrap items-center gap-6">
+                                {clientLogos.map((client) => (
+                                    <div
+                                        key={client.name}
+                                        className="flex items-center justify-center w-12 h-12 rounded-lg bg-white shadow-sm border border-[#FFE8E0] text-[#6B7280] hover:text-[#FF6B35] hover:border-[#FF6B35]/30 transition-all cursor-default"
+                                        title={client.name}
+                                    >
+                                        <span className="text-xs font-bold">{client.abbr}</span>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Right Content - Photo & Floating Cards */}
+                    <div className="order-1 lg:order-2 relative">
+                        {/* Main Photo Container */}
+                        <div className="relative mx-auto w-[280px] md:w-[350px] lg:w-[400px]">
+                            {/* Background gradient blob */}
+                            <div className="absolute inset-0 bg-gradient-to-br from-[#FFE8E0] via-[#FFF2EE] to-purple-100 rounded-[40%_60%_70%_30%/60%_30%_70%_40%] transform scale-110" />
+
+                            {/* Profile Image */}
+                            <div className="relative z-10">
+                                <Image
+                                    src="/profile-photo.jpg"
+                                    alt={`${siteConfig.name} - ${siteConfig.title}`}
+                                    width={400}
+                                    height={500}
+                                    className="w-full h-auto object-cover rounded-2xl"
+                                    priority
+                                />
+                            </div>
+
+                            {/* Floating Badge - Top Right: Years Experience */}
+                            <div className="absolute -top-2 -right-4 md:right-0 lg:-right-8 bg-white rounded-xl shadow-lg p-3 animate-float z-20 border border-[#FFE8E0]">
+                                <div className="flex items-center gap-2">
+                                    <div className="w-8 h-8 bg-gradient-to-br from-yellow-400 to-orange-400 rounded-lg flex items-center justify-center">
+                                        <span className="text-white text-sm">🏆</span>
+                                    </div>
+                                    <div>
+                                        <p className="text-xs font-bold text-[#1A1A2E]">8.5+ Years</p>
+                                        <p className="text-[10px] text-[#6B7280]">Experience</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Floating Badge - Bottom Left: Frontend Expert */}
+                            <div className="absolute -bottom-4 -left-4 md:left-0 lg:-left-12 bg-white rounded-xl shadow-lg p-3 animate-float animation-delay-200 z-20 border border-[#FFE8E0]">
+                                <div className="flex items-center gap-2">
+                                    <div className="w-8 h-8 bg-gradient-to-br from-[#FF6B35] to-[#FF8F6B] rounded-lg flex items-center justify-center">
+                                        <span className="text-white text-xs">⚛️</span>
+                                    </div>
+                                    <div>
+                                        <p className="text-xs font-bold text-[#1A1A2E]">Frontend</p>
+                                        <p className="text-[10px] text-[#6B7280]">Architecture Expert</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Floating Badge - Right Side: Performance */}
+                            <div className="absolute top-1/2 -right-4 md:right-0 lg:-right-16 bg-gradient-to-br from-[#8B5CF6] to-[#A78BFA] rounded-xl shadow-lg p-3 animate-float animation-delay-400 z-20">
+                                <div className="flex items-center gap-2">
+                                    <span className="text-white text-lg">🚀</span>
+                                    <div>
+                                        <p className="text-xs font-bold text-white">50%</p>
+                                        <p className="text-[10px] text-purple-100">Faster Load</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Decorative emoji */}
+                            <div className="absolute -top-8 left-1/4 text-3xl animate-bounce-soft animation-delay-300">
+                                🎯
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -135,24 +230,24 @@ export function HeroSection() {
 
 export function StatsSection() {
     return (
-        <section className="py-20 px-6">
+        <section className="py-16 px-6">
             <div className="max-w-6xl mx-auto">
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
                     {highlights.map((stat, index) => (
                         <div
                             key={stat.label}
-                            className="group relative p-6 bg-gradient-to-br from-zinc-900 to-zinc-900/50 rounded-2xl border border-zinc-800/50 hover:border-blue-500/30 transition-all duration-300 hover:shadow-xl hover:shadow-blue-500/5"
+                            className="group relative p-6 bg-white rounded-2xl border border-[#FFE8E0] hover:border-[#FF6B35]/30 transition-all duration-300 hover:shadow-xl hover:shadow-orange-500/5 hover:-translate-y-1"
                             style={{ animationDelay: `${index * 100}ms` }}
                         >
-                            <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-transparent opacity-0 group-hover:opacity-100 rounded-2xl transition-opacity" />
+                            <div className="absolute inset-0 bg-gradient-to-br from-[#FF6B35]/5 to-transparent opacity-0 group-hover:opacity-100 rounded-2xl transition-opacity" />
                             <div className="relative">
-                                <div className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent mb-2">
+                                <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-[#FF6B35] to-[#FF8F6B] bg-clip-text text-transparent mb-2">
                                     {stat.metric}
                                 </div>
-                                <div className="text-sm font-semibold text-zinc-200 mb-1">
+                                <div className="text-sm font-semibold text-[#1A1A2E] mb-1">
                                     {stat.label}
                                 </div>
-                                <div className="text-xs text-zinc-400">{stat.description}</div>
+                                <div className="text-xs text-[#6B7280]">{stat.description}</div>
                             </div>
                         </div>
                     ))}

@@ -13,8 +13,8 @@ const inter = Inter({
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
-    { media: "(prefers-color-scheme: dark)", color: "#09090b" },
+    { media: "(prefers-color-scheme: light)", color: "#FFFBF8" },
+    { media: "(prefers-color-scheme: dark)", color: "#FFFBF8" },
   ],
   width: "device-width",
   initialScale: 1,
@@ -103,7 +103,7 @@ export const metadata: Metadata = {
       {
         rel: "mask-icon",
         url: "/favicon.svg",
-        color: "#3b82f6",
+        color: "#FF6B35",
       },
     ],
   },
@@ -163,7 +163,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark scroll-smooth" suppressHydrationWarning>
+    <html lang="en" className="scroll-smooth" suppressHydrationWarning>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
@@ -174,23 +174,27 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${inter.variable} font-sans antialiased bg-zinc-950 text-zinc-100 selection:bg-blue-500/30`}
+        className={`${inter.variable} font-sans antialiased bg-[#FFFBF8] text-[#1A1A2E] selection:bg-orange-500/20`}
         suppressHydrationWarning
       >
-        <div className="fixed inset-0 -z-10 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(59,130,246,0.15),rgba(255,255,255,0))]" />
+        {/* Gradient background overlays */}
+        <div className="fixed inset-0 -z-10 bg-gradient-to-br from-[#FFFBF8] via-[#FFF8F5] to-[#FFF2EE]" />
+        <div className="fixed inset-0 -z-10 bg-gradient-to-bl from-transparent via-transparent to-purple-500/5" />
+        
         <AnalyticsProvider>
           {children}
         </AnalyticsProvider>
         <Toaster
-          theme="dark"
+          theme="light"
           position="bottom-right"
           richColors
           closeButton
           toastOptions={{
             style: {
-              background: 'rgba(24, 24, 27, 0.95)',
-              border: '1px solid rgba(63, 63, 70, 0.5)',
+              background: 'rgba(255, 255, 255, 0.95)',
+              border: '1px solid rgba(255, 232, 224, 0.8)',
               backdropFilter: 'blur(12px)',
+              color: '#1A1A2E',
             },
           }}
         />

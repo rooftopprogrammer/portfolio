@@ -5,20 +5,19 @@ import { Badge } from "@/components/ui/badge";
 
 export function ExperienceSection() {
     return (
-        <section id="experience" className="py-24 px-6">
+        <section id="experience" className="py-24 px-6 bg-white">
             <div className="max-w-4xl mx-auto">
                 <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">
-                    <span className="bg-gradient-to-r from-white to-zinc-400 bg-clip-text text-transparent">
-                        Professional Experience
-                    </span>
+                    <span className="text-[#1A1A2E]">Professional </span>
+                    <span className="text-[#FF6B35]">Experience</span>
                 </h2>
-                <p className="text-zinc-400 text-center mb-16 max-w-2xl mx-auto">
+                <p className="text-[#6B7280] text-center mb-16 max-w-2xl mx-auto">
                     8.5+ years building scalable enterprise systems with modern technologies
                 </p>
 
                 <div className="relative">
                     {/* Timeline line */}
-                    <div className="absolute left-0 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-blue-500 via-cyan-500 to-transparent transform md:-translate-x-px" />
+                    <div className="absolute left-0 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-[#FF6B35] via-[#FF8F6B] to-[#FFE8E0] transform md:-translate-x-px" />
 
                     {experiences.map((exp, index) => (
                         <div
@@ -27,30 +26,30 @@ export function ExperienceSection() {
                                 }`}
                         >
                             {/* Timeline dot */}
-                            <div className="absolute left-0 md:left-1/2 w-4 h-4 bg-blue-500 rounded-full transform -translate-x-1.5 md:-translate-x-2 mt-2 ring-4 ring-zinc-950 z-10" />
+                            <div className="absolute left-0 md:left-1/2 w-4 h-4 bg-[#FF6B35] rounded-full transform -translate-x-1.5 md:-translate-x-2 mt-2 ring-4 ring-[#FFF8F5] z-10 shadow-lg shadow-orange-500/30" />
 
                             {/* Content */}
                             <div
                                 className={`flex-1 ml-8 md:ml-0 ${index % 2 === 0 ? "md:pr-12" : "md:pl-12"
                                     }`}
                             >
-                                <div className="group p-6 bg-zinc-900/50 rounded-2xl border border-zinc-800/50 hover:border-blue-500/30 transition-all duration-300 hover:shadow-xl hover:shadow-blue-500/5">
+                                <div className="group p-6 bg-white rounded-2xl border border-[#FFE8E0] hover:border-[#FF6B35]/30 transition-all duration-300 hover:shadow-xl hover:shadow-orange-500/5 hover:-translate-y-1">
                                     <div className="flex items-start justify-between mb-4">
                                         <div>
-                                            <h3 className="text-xl font-semibold text-white group-hover:text-blue-400 transition-colors">
+                                            <h3 className="text-xl font-semibold text-[#1A1A2E] group-hover:text-[#FF6B35] transition-colors">
                                                 {exp.role}
                                             </h3>
-                                            <p className="text-blue-400 font-medium">{exp.company}</p>
+                                            <p className="text-[#FF6B35] font-medium">{exp.company}</p>
                                             {exp.client && (
-                                                <p className="text-zinc-400 text-sm">Client: {exp.client}</p>
+                                                <p className="text-[#6B7280] text-sm">Client: {exp.client}</p>
                                             )}
                                         </div>
-                                        <span className="text-sm text-zinc-400 whitespace-nowrap">
+                                        <span className="text-sm text-[#6B7280] whitespace-nowrap bg-[#FFF8F5] px-3 py-1 rounded-full">
                                             {exp.period}
                                         </span>
                                     </div>
 
-                                    <p className="text-zinc-400 text-sm leading-relaxed mb-4">
+                                    <p className="text-[#6B7280] text-sm leading-relaxed mb-4">
                                         {exp.description}
                                     </p>
 
@@ -59,7 +58,7 @@ export function ExperienceSection() {
                                             <Badge
                                                 key={tech}
                                                 variant="secondary"
-                                                className="bg-zinc-800 text-zinc-300 hover:bg-zinc-700 border-zinc-700"
+                                                className="bg-[#FFF8F5] text-[#4B5563] hover:bg-[#FFE8E0] border-[#FFE8E0] hover:border-[#FF6B35]/30"
                                             >
                                                 {tech}
                                             </Badge>
@@ -68,33 +67,33 @@ export function ExperienceSection() {
 
                                     {/* Case Study Block */}
                                     {exp.caseStudy && (
-                                        <div className="mt-6 pt-6 border-t border-zinc-800/50">
+                                        <div className="mt-6 pt-6 border-t border-[#FFE8E0]">
                                             <div className="flex items-center gap-2 mb-4">
                                                 <span className="text-lg">🧩</span>
-                                                <h4 className="text-sm font-semibold text-cyan-400 uppercase tracking-wide">
+                                                <h4 className="text-sm font-semibold text-[#8B5CF6] uppercase tracking-wide">
                                                     Architectural Impact
                                                 </h4>
                                             </div>
                                             <div className="space-y-3 text-sm">
                                                 <div>
-                                                    <span className="text-zinc-400 font-medium">Problem: </span>
-                                                    <span className="text-zinc-400">{exp.caseStudy.problem}</span>
+                                                    <span className="text-[#4B5563] font-medium">Problem: </span>
+                                                    <span className="text-[#6B7280]">{exp.caseStudy.problem}</span>
                                                 </div>
                                                 <div>
-                                                    <span className="text-zinc-400 font-medium">Constraints: </span>
-                                                    <span className="text-zinc-400">{exp.caseStudy.constraints}</span>
+                                                    <span className="text-[#4B5563] font-medium">Constraints: </span>
+                                                    <span className="text-[#6B7280]">{exp.caseStudy.constraints}</span>
                                                 </div>
                                                 <div>
-                                                    <span className="text-zinc-400 font-medium">Decision: </span>
-                                                    <span className="text-zinc-400">{exp.caseStudy.decision}</span>
+                                                    <span className="text-[#4B5563] font-medium">Decision: </span>
+                                                    <span className="text-[#6B7280]">{exp.caseStudy.decision}</span>
                                                 </div>
                                                 <div>
-                                                    <span className="text-zinc-400 font-medium">Trade-offs: </span>
-                                                    <span className="text-zinc-400">{exp.caseStudy.tradeoffs}</span>
+                                                    <span className="text-[#4B5563] font-medium">Trade-offs: </span>
+                                                    <span className="text-[#6B7280]">{exp.caseStudy.tradeoffs}</span>
                                                 </div>
-                                                <div className="pt-2 border-t border-zinc-800/30">
-                                                    <span className="text-green-500 font-medium">Result: </span>
-                                                    <span className="text-zinc-300">{exp.caseStudy.result}</span>
+                                                <div className="pt-2 border-t border-[#FFE8E0]">
+                                                    <span className="text-green-600 font-medium">Result: </span>
+                                                    <span className="text-[#1A1A2E]">{exp.caseStudy.result}</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -114,22 +113,21 @@ export function ExperienceSection() {
 
 export function EducationSection() {
     return (
-        <section id="education" className="py-24 px-6 bg-zinc-900/30">
+        <section id="education" className="py-24 px-6 bg-gradient-to-br from-[#FFFBF8] to-[#FFF8F5]">
             <div className="max-w-4xl mx-auto">
                 <h2 className="text-3xl md:text-4xl font-bold text-center mb-16">
-                    <span className="bg-gradient-to-r from-white to-zinc-400 bg-clip-text text-transparent">
-                        Education
-                    </span>
+                    <span className="text-[#1A1A2E]">My </span>
+                    <span className="text-[#FF6B35]">Education</span>
                 </h2>
 
                 <div className="grid gap-6">
                     {education.map((edu) => (
                         <div
                             key={edu.institution}
-                            className="group p-6 bg-zinc-900/50 rounded-2xl border border-zinc-800/50 hover:border-blue-500/30 transition-all duration-300"
+                            className="group p-6 bg-white rounded-2xl border border-[#FFE8E0] hover:border-[#FF6B35]/30 transition-all duration-300 hover:shadow-lg hover:shadow-orange-500/5 hover:-translate-y-1"
                         >
                             <div className="flex items-start gap-4">
-                                <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center flex-shrink-0">
+                                <div className="w-12 h-12 bg-gradient-to-br from-[#FF6B35] to-[#FF8F6B] rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg">
                                     <svg
                                         className="w-6 h-6 text-white"
                                         fill="none"
@@ -147,12 +145,12 @@ export function EducationSection() {
                                     </svg>
                                 </div>
                                 <div className="flex-1">
-                                    <h3 className="text-xl font-semibold text-white group-hover:text-blue-400 transition-colors">
+                                    <h3 className="text-xl font-semibold text-[#1A1A2E] group-hover:text-[#FF6B35] transition-colors">
                                         {edu.degree}
                                     </h3>
-                                    <p className="text-blue-400">{edu.field}</p>
-                                    <p className="text-zinc-400 text-sm">{edu.institution}</p>
-                                    <p className="text-zinc-400 text-sm mt-1">{edu.period}</p>
+                                    <p className="text-[#FF6B35]">{edu.field}</p>
+                                    <p className="text-[#6B7280] text-sm">{edu.institution}</p>
+                                    <p className="text-[#6B7280] text-sm mt-1">{edu.period}</p>
                                 </div>
                             </div>
                         </div>

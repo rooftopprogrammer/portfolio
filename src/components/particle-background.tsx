@@ -9,7 +9,15 @@ interface Particle {
     vy: number;
     size: number;
     opacity: number;
+    color: string;
 }
+
+const colors = [
+    "rgba(255, 107, 53, 0.4)",  // Orange
+    "rgba(255, 143, 107, 0.3)", // Light orange
+    "rgba(139, 92, 246, 0.3)",  // Purple
+    "rgba(255, 179, 153, 0.25)", // Peach
+];
 
 export function ParticleBackground() {
     const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -53,17 +61,18 @@ export function ParticleBackground() {
             particles = [];
             // Reduced particle count for better performance
             const particleCount = Math.min(
-                Math.floor((window.innerWidth * window.innerHeight) / 25000),
-                50 // Cap at 50 particles
+                Math.floor((window.innerWidth * window.innerHeight) / 30000),
+                40 // Cap at 40 particles
             );
             for (let i = 0; i < particleCount; i++) {
                 particles.push({
                     x: Math.random() * window.innerWidth,
                     y: Math.random() * window.innerHeight,
-                    vx: (Math.random() - 0.5) * 0.3,
-                    vy: (Math.random() - 0.5) * 0.3,
-                    size: Math.random() * 1.5 + 0.5,
-                    opacity: Math.random() * 0.4 + 0.1,
+                    vx: (Math.random() - 0.5) * 0.2,
+                    vy: (Math.random() - 0.5) * 0.2,
+                    size: Math.random() * 3 + 1,
+                    opacity: Math.random() * 0.5 + 0.2,
+                    color: colors[Math.floor(Math.random() * colors.length)],
                 });
             }
         };
@@ -81,8 +90,7 @@ export function ParticleBackground() {
 
             ctx.clearRect(0, 0, width, height);
 
-            // Batch particle updates and draws
-            ctx.fillStyle = "rgba(59, 130, 246, 0.3)";
+            // Draw particles
             particles.forEach((particle) => {
                 particle.x += particle.vx;
                 particle.y += particle.vy;
@@ -94,13 +102,13 @@ export function ParticleBackground() {
 
                 ctx.beginPath();
                 ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(59, 130, 246, ${particle.opacity})`;
+                ctx.fillStyle = particle.color;
                 ctx.fill();
             });
 
-            // Draw connections with distance check optimization
-            const connectionDistance = 100;
-            ctx.lineWidth = 0.5;
+            // Draw subtle connections
+            const connectionDistance = 120;
+            ctx.lineWidth = 0.3;
             for (let i = 0; i < particles.length; i++) {
                 const p1 = particles[i];
                 for (let j = i + 1; j < particles.length; j++) {
@@ -115,11 +123,11 @@ export function ParticleBackground() {
                     const maxDistSq = connectionDistance * connectionDistance;
 
                     if (distanceSq < maxDistSq) {
-                        const opacity = 0.08 * (1 - distanceSq / maxDistSq);
+                        const opacity = 0.06 * (1 - distanceSq / maxDistSq);
                         ctx.beginPath();
                         ctx.moveTo(p1.x, p1.y);
                         ctx.lineTo(p2.x, p2.y);
-                        ctx.strokeStyle = `rgba(59, 130, 246, ${opacity})`;
+                        ctx.strokeStyle = `rgba(255, 107, 53, ${opacity})`;
                         ctx.stroke();
                     }
                 }
@@ -148,7 +156,7 @@ export function ParticleBackground() {
     return (
         <canvas
             ref={canvasRef}
-            className="fixed inset-0 -z-10 pointer-events-none opacity-50"
+            className="fixed inset-0 -z-10 pointer-events-none opacity-40"
             aria-hidden="true"
         />
     );

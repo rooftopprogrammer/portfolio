@@ -76,51 +76,51 @@ function EmailModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void 
     };
 
     return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm" onClick={onClose}>
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm" onClick={onClose}>
             <div
-                className="bg-zinc-900 border border-zinc-700 rounded-2xl p-6 max-w-sm w-full mx-4 shadow-2xl"
+                className="bg-white border border-[#FFE8E0] rounded-2xl p-6 max-w-sm w-full mx-4 shadow-2xl"
                 onClick={(e) => e.stopPropagation()}
             >
-                <h3 className="text-xl font-semibold text-white mb-4 text-center">Open with</h3>
+                <h3 className="text-xl font-semibold text-[#1A1A2E] mb-4 text-center">Open with</h3>
                 <div className="space-y-3">
                     <button
                         onClick={handleGmail}
-                        className="w-full flex items-center gap-3 px-4 py-3 bg-zinc-800 hover:bg-zinc-700 rounded-xl transition-colors"
+                        className="w-full flex items-center gap-3 px-4 py-3 bg-[#FFF8F5] hover:bg-[#FFE8E0] rounded-xl transition-colors border border-[#FFE8E0]"
                     >
                         <div className="w-10 h-10 rounded-lg bg-red-500/10 flex items-center justify-center">
-                            <svg className="w-6 h-6 text-red-400" viewBox="0 0 24 24" fill="currentColor">
+                            <svg className="w-6 h-6 text-red-500" viewBox="0 0 24 24" fill="currentColor">
                                 <path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z" />
                             </svg>
                         </div>
-                        <span className="text-white font-medium">Gmail</span>
+                        <span className="text-[#1A1A2E] font-medium">Gmail</span>
                     </button>
 
                     <button
                         onClick={handleOutlook}
-                        className="w-full flex items-center gap-3 px-4 py-3 bg-zinc-800 hover:bg-zinc-700 rounded-xl transition-colors"
+                        className="w-full flex items-center gap-3 px-4 py-3 bg-[#FFF8F5] hover:bg-[#FFE8E0] rounded-xl transition-colors border border-[#FFE8E0]"
                     >
                         <div className="w-10 h-10 rounded-lg bg-blue-500/10 flex items-center justify-center">
-                            <svg className="w-6 h-6 text-blue-400" viewBox="0 0 24 24" fill="currentColor">
+                            <svg className="w-6 h-6 text-blue-500" viewBox="0 0 24 24" fill="currentColor">
                                 <path d="M24 7.387v10.478c0 .23-.08.424-.238.576-.159.152-.351.229-.576.229h-8.639v-6.09l1.204.99c.11.089.244.133.4.133a.57.57 0 0 0 .399-.133l4.941-4.058a.493.493 0 0 0 .171-.371.478.478 0 0 0-.171-.372l-.381-.309a.525.525 0 0 0-.39-.161.564.564 0 0 0-.4.161l-4.578 3.724V3.33h8.447c.226 0 .417.077.576.229.158.152.238.346.238.576v3.252zm-10.615-.828v11.295l-5.385 1.861V4.698l5.385 1.861zM1.09 8.086l4.895-1.599v10.17L1.09 15.059c-.206-.067-.368-.186-.486-.361a.934.934 0 0 1-.171-.552v-4.508c0-.21.057-.392.171-.544.118-.152.28-.266.486-.342v.334zm12.457 7.6v5.984L0 17.67V21.67l13.547 2.33V15.686z" />
                             </svg>
                         </div>
-                        <span className="text-white font-medium">Outlook</span>
+                        <span className="text-[#1A1A2E] font-medium">Outlook</span>
                     </button>
 
                     <button
                         onClick={handleDefault}
-                        className="w-full flex items-center gap-3 px-4 py-3 bg-zinc-800 hover:bg-zinc-700 rounded-xl transition-colors"
+                        className="w-full flex items-center gap-3 px-4 py-3 bg-[#FFF8F5] hover:bg-[#FFE8E0] rounded-xl transition-colors border border-[#FFE8E0]"
                     >
-                        <div className="w-10 h-10 rounded-lg bg-zinc-600/30 flex items-center justify-center">
+                        <div className="w-10 h-10 rounded-lg bg-[#FF6B35]/10 flex items-center justify-center text-[#FF6B35]">
                             {socialIcons.mail}
                         </div>
-                        <span className="text-white font-medium">Default Mail App</span>
+                        <span className="text-[#1A1A2E] font-medium">Default Mail App</span>
                     </button>
                 </div>
 
                 <button
                     onClick={onClose}
-                    className="mt-4 w-full py-2 text-sm text-zinc-400 hover:text-white transition-colors"
+                    className="mt-4 w-full py-2 text-sm text-[#6B7280] hover:text-[#1A1A2E] transition-colors"
                 >
                     Cancel
                 </button>
@@ -172,38 +172,37 @@ export function ContactSection() {
         <>
             <EmailModal isOpen={emailModalOpen} onClose={() => setEmailModalOpen(false)} />
 
-            <section id="contact" className="py-24 px-6 bg-zinc-900/30">
+            <section id="contact" className="py-24 px-6 bg-gradient-to-br from-[#FFFBF8] to-[#FFF8F5]">
                 <div className="max-w-4xl mx-auto text-center">
                     <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                        <span className="bg-gradient-to-r from-white to-zinc-400 bg-clip-text text-transparent">
-                            Let&apos;s Work Together
-                        </span>
+                        <span className="text-[#1A1A2E]">Let&apos;s Work </span>
+                        <span className="text-[#FF6B35]">Together</span>
                     </h2>
-                    <p className="text-zinc-400 mb-12 max-w-2xl mx-auto">
+                    <p className="text-[#6B7280] mb-12 max-w-2xl mx-auto">
                         Interested in solving high-impact frontend architecture and performance problems at scale.
                     </p>
 
                     <div className="grid md:grid-cols-2 gap-6 mb-12">
                         {/* Email Card */}
-                        <div className="group p-6 bg-zinc-900/50 rounded-2xl border border-zinc-800/50 hover:border-blue-500/30 transition-all duration-300">
+                        <div className="group p-6 bg-white rounded-2xl border border-[#FFE8E0] hover:border-[#FF6B35]/30 transition-all duration-300 hover:shadow-lg hover:shadow-orange-500/5 hover:-translate-y-1">
                             <div className="flex items-center justify-between">
                                 <button
                                     onClick={handleEmailClick}
                                     className="flex items-center gap-4 flex-1 text-left"
                                 >
-                                    <div className="p-3 bg-blue-500/10 rounded-xl text-blue-400 group-hover:bg-blue-500/20 transition-colors">
+                                    <div className="p-3 bg-gradient-to-br from-[#FF6B35] to-[#FF8F6B] rounded-xl text-white group-hover:shadow-lg group-hover:shadow-orange-500/20 transition-all">
                                         {socialIcons.mail}
                                     </div>
                                     <div>
-                                        <p className="text-sm text-zinc-400">Email</p>
-                                        <p className="text-zinc-200 group-hover:text-blue-400 transition-colors">
+                                        <p className="text-sm text-[#6B7280]">Email</p>
+                                        <p className="text-[#1A1A2E] group-hover:text-[#FF6B35] transition-colors font-medium">
                                             {EMAIL}
                                         </p>
                                     </div>
                                 </button>
                                 <button
                                     onClick={() => copyToClipboard(EMAIL, 'email')}
-                                    className="p-2 text-zinc-400 hover:text-white hover:bg-zinc-700/50 rounded-lg transition-all"
+                                    className="p-2 text-[#6B7280] hover:text-[#FF6B35] hover:bg-[#FFF8F5] rounded-lg transition-all"
                                     aria-label="Copy email to clipboard"
                                 >
                                     {socialIcons.copy}
@@ -212,25 +211,25 @@ export function ContactSection() {
                         </div>
 
                         {/* Phone Card */}
-                        <div className="group p-6 bg-zinc-900/50 rounded-2xl border border-zinc-800/50 hover:border-blue-500/30 transition-all duration-300">
+                        <div className="group p-6 bg-white rounded-2xl border border-[#FFE8E0] hover:border-[#FF6B35]/30 transition-all duration-300 hover:shadow-lg hover:shadow-orange-500/5 hover:-translate-y-1">
                             <div className="flex items-center justify-between">
                                 <button
                                     onClick={handlePhoneClick}
                                     className="flex items-center gap-4 flex-1 text-left"
                                 >
-                                    <div className="p-3 bg-blue-500/10 rounded-xl text-blue-400 group-hover:bg-blue-500/20 transition-colors">
+                                    <div className="p-3 bg-gradient-to-br from-[#FF6B35] to-[#FF8F6B] rounded-xl text-white group-hover:shadow-lg group-hover:shadow-orange-500/20 transition-all">
                                         {socialIcons.phone}
                                     </div>
                                     <div>
-                                        <p className="text-sm text-zinc-400">Phone</p>
-                                        <p className="text-zinc-200 group-hover:text-blue-400 transition-colors">
+                                        <p className="text-sm text-[#6B7280]">Phone</p>
+                                        <p className="text-[#1A1A2E] group-hover:text-[#FF6B35] transition-colors font-medium">
                                             {PHONE_DISPLAY}
                                         </p>
                                     </div>
                                 </button>
                                 <button
                                     onClick={() => copyToClipboard(PHONE_DISPLAY, 'phone')}
-                                    className="p-2 text-zinc-400 hover:text-white hover:bg-zinc-700/50 rounded-lg transition-all"
+                                    className="p-2 text-[#6B7280] hover:text-[#FF6B35] hover:bg-[#FFF8F5] rounded-lg transition-all"
                                     aria-label="Copy phone number to clipboard"
                                 >
                                     {socialIcons.copy}
@@ -247,7 +246,7 @@ export function ContactSection() {
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 onClick={handleLinkedInClick}
-                                className="p-4 text-zinc-400 hover:text-white bg-zinc-800/50 hover:bg-zinc-700/50 rounded-full transition-all hover:scale-110"
+                                className="p-4 text-white bg-gradient-to-br from-[#FF6B35] to-[#FF8F6B] rounded-full transition-all hover:scale-110 hover:shadow-lg hover:shadow-orange-500/30"
                                 aria-label={linkedInLink.name}
                             >
                                 {socialIcons.linkedin}
@@ -264,9 +263,9 @@ export function Footer() {
     const currentYear = new Date().getFullYear();
 
     return (
-        <footer className="py-8 px-6 border-t border-zinc-800/50">
+        <footer className="py-8 px-6 border-t border-[#FFE8E0] bg-white">
             <div className="max-w-6xl mx-auto flex items-center justify-center">
-                <p className="text-sm text-zinc-400">
+                <p className="text-sm text-[#6B7280]">
                     © {currentYear} {siteConfig.name}. All rights reserved.
                 </p>
             </div>

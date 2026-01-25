@@ -94,10 +94,10 @@ const categoryIcons: Record<string, React.JSX.Element> = {
 };
 
 const levelColors = {
-    beginner: "from-zinc-500 to-zinc-600",
-    intermediate: "from-yellow-500 to-orange-500",
-    advanced: "from-blue-500 to-cyan-500",
-    expert: "from-purple-500 to-pink-500",
+    beginner: "from-[#9CA3AF] to-[#D1D5DB]",
+    intermediate: "from-[#FBBF24] to-[#F59E0B]",
+    advanced: "from-[#FF8F6B] to-[#FF6B35]",
+    expert: "from-[#8B5CF6] to-[#A78BFA]",
 };
 
 const levelWidths = {
@@ -123,17 +123,16 @@ export function SkillsSection() {
     const categories = Object.keys(groupedSkills);
 
     return (
-        <section id="skills" className="py-24 px-6">
+        <section id="skills" className="py-24 px-6 bg-white">
             <div className="max-w-6xl mx-auto">
                 <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">
-                    <span className="bg-gradient-to-r from-white to-zinc-400 bg-clip-text text-transparent">
-                        Technical Skills
-                    </span>
+                    <span className="text-[#1A1A2E]">Technical </span>
+                    <span className="text-[#FF6B35]">Skills</span>
                 </h2>
-                <p className="text-zinc-400 text-center mb-4 max-w-2xl mx-auto italic">
+                <p className="text-[#6B7280] text-center mb-4 max-w-2xl mx-auto italic">
                     Tools matter — but judgment matters more.
                 </p>
-                <p className="text-zinc-400 text-center mb-16 max-w-2xl mx-auto">
+                <p className="text-[#6B7280] text-center mb-16 max-w-2xl mx-auto">
                     These are the tools I&apos;ve used to deliver real systems in production.
                 </p>
 
@@ -141,25 +140,25 @@ export function SkillsSection() {
                     {categories.map((category) => (
                         <div
                             key={category}
-                            className="group p-6 bg-zinc-900/50 rounded-2xl border border-zinc-800/50 hover:border-blue-500/30 transition-all duration-300"
+                            className="group p-6 bg-[#FFFBF8] rounded-2xl border border-[#FFE8E0] hover:border-[#FF6B35]/30 transition-all duration-300 hover:shadow-lg hover:shadow-orange-500/5 hover:-translate-y-1"
                         >
                             <div className="flex items-center gap-3 mb-6">
-                                <div className="p-2 bg-blue-500/10 rounded-lg text-blue-400">
+                                <div className="p-2 bg-gradient-to-br from-[#FF6B35] to-[#FF8F6B] rounded-lg text-white shadow-lg">
                                     {categoryIcons[category] || categoryIcons.Tools}
                                 </div>
-                                <h3 className="text-lg font-semibold text-white">{category}</h3>
+                                <h3 className="text-lg font-semibold text-[#1A1A2E]">{category}</h3>
                             </div>
 
                             <div className="space-y-4">
                                 {groupedSkills[category].map((skill) => (
                                     <div key={skill.name}>
                                         <div className="flex items-center justify-between mb-1.5">
-                                            <span className="text-sm text-zinc-300">{skill.name}</span>
-                                            <span className="text-xs text-zinc-400 capitalize">
+                                            <span className="text-sm text-[#4B5563]">{skill.name}</span>
+                                            <span className="text-xs text-[#6B7280] capitalize bg-[#FFF2EE] px-2 py-0.5 rounded-full">
                                                 {skill.level}
                                             </span>
                                         </div>
-                                        <div className="h-2 bg-zinc-800 rounded-full overflow-hidden">
+                                        <div className="h-2 bg-[#FFE8E0] rounded-full overflow-hidden">
                                             <div
                                                 className={cn(
                                                     "h-full rounded-full bg-gradient-to-r transition-all duration-500",

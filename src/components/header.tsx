@@ -14,8 +14,12 @@ const navItems = [
 export function Header() {
     const [isScrolled, setIsScrolled] = useState(false);
     const [activeSection, setActiveSection] = useState("");
+    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+    const [mounted, setMounted] = useState(false);
 
     useEffect(() => {
+        setMounted(true);
+
         const handleScroll = () => {
             setIsScrolled(window.scrollY > 50);
 
@@ -41,19 +45,21 @@ export function Header() {
         <header
             className={cn(
                 "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-                isScrolled
-                    ? "bg-zinc-950/80 backdrop-blur-lg border-b border-zinc-800/50 py-4"
-                    : "bg-transparent py-6"
+                mounted && isScrolled
+                    ? "bg-white/90 backdrop-blur-lg shadow-sm py-3"
+                    : "bg-transparent py-5"
             )}
         >
             <nav className="max-w-6xl mx-auto px-6 flex items-center justify-between">
+                {/* Logo */}
                 <Link
                     href="/"
-                    className="text-xl font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent hover:from-blue-300 hover:to-cyan-300 transition-all"
+                    className="text-xl font-bold text-[#1A1A2E] hover:text-[#FF6B35] transition-colors"
                 >
                     RKN
                 </Link>
 
+                {/* Desktop Navigation */}
                 <ul className="hidden md:flex items-center gap-1">
                     {navItems.map((item) => (
                         <li key={item.name}>
@@ -61,24 +67,33 @@ export function Header() {
                                 href={item.href}
                                 className={cn(
                                     "relative px-4 py-2 text-sm font-medium transition-colors rounded-full",
-                                    activeSection === item.href.slice(1)
-                                        ? "text-blue-400"
-                                        : "text-zinc-400 hover:text-zinc-100"
+                                    mounted && activeSection === item.href.slice(1)
+                                        ? "text-[#FF6B35]"
+                                        : "text-[#4B5563] hover:text-[#1A1A2E]"
                                 )}
                             >
                                 {item.name}
-                                {activeSection === item.href.slice(1) && (
-                                    <span className="absolute inset-0 bg-blue-500/10 rounded-full" />
+                                {mounted && activeSection === item.href.slice(1) && (
+                                    <span className="absolute inset-0 bg-[#FF6B35]/10 rounded-full" />
                                 )}
                             </Link>
                         </li>
                     ))}
                 </ul>
 
+                {/* Contact Us Button */}
+                <Link
+                    href="#contact"
+                    className="hidden md:flex items-center gap-2 px-6 py-2.5 bg-gradient-to-r from-[#FF6B35] to-[#FF8F6B] text-white font-semibold rounded-full hover:shadow-lg hover:shadow-orange-500/25 transition-all hover:-translate-y-0.5"
+                >
+                    Contact Me
+                </Link>
+
                 {/* Mobile menu button */}
                 <button
-                    className="md:hidden p-2 text-zinc-400 hover:text-zinc-100"
+                    className="md:hidden p-2 text-[#4B5563] hover:text-[#1A1A2E]"
                     aria-label="Menu"
+                    onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                 >
                     <svg
                         className="w-6 h-6"
@@ -90,11 +105,44 @@ export function Header() {
                             strokeLinecap="round"
                             strokeLinejoin="round"
                             strokeWidth={2}
-                            d="M4 6h16M4 12h16M4 18h16"
+                            d={mobileMenuOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"}
                         />
                     </svg>
                 </button>
             </nav>
+
+            {/* Mobile Menu */}
+            {mobileMenuOpen && (
+                <div className="md:hidden absolute top-full left-0 right-0 bg-white/95 backdrop-blur-lg border-t border-[#FFE8E0] shadow-lg">
+                    <ul className="flex flex-col p-4 gap-2">
+                        {navItems.map((item) => (
+                            <li key={item.name}>
+                                <Link
+                                    href={item.href}
+                                    onClick={() => setMobileMenuOpen(false)}
+                                    className={cn(
+                                        "block px-4 py-3 text-sm font-medium transition-colors rounded-xl",
+                                        activeSection === item.href.slice(1)
+                                            ? "text-[#FF6B35] bg-[#FF6B35]/10"
+                                            : "text-[#4B5563] hover:text-[#1A1A2E] hover:bg-[#FFF2EE]"
+                                    )}
+                                >
+                                    {item.name}
+                                </Link>
+                            </li>
+                        ))}
+                        <li className="pt-2">
+                            <Link
+                                href="#contact"
+                                onClick={() => setMobileMenuOpen(false)}
+                                className="block w-full text-center px-6 py-3 bg-gradient-to-r from-[#FF6B35] to-[#FF8F6B] text-white font-semibold rounded-full"
+                            >
+                                Contact Me
+                            </Link>
+                        </li>
+                    </ul>
+                </div>
+            )}
         </header>
     );
 }
