@@ -124,7 +124,7 @@ export function HeroSection() {
 
                         {/* Name and Title */}
                         <h1 className={`text-4xl md:text-5xl lg:text-6xl font-bold mb-4 scroll-reveal stagger-1 ${isVisible ? 'visible' : ''}`}>
-                            <span className="text-[#1A1A2E]">Hy! I Am</span>
+                            <span className="text-[#1A1A2E]">Hi! I Am</span>
                             <br />
                             <span className="text-gradient-animated">{siteConfig.name.split(' ')[0]} {siteConfig.name.split(' ')[1]}</span>
                         </h1>
