@@ -39,7 +39,7 @@ const clientLogos = [
     { name: "LTIMindtree", abbr: "LTI" },
     { name: "Avis Budget Group", abbr: "ABG" },
     { name: "Tata Group", abbr: "TATA" },
-    { name: "Ingram Micro", abbr: "IM" },
+    { name: "Allmvr Projects", abbr: "AMR" },
 ];
 
 // Magnetic Button Component
@@ -119,7 +119,7 @@ export function HeroSection() {
                                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
                                 <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
                             </span>
-                            Open to Dubai, UAE — Roles & Freelance Projects
+                            Relocating to Dubai, UAE — May 2026
                         </div>
 
                         {/* Name and Title */}
@@ -160,7 +160,7 @@ export function HeroSection() {
                                     d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
                                 />
                             </svg>
-                            Based in India — Open to Dubai, UAE
+                            Relocating to Dubai, UAE — May 2026 (Job Seeker Visa)
                         </p>
 
                         {/* CTA Button & Social Links */}

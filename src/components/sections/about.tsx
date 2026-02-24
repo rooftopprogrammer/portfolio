@@ -63,7 +63,7 @@ export function AboutSection() {
                             <div className="w-full h-full rounded-3xl bg-white overflow-hidden">
                                 <Image
                                     src="/profile-photo.jpg"
-                                    alt="Ravi Kumar Nersu - Senior Full-Stack Developer | MERN Stack Expert"
+                                    alt="Ravi Kumar Nersu - Senior Full-Stack Engineer"
                                     width={500}
                                     height={500}
                                     className="w-full h-full object-cover rounded-3xl hover:scale-105 transition-transform duration-500"
@@ -79,19 +79,19 @@ export function AboutSection() {
                     {/* Content - Staff-level positioning */}
                     <div className="space-y-6">
                         <p className={`text-lg text-[#1A1A2E] leading-relaxed font-medium scroll-reveal stagger-1 ${isVisible ? 'visible' : ''}`}>
-                            I build full-stack web products that are fast, maintainable, and built to last — from the API layer to the user interface.
+                            Full-stack architecture owner with 8.5+ years delivering high-traffic, performance-critical web platforms across 15+ global markets.
                         </p>
 
                         <p className={`text-[#6B7280] leading-relaxed scroll-reveal stagger-2 ${isVisible ? 'visible' : ''}`}>
-                            Over 8.5 years, I&apos;ve worked across the full MERN stack — React.js, Next.js, Node.js, Express, and NestJS — delivering enterprise platforms for global clients in car rental, logistics, and distribution. I&apos;ve built real-time cargo tracking dashboards, secure authentication flows, multi-vendor platform portals, and microservice-driven architectures serving millions of users.
+                            I&apos;ve worked across the full stack — React.js, Next.js, Node.js, Express, and NestJS — driving ~50% page load reduction and ~40% developer velocity improvement through microservices adoption, BFF architecture, and SSR optimization on platforms serving millions of monthly users. Deep expertise in System Design, with a track record across automotive, logistics, enterprise IT, and e-commerce domains.
                         </p>
 
                         <p className={`text-[#6B7280] leading-relaxed scroll-reveal stagger-3 ${isVisible ? 'visible' : ''}`}>
-                            I&apos;ve led feature development end-to-end — from technical design to production — reducing load times by 50%, cutting tech debt, and enabling teams to ship faster without regression risk. I focus on delivering outcomes that matter: faster products, cleaner systems, and measurable business value.
+                            I&apos;ve led feature development end-to-end — from technical design to production — enabling teams to ship faster without regression risk. I focus on delivering outcomes that matter: faster products, cleaner systems, and measurable business value.
                         </p>
 
                         <p className={`text-[#FF6B35] font-medium leading-relaxed scroll-reveal stagger-3 ${isVisible ? 'visible' : ''}`}>
-                            Currently seeking senior full-stack roles and freelance/consulting engagements in Dubai, UAE. Available to start immediately — open to on-site, hybrid, or remote.
+                            Relocating to Dubai, UAE in May 2026 on a Job Seeker Visa. Seeking Senior Full-Stack Engineer, Senior Frontend Engineer, or Senior Software Engineer roles — open to permanent, contract, or freelance.
                         </p>
 
                         {/* Quick facts with animated counters */}

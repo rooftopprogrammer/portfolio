@@ -267,7 +267,7 @@ export function ContactSection() {
                         <span className="text-gradient-animated">in Dubai</span>
                     </h2>
                     <p className={`text-[#6B7280] mb-12 max-w-2xl mx-auto scroll-reveal stagger-1 ${isVisible ? 'visible' : ''}`}>
-                        If you&apos;re a recruiter or business in Dubai, UAE looking for a senior full-stack developer who ships reliable products and communicates clearly — let&apos;s talk. I&apos;m available for permanent roles, contract engagements, and freelance projects starting immediately.
+                        If you&apos;re a recruiter or business in Dubai, UAE looking for a senior full-stack engineer who ships reliable products and communicates clearly — let&apos;s talk. Relocating to Dubai May 2026 on UAE Job Seeker Visa (MOHRE Skill Level 2). Available for remote interviews now, and open to employer-sponsored work visa.
                     </p>
 
                     <div className="grid md:grid-cols-2 gap-6 mb-12 perspective-container">

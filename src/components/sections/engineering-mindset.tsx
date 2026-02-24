@@ -185,7 +185,7 @@ export function EngineeringMindsetSection() {
                             These four principles guide every project I take on — from architecting a Next.js platform for millions of users to designing API boundaries in a NestJS microservice. They represent lessons earned from 8.5 years of building and delivering enterprise systems across global markets.
                         </p>
 
-                        {/* Download CV Button with magnetic effect - commented out
+                        {/* Download CV Button with magnetic effect */}
                         <MagneticButton
                             href="/Resume.pdf"
                             target="_blank"
@@ -197,7 +197,6 @@ export function EngineeringMindsetSection() {
                             </svg>
                             Download CV
                         </MagneticButton>
-                        */}
                     </div>
                 </div>
             </div>
