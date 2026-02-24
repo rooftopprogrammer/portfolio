@@ -2,10 +2,10 @@ import type { SiteConfig, Experience, Education, Skill } from "@/types";
 
 export const siteConfig: SiteConfig = {
   name: "Ravi Kumar Nersu",
-  title: "Specialist Software Engineer",
-  headline: "I design and scale frontend-heavy enterprise systems used by millions of users.",
+  title: "Senior Full-Stack Developer | MERN Stack Expert",
+  headline: "I build fast, scalable web products that solve real business problems.",
   description:
-    "Specialist Software Engineer with 8.5+ years of experience designing and scaling performance-critical web platforms using React, Next.js, and Node.js — with a focus on architectural ownership, frontend performance systems, and microservice-driven platforms at global scale.",
+    "8.5+ years delivering full-stack systems across enterprise clients — React.js, Next.js, Node.js, NestJS, Express, real-time tracking apps, and secure authentication flows. Shipped production platforms for global brands in car rental, logistics, and distribution. Now actively seeking senior tech roles and freelance/consulting engagements based in Dubai, UAE.",
   url: "https://ravikumarnersu.vercel.app",
   ogImage: "/og-image.png",
   links: [
@@ -39,7 +39,7 @@ export const experiences: Experience[] = [
     period: "Jan 2024 - Present",
     client: "Avis Budget Group",
     description:
-      "Primary frontend architecture owner for global digital platforms serving millions of customers across multiple countries. Designed and implemented a microservices-based monorepo using Next.js 15 App Router and NestJS, with a focus on rendering strategy, API boundaries, and cache behavior.",
+      "Led the architectural transformation of global digital platforms, impacting millions of users. Engineered a microservices-based monorepo using Next.js 15 App Router and NestJS, resulting in significant performance gains and enhanced scalability across multiple countries.",
     technologies: [
       "React 19",
       "Next.js 15",
@@ -66,7 +66,7 @@ export const experiences: Experience[] = [
     period: "Jan 2024 - Present",
     client: "Ingram Micro",
     description:
-      "Developed and maintained enterprise web portals (X4C & X4V), streamlining vendor and channel partner operations with modular, testable component architecture.",
+      "Delivered enterprise web portals (X4C & X4V) that streamlined vendor and channel partner operations, improving efficiency and user experience through modular, testable MERN-stack component architecture.",
     technologies: [
       "React.js",
       "Redux",
@@ -83,7 +83,7 @@ export const experiences: Experience[] = [
     period: "Aug 2020 - Dec 2023",
     client: "TMILL (Tata Martrade)",
     description:
-      "Built end-to-end web modules for logistics automation across Railways, SCM, and MLS projects. Designed live tracking dashboards with Google Maps integration and optimized data-heavy interfaces for operational efficiency.",
+      "Engineered end-to-end web modules for logistics automation (Railways, SCM, MLS), leveraging Node.js and PostgreSQL. Optimized data-heavy interfaces and integrated Google Maps for live tracking, significantly boosting operational efficiency.",
     technologies: [
       "React.js",
       "Node.js",
@@ -100,7 +100,7 @@ export const experiences: Experience[] = [
     role: "Front-End Developer",
     period: "Jun 2019 - Aug 2020",
     description:
-      "Built customer and admin portals from scratch for a multi-vendor retail delivery platform. Integrated Google Maps, payment gateways, OTP verification, and chat support.",
+      "Developed customer and admin portals from scratch for a multi-vendor retail delivery platform. Successfully integrated critical features like Google Maps, payment gateways, and chat support, enhancing platform functionality and user engagement.",
     technologies: ["Angular 9", "Bootstrap", "Angular Material", "Google Maps"],
     logo: "/logos/allmvr.png",
   },
@@ -109,7 +109,7 @@ export const experiences: Experience[] = [
     role: "Software Developer",
     period: "Jun 2017 - Jun 2019",
     description:
-      "Developed hybrid mobile and web apps for sports tournament management. Built authentication flows, dashboards, and participant registration modules.",
+      "Built hybrid mobile and web applications for sports tournament management, focusing on robust authentication flows, intuitive dashboards, and seamless participant registration, improving user experience and operational workflows.",
     technologies: ["Angular 4", "Ionic 3", "TypeScript", "Angular Material"],
     logo: "/logos/whatsscore.png",
   },
@@ -170,21 +170,21 @@ export const highlights = [
   {
     metric: "8.5+",
     label: "Years Experience",
-    description: "Delivering production systems in enterprise environments",
+    description: "Delivering high-impact, full-stack production systems in enterprise environments.",
   },
   {
     metric: "50%",
-    label: "Performance Boost",
-    description: "Frontend load-time reduction via architectural decisions",
+    label: "Load Time Reduced",
+    description: "Achieved via architecture decisions — not micro-optimisations.",
   },
   {
     metric: "80%+",
     label: "Test Coverage",
-    description: "Automated coverage across unit, integration, and E2E layers",
+    description: "Ensured robust quality with automated coverage across unit, integration, and E2E layers.",
   },
   {
     metric: "6+",
     label: "Microservices",
-    description: "Production NestJS services in a monorepo architecture",
+    description: "Successfully deployed production-grade NestJS services within a scalable monorepo architecture.",
   },
 ];

@@ -208,11 +208,11 @@ export function SkillsSection() {
                     <span className="text-[#1A1A2E]">Technical </span>
                     <span className="text-gradient-animated">Skills</span>
                 </h2>
-                <p className={`text-[#6B7280] text-center mb-4 max-w-2xl mx-auto italic scroll-reveal stagger-1 ${isVisible ? 'visible' : ''}`}>
-                    Tools matter — but judgment matters more.
+                <p className={`text-[#6B7280] text-center mb-4 max-w-2xl mx-auto font-medium scroll-reveal stagger-1 ${isVisible ? 'visible' : ''}`}>
+                    Skills proven in production — across enterprise platforms, real-time systems, and microservice APIs.
                 </p>
                 <p className={`text-[#6B7280] text-center mb-16 max-w-2xl mx-auto scroll-reveal stagger-2 ${isVisible ? 'visible' : ''}`}>
-                    These are the tools I&apos;ve used to deliver real systems in production.
+                    Every tool listed below has been used to ship something real for a paying client.
                 </p>
 
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 perspective-container">

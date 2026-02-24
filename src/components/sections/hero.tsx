@@ -119,7 +119,7 @@ export function HeroSection() {
                                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
                                 <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
                             </span>
-                            Available for new opportunities
+                            Open to Dubai, UAE — Roles & Freelance Projects
                         </div>
 
                         {/* Name and Title */}
@@ -160,7 +160,7 @@ export function HeroSection() {
                                     d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
                                 />
                             </svg>
-                            Hyderabad, India
+                            Based in India — Open to Dubai, UAE
                         </p>
 
                         {/* CTA Button & Social Links */}
@@ -169,7 +169,7 @@ export function HeroSection() {
                                 href="#contact"
                                 className="inline-flex items-center gap-2 px-8 py-3 bg-gradient-to-r from-[#FF6B35] to-[#FF8F6B] text-white font-semibold rounded-full shadow-premium hover:shadow-premium-lg transition-all animate-glow"
                             >
-                                Hire Me
+                                Hire Me in Dubai
                                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                                 </svg>

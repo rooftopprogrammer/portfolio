@@ -5,26 +5,26 @@ import { useRef, useCallback } from "react";
 
 const engineeringPrinciples = [
     {
-        title: "Performance",
-        description: "I treat performance as a system property, not a last-minute optimization. I focus on rendering strategy, data boundaries, and cache behavior early — before performance becomes expensive to fix.",
+        title: "Performance-First",
+        description: "I treat performance as a system property, not an afterthought. Rendering strategy, caching, and data boundaries are designed upfront — because fixing performance after launch costs 10x more.",
         icon: "🚀",
         gradient: "from-[#FF6B35] to-[#FF8F6B]",
     },
     {
-        title: "Architecture",
-        description: "I design frontend systems to scale independently of backend complexity, using clear API contracts, predictable state models, and modular service boundaries.",
+        title: "Scalable Architecture",
+        description: "I design full-stack systems that scale independently — clear API contracts, modular service boundaries, and predictable state models that let teams move fast without breaking things.",
         icon: "🏗️",
         gradient: "from-[#FF8F6B] to-[#FFB399]",
     },
     {
-        title: "Trade-offs",
-        description: "Every technical decision has a cost. I explicitly choose what to optimize for — and what not to — based on user impact, team velocity, and system lifespan.",
+        title: "Business-Aware Trade-offs",
+        description: "Every technical decision has a cost. I weigh user impact, delivery speed, and long-term maintenance — so we ship the right solution, not just the clever one.",
         icon: "⚖️",
         gradient: "from-[#8B5CF6] to-[#A78BFA]",
     },
     {
-        title: "Quality",
-        description: "I use automated testing and tooling not as process overhead, but as leverage to move faster with confidence.",
+        title: "Quality by Default",
+        description: "Automated testing, code reviews, and clean architecture are not process overhead — they are how I ensure that what ships stays stable and what the team builds next is faster.",
         icon: "✨",
         gradient: "from-[#E879F9] to-[#F0ABFC]",
     },
@@ -172,17 +172,17 @@ export function EngineeringMindsetSection() {
                         className={`lg:sticky lg:top-32 scroll-reveal-right ${headingVisible ? 'visible' : ''}`}
                     >
                         <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                            <span className="text-[#1A1A2E]">How I Think</span>
+                            <span className="text-[#1A1A2E]">How I</span>
                             <br />
-                            <span className="text-gradient-animated">As an Engineer</span>
+                            <span className="text-gradient-animated">Deliver Results</span>
                         </h2>
 
                         <p className="text-[#6B7280] mb-6 leading-relaxed">
-                            My engineering approach is grounded in first principles thinking and a deep understanding of system behavior at scale. I believe in making the right architectural decisions early to avoid costly refactors later.
+                            Good engineering is not about writing clever code — it&apos;s about shipping products that work reliably, scale under pressure, and give businesses a competitive edge. Every decision I make is grounded in first principles and user outcome.
                         </p>
 
                         <p className="text-[#6B7280] mb-8 leading-relaxed">
-                            These four principles guide every technical decision I make — from choosing rendering strategies in Next.js to designing API boundaries between microservices. They represent lessons learned from building and scaling enterprise systems used by millions.
+                            These four principles guide every project I take on — from architecting a Next.js platform for millions of users to designing API boundaries in a NestJS microservice. They represent lessons earned from 8.5 years of building and delivering enterprise systems across global markets.
                         </p>
 
                         {/* Download CV Button with magnetic effect - commented out

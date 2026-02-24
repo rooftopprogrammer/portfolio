@@ -38,7 +38,7 @@ export function AboutSection() {
         { value: "8.5+", label: "Years Experience", color: "text-[#FF6B35]" },
         { value: "5+", label: "Companies", color: "text-[#FF8F6B]" },
         { value: "10+", label: "Projects Delivered", color: "text-[#8B5CF6]" },
-        { value: "Global", label: "Client Reach", color: "text-[#E879F9]" },
+        { value: "UAE", label: "Target Market", color: "text-[#E879F9]" },
     ];
 
     return (
@@ -63,7 +63,7 @@ export function AboutSection() {
                             <div className="w-full h-full rounded-3xl bg-white overflow-hidden">
                                 <Image
                                     src="/profile-photo.jpg"
-                                    alt="Ravi Kumar Nersu - Staff Software Engineer"
+                                    alt="Ravi Kumar Nersu - Senior Full-Stack Developer | MERN Stack Expert"
                                     width={500}
                                     height={500}
                                     className="w-full h-full object-cover rounded-3xl hover:scale-105 transition-transform duration-500"
@@ -79,15 +79,19 @@ export function AboutSection() {
                     {/* Content - Staff-level positioning */}
                     <div className="space-y-6">
                         <p className={`text-lg text-[#1A1A2E] leading-relaxed font-medium scroll-reveal stagger-1 ${isVisible ? 'visible' : ''}`}>
-                            I work at the intersection of frontend architecture, performance engineering, and large-scale system design.
+                            I build full-stack web products that are fast, maintainable, and built to last — from the API layer to the user interface.
                         </p>
 
                         <p className={`text-[#6B7280] leading-relaxed scroll-reveal stagger-2 ${isVisible ? 'visible' : ''}`}>
-                            Over the past 8.5 years, I&apos;ve built and evolved enterprise platforms for global clients where frontend performance, maintainability, and architectural clarity directly impact business outcomes. My core strength lies in making high-leverage technical decisions — especially around rendering strategy, state management, API boundaries, and microservice composition.
+                            Over 8.5 years, I&apos;ve worked across the full MERN stack — React.js, Next.js, Node.js, Express, and NestJS — delivering enterprise platforms for global clients in car rental, logistics, and distribution. I&apos;ve built real-time cargo tracking dashboards, secure authentication flows, multi-vendor platform portals, and microservice-driven architectures serving millions of users.
                         </p>
 
                         <p className={`text-[#6B7280] leading-relaxed scroll-reveal stagger-3 ${isVisible ? 'visible' : ''}`}>
-                            I have led frontend-heavy initiatives within microservices ecosystems, reduced real-world load times by 50%, and helped teams move from tightly coupled implementations to scalable, testable systems. I value clarity over cleverness and long-term system health over short-term speed.
+                            I&apos;ve led feature development end-to-end — from technical design to production — reducing load times by 50%, cutting tech debt, and enabling teams to ship faster without regression risk. I focus on delivering outcomes that matter: faster products, cleaner systems, and measurable business value.
+                        </p>
+
+                        <p className={`text-[#FF6B35] font-medium leading-relaxed scroll-reveal stagger-3 ${isVisible ? 'visible' : ''}`}>
+                            Currently seeking senior full-stack roles and freelance/consulting engagements in Dubai, UAE. Available to start immediately — open to on-site, hybrid, or remote.
                         </p>
 
                         {/* Quick facts with animated counters */}

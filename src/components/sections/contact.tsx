@@ -263,11 +263,11 @@ export function ContactSection() {
 
                 <div className="max-w-4xl mx-auto text-center relative">
                     <h2 className={`text-3xl md:text-4xl font-bold mb-4 scroll-reveal ${isVisible ? 'visible' : ''}`}>
-                        <span className="text-[#1A1A2E]">Let&apos;s Work </span>
-                        <span className="text-gradient-animated">Together</span>
+                        <span className="text-[#1A1A2E]">Let&apos;s Build Something </span>
+                        <span className="text-gradient-animated">in Dubai</span>
                     </h2>
                     <p className={`text-[#6B7280] mb-12 max-w-2xl mx-auto scroll-reveal stagger-1 ${isVisible ? 'visible' : ''}`}>
-                        Interested in solving high-impact frontend architecture and performance problems at scale.
+                        If you&apos;re a recruiter or business in Dubai, UAE looking for a senior full-stack developer who ships reliable products and communicates clearly — let&apos;s talk. I&apos;m available for permanent roles, contract engagements, and freelance projects starting immediately.
                     </p>
 
                     <div className="grid md:grid-cols-2 gap-6 mb-12 perspective-container">
