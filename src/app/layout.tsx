@@ -37,12 +37,13 @@ export const metadata: Metadata = {
     "ravikumarnersu",
     // Specific role + name combinations
     "Ravi Kumar Nersu software engineer",
-    "Ravi Nersu full stack developer",
+    "Ravi Nersu full stack engineer",
     "Ravi Kumar Nersu React developer",
     "Ravi Kumar Nersu LTIMindtree",
     // Location-specific name searches
-    "Ravi Kumar Nersu Hyderabad",
-    "Ravi Nersu India",
+    "Ravi Kumar Nersu Dubai",
+    "Senior Full-Stack Engineer Dubai",
+    "Ravi Nersu UAE",
   ],
   authors: [{ name: siteConfig.name, url: siteConfig.url }],
   creator: siteConfig.name,
@@ -133,9 +134,12 @@ const jsonLd = {
     "Next.js",
     "TypeScript",
     "Node.js",
+    "NestJS",
     "JavaScript",
     "Full Stack Development",
     "Microservices",
+    "System Design",
+    "BFF Architecture",
     "AWS",
     "Docker",
     "Kubernetes",
@@ -150,9 +154,9 @@ const jsonLd = {
   },
   address: {
     "@type": "PostalAddress",
-    addressLocality: "Hyderabad",
-    addressRegion: "Telangana",
-    addressCountry: "India",
+    addressLocality: "Dubai",
+    addressRegion: "Dubai",
+    addressCountry: "UAE",
   },
   email: "raviknersu96@gmail.com",
 };
@@ -180,7 +184,7 @@ export default function RootLayout({
         {/* Gradient background overlays */}
         <div className="fixed inset-0 -z-10 bg-gradient-to-br from-[#FFFBF8] via-[#FFF8F5] to-[#FFF2EE]" />
         <div className="fixed inset-0 -z-10 bg-gradient-to-bl from-transparent via-transparent to-purple-500/5" />
-        
+
         <AnalyticsProvider>
           {children}
         </AnalyticsProvider>
