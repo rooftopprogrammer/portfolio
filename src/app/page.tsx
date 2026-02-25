@@ -3,11 +3,11 @@ import { ParticleBackground } from "@/components/particle-background";
 import {
   HeroSection,
   StatsSection,
-  AboutSection,
-  EngineeringMindsetSection,
+  PlatformArchitectureSection,
   ExperienceSection,
   EducationSection,
   SkillsSection,
+  EngineeringMindsetSection,
   ContactSection,
   Footer,
 } from "@/components/sections";
@@ -21,11 +21,11 @@ export default function Home() {
       <main>
         <HeroSection />
         <StatsSection />
-        <AboutSection />
-        <EngineeringMindsetSection />
+        <PlatformArchitectureSection />
         <ExperienceSection />
-        <EducationSection />
         <SkillsSection />
+        <EngineeringMindsetSection />
+        <EducationSection />
         <ContactSection />
       </main>
 
@@ -33,4 +33,3 @@ export default function Home() {
     </>
   );
 }
-

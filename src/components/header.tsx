@@ -5,7 +5,7 @@ import Link from "next/link";
 import { cn } from "@/lib/utils";
 
 const navItems = [
-    { name: "About", href: "#about" },
+    { name: "Architecture", href: "#architecture" },
     { name: "Experience", href: "#experience" },
     { name: "Skills", href: "#skills" },
     { name: "Contact", href: "#contact" },
@@ -24,7 +24,7 @@ export function Header() {
             setIsScrolled(window.scrollY > 50);
 
             // Update active section
-            const sections = ["about", "experience", "skills", "contact"];
+            const sections = ["architecture", "experience", "skills", "contact"];
             for (const section of sections.reverse()) {
                 const element = document.getElementById(section);
                 if (element) {

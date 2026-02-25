@@ -1,202 +1,86 @@
 "use client";
 
-import { useScrollReveal } from "@/hooks/use-animations";
-import { useRef, useCallback } from "react";
+import { useEffect, useState, useRef } from "react";
+import Link from "next/link";
 
-const engineeringPrinciples = [
+const principles = [
     {
         title: "Performance-First",
-        description: "I treat performance as a system property, not an afterthought. Rendering strategy, caching, and data boundaries are designed upfront — because fixing performance after launch costs 10x more.",
-        icon: "🚀",
-        gradient: "from-[#FF6B35] to-[#FF8F6B]",
+        description: "Every decision starts with measurable impact — Core Web Vitals, load times, UX metrics.",
     },
     {
-        title: "Scalable Architecture",
-        description: "I design full-stack systems that scale independently — clear API contracts, modular service boundaries, and predictable state models that let teams move fast without breaking things.",
-        icon: "🏗️",
-        gradient: "from-[#FF8F6B] to-[#FFB399]",
+        title: "System Design Thinking",
+        description: "Designing for scale, failure isolation, and observability before writing code.",
     },
     {
-        title: "Business-Aware Trade-offs",
-        description: "Every technical decision has a cost. I weigh user impact, delivery speed, and long-term maintenance — so we ship the right solution, not just the clever one.",
-        icon: "⚖️",
-        gradient: "from-[#8B5CF6] to-[#A78BFA]",
+        title: "Deployment Independence",
+        description: "Microservices and modular frontends deployed, tested, and scaled independently.",
     },
     {
-        title: "Quality by Default",
-        description: "Automated testing, code reviews, and clean architecture are not process overhead — they are how I ensure that what ships stays stable and what the team builds next is faster.",
-        icon: "✨",
-        gradient: "from-[#E879F9] to-[#F0ABFC]",
+        title: "Reduced Coupling via BFF",
+        description: "BFF services decouple frontend delivery from backend complexity.",
+    },
+    {
+        title: "Business-Aligned Engineering",
+        description: "Every technical decision maps to faster time-to-market or lower cost.",
     },
 ];
 
-// 3D Card Component with mouse tracking
-function Card3D({ children, className, index }: { children: React.ReactNode; className?: string; index: number }) {
-    const cardRef = useRef<HTMLDivElement>(null);
-    const { ref, isVisible } = useScrollReveal<HTMLDivElement>({ threshold: 0.2 });
-
-    const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
-        const card = cardRef.current;
-        if (!card) return;
-
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
-
-        const rotateX = ((y - centerY) / centerY) * -8;
-        const rotateY = ((x - centerX) / centerX) * 8;
-
-        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02) translateY(-4px)`;
-
-        // Glare effect
-        const glareX = (x / rect.width) * 100;
-        const glareY = (y / rect.height) * 100;
-        card.style.setProperty('--glare-x', `${glareX}%`);
-        card.style.setProperty('--glare-y', `${glareY}%`);
-    }, []);
-
-    const handleMouseLeave = useCallback(() => {
-        const card = cardRef.current;
-        if (!card) return;
-        card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1) translateY(0)';
-    }, []);
-
-    return (
-        <div
-            ref={ref}
-            className={`scroll-reveal stagger-${index + 1} ${isVisible ? 'visible' : ''}`}
-            style={{ transitionDelay: `${index * 100}ms` }}
-        >
-            <div
-                ref={cardRef}
-                className={`${className} card-glare`}
-                onMouseMove={handleMouseMove}
-                onMouseLeave={handleMouseLeave}
-                style={{ transformStyle: 'preserve-3d', transition: 'transform 0.15s ease-out' }}
-            >
-                {children}
-            </div>
-        </div>
-    );
-}
-
-// Magnetic button component
-function MagneticButton({ children, className, ...props }: React.AnchorHTMLAttributes<HTMLAnchorElement> & { children: React.ReactNode }) {
-    const buttonRef = useRef<HTMLAnchorElement>(null);
-
-    const handleMouseMove = useCallback((e: React.MouseEvent<HTMLAnchorElement>) => {
-        const button = buttonRef.current;
-        if (!button) return;
-
-        const rect = button.getBoundingClientRect();
-        const x = e.clientX - rect.left - rect.width / 2;
-        const y = e.clientY - rect.top - rect.height / 2;
-
-        button.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px) scale(1.05)`;
-    }, []);
-
-    const handleMouseLeave = useCallback(() => {
-        const button = buttonRef.current;
-        if (!button) return;
-        button.style.transform = 'translate(0, 0) scale(1)';
-    }, []);
-
-    return (
-        <a
-            ref={buttonRef}
-            className={`magnetic-btn ${className}`}
-            onMouseMove={handleMouseMove}
-            onMouseLeave={handleMouseLeave}
-            style={{ transition: 'transform 0.2s ease-out' }}
-            {...props}
-        >
-            {children}
-        </a>
-    );
-}
-
 export function EngineeringMindsetSection() {
-    const { ref: sectionRef, isVisible } = useScrollReveal<HTMLElement>({ threshold: 0.1 });
-    const { ref: headingRef, isVisible: headingVisible } = useScrollReveal<HTMLDivElement>({ threshold: 0.2 });
+    const [isVisible, setIsVisible] = useState(false);
+    const sectionRef = useRef<HTMLElement>(null);
+
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) setIsVisible(true);
+            },
+            { threshold: 0.1 }
+        );
+
+        if (sectionRef.current) observer.observe(sectionRef.current);
+        return () => observer.disconnect();
+    }, []);
 
     return (
-        <section id="engineering" ref={sectionRef} className="py-24 px-6 bg-gradient-to-br from-[#FFFBF8] to-[#FFF8F5] relative overflow-hidden">
-            {/* Decorative blur blobs */}
-            <div className="absolute top-20 right-10 w-64 h-64 bg-gradient-to-br from-[#FF6B35]/15 to-transparent rounded-full filter blur-3xl pointer-events-none float-parallax" />
-            <div className="absolute bottom-20 left-10 w-80 h-80 bg-gradient-to-br from-purple-500/10 to-transparent rounded-full filter blur-3xl pointer-events-none float-parallax-reverse" />
+        <section ref={sectionRef} className="py-16 lg:py-24 bg-white border-y border-[#F3F4F6]">
+            <div className="max-w-6xl mx-auto px-6">
+                <div className={`max-w-3xl mb-10 scroll-reveal ${isVisible ? 'visible' : ''}`}>
+                    <p className="text-[11px] text-[#9CA3AF] uppercase tracking-widest mb-2">Approach</p>
+                    <h2 className="text-2xl lg:text-3xl font-bold text-[#1A1A2E]">
+                        Engineering Philosophy
+                    </h2>
+                </div>
 
-            <div className="max-w-6xl mx-auto relative">
-                <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
-                    {/* Left Side - Stacked Service Cards with 3D effect */}
-                    <div className="space-y-4 perspective-container">
-                        {engineeringPrinciples.map((principle, index) => (
-                            <Card3D
-                                key={principle.title}
-                                className="group relative bg-white rounded-2xl p-5 shadow-premium border border-[#FFE8E0] hover:shadow-premium-lg overflow-hidden cursor-pointer"
-                                index={index}
-                            >
-                                {/* Gradient left border */}
-                                <div className={`absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b ${principle.gradient}`} />
+                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                    {principles.map((item, i) => (
+                        <div
+                            key={item.title}
+                            className={`p-5 rounded-xl border border-[#F3F4F6] hover:border-[#FFE8E0] transition-colors flex flex-col scroll-reveal stagger-${Math.min(i + 1, 5)} ${isVisible ? 'visible' : ''}`}
+                        >
+                            <h3 className="text-sm font-semibold text-[#1A1A2E] mb-1">
+                                {item.title}
+                            </h3>
+                            <p className="text-sm text-[#6B7280] leading-relaxed flex-1">
+                                {item.description}
+                            </p>
+                        </div>
+                    ))}
 
-                                <div className="flex items-start gap-4 pl-3 relative z-10">
-                                    {/* Icon */}
-                                    <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${principle.gradient} flex items-center justify-center flex-shrink-0 shadow-lg group-hover:scale-110 transition-transform duration-300`}>
-                                        <span className="text-xl">{principle.icon}</span>
-                                    </div>
-
-                                    {/* Content */}
-                                    <div className="flex-1 min-w-0">
-                                        <h3 className="text-lg font-bold text-[#1A1A2E] mb-2 group-hover:text-[#FF6B35] transition-colors">
-                                            {principle.title}
-                                        </h3>
-                                        <p className="text-sm text-[#6B7280] leading-relaxed">
-                                            {principle.description}
-                                        </p>
-                                    </div>
-                                </div>
-
-                                {/* Shimmer effect on hover */}
-                                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
-                                    <div className="absolute inset-0 shimmer" />
-                                </div>
-                            </Card3D>
-                        ))}
-                    </div>
-
-                    {/* Right Side - Heading & Description */}
-                    <div
-                        ref={headingRef}
-                        className={`lg:sticky lg:top-32 scroll-reveal-right ${headingVisible ? 'visible' : ''}`}
-                    >
-                        <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                            <span className="text-[#1A1A2E]">How I</span>
-                            <br />
-                            <span className="text-gradient-animated">Deliver Results</span>
-                        </h2>
-
-                        <p className="text-[#6B7280] mb-6 leading-relaxed">
-                            Good engineering is not about writing clever code — it&apos;s about shipping products that work reliably, scale under pressure, and give businesses a competitive edge. Every decision I make is grounded in first principles and user outcome.
-                        </p>
-
-                        <p className="text-[#6B7280] mb-8 leading-relaxed">
-                            These four principles guide every project I take on — from architecting a Next.js platform for millions of users to designing API boundaries in a NestJS microservice. They represent lessons earned from 8.5 years of building and delivering enterprise systems across global markets.
-                        </p>
-
-                        {/* Download CV Button with magnetic effect */}
-                        <MagneticButton
+                    {/* Download CV card */}
+                    <div className={`p-5 rounded-xl border border-[#F3F4F6] flex flex-col items-center justify-center scroll-reveal stagger-6 ${isVisible ? 'visible' : ''}`}>
+                        <Link
                             href="/Resume.pdf"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 px-8 py-3 bg-gradient-to-r from-[#FF6B35] to-[#FF8F6B] text-white font-semibold rounded-full shadow-premium hover:shadow-premium-lg animate-glow"
+                            className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#FF6B35] text-white font-semibold rounded-full hover:bg-[#E65A2E] transition-colors text-sm"
                         >
-                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                             </svg>
                             Download CV
-                        </MagneticButton>
+                        </Link>
+                        <p className="text-[11px] text-[#9CA3AF] mt-2">PDF • Updated Feb 2026</p>
                     </div>
                 </div>
             </div>

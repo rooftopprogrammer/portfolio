@@ -33,7 +33,7 @@ export interface Experience {
     role: string;
     period: string;
     client?: string;
-    description: string;
+    highlights: string[];
     technologies: string[];
     logo?: string;
     caseStudy?: CaseStudy;
@@ -50,7 +50,7 @@ export interface Education {
 
 export interface Skill {
     name: string;
-    level: "beginner" | "intermediate" | "advanced" | "expert";
+    level?: "beginner" | "intermediate" | "advanced" | "expert";
     category: string;
 }
 
