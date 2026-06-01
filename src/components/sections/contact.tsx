@@ -264,10 +264,10 @@ export function ContactSection() {
                 <div className="max-w-4xl mx-auto text-center relative">
                     <h2 className={`text-3xl md:text-4xl font-bold mb-4 scroll-reveal ${isVisible ? 'visible' : ''}`}>
                         <span className="text-[#1A1A2E]">Let&apos;s Build Something </span>
-                        <span className="text-[#FF6B35]">in Dubai</span>
+                        <span className="text-[#FF6B35]">Together</span>
                     </h2>
                     <p className={`text-[#6B7280] mb-12 max-w-2xl mx-auto scroll-reveal stagger-1 ${isVisible ? 'visible' : ''}`}>
-                        If you&apos;re hiring a senior full-stack engineer in Dubai, let&apos;s connect. Relocating May 2026 on UAE Job Seeker Visa (MOHRE Skill Level 2). Available for remote interviews now — open to employer-sponsored work visa.
+                        If you&apos;re hiring a senior full-stack engineer, let&apos;s connect. Based in Hyderabad, India and open to relocation across Bengaluru, Chennai, Singapore &amp; Dubai — available for remote roles and on-site opportunities. Open to interviews now.
                     </p>
 
                     <div className="grid md:grid-cols-2 gap-6 mb-12 max-w-2xl mx-auto perspective-container">

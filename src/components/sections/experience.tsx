@@ -50,9 +50,9 @@ export function ExperienceSection() {
                                     {exp.company}
                                 </p>
 
-                                {exp.client && (
+                                {(exp.client || exp.location) && (
                                     <p className="text-xs text-[#9CA3AF] mt-0.5">
-                                        {exp.client}
+                                        {[exp.client, exp.location].filter(Boolean).join(" · ")}
                                     </p>
                                 )}
 

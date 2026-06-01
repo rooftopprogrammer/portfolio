@@ -33,6 +33,7 @@ export interface Experience {
     role: string;
     period: string;
     client?: string;
+    location?: string;
     highlights: string[];
     technologies: string[];
     logo?: string;
@@ -67,5 +68,7 @@ export interface SiteConfig {
     description: string;
     url: string;
     ogImage: string;
+    location?: string;
+    locations?: string[];
     links: SocialLink[];
 }

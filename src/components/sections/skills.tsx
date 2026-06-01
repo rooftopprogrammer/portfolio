@@ -5,7 +5,7 @@ import { useEffect, useState, useRef } from "react";
 const skillCategories = [
     {
         title: "Frontend Architecture",
-        skills: ["React.js", "Next.js (App Router, SSR/SSG/ISR)", "TypeScript", "Angular", "Redux", "Zustand", "RxJS", "Tailwind CSS", "HTML5", "CSS3 / SCSS", "Responsive Design", "Core Web Vitals"],
+        skills: ["React.js", "Next.js (App Router, SSR/SSG/ISR)", "TypeScript", "Redux Toolkit", "Zustand", "React Query / TanStack Query", "Tailwind CSS", "Material UI", "HTML5", "CSS3 / SCSS", "Responsive Design", "Core Web Vitals"],
     },
     {
         title: "Backend & APIs",

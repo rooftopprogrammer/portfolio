@@ -41,9 +41,13 @@ export const metadata: Metadata = {
     "Ravi Kumar Nersu React developer",
     "Ravi Kumar Nersu LTIMindtree",
     // Location-specific name searches
+    "Ravi Kumar Nersu Hyderabad",
+    "Senior Full-Stack Engineer Hyderabad",
+    "Senior Full-Stack Engineer India",
+    "Ravi Nersu Bengaluru",
+    "Ravi Kumar Nersu Chennai",
+    "Ravi Kumar Nersu Singapore",
     "Ravi Kumar Nersu Dubai",
-    "Senior Full-Stack Engineer Dubai",
-    "Ravi Nersu UAE",
   ],
   authors: [{ name: siteConfig.name, url: siteConfig.url }],
   creator: siteConfig.name,
@@ -154,9 +158,9 @@ const jsonLd = {
   },
   address: {
     "@type": "PostalAddress",
-    addressLocality: "Dubai",
-    addressRegion: "Dubai",
-    addressCountry: "UAE",
+    addressLocality: "Hyderabad",
+    addressRegion: "Telangana",
+    addressCountry: "IN",
   },
   email: "raviknersu96@gmail.com",
 };

@@ -31,7 +31,7 @@ export function HeroSection() {
                                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
                                 <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
                             </span>
-                            Open to Senior Roles — Dubai, UAE
+                            Open to Senior Roles — Remote &amp; Relocation
                         </div>
 
                         {/* Name */}
@@ -60,7 +60,7 @@ export function HeroSection() {
                         {/* Metric pills */}
                         <div className={`flex flex-wrap gap-2 transition-all duration-700 delay-[350ms] ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
                             {[
-                                "8.5+ Years",
+                                "8.6 Years",
                                 "15+ Markets",
                                 "~50% Faster",
                                 "~40% Dev Velocity",
@@ -128,7 +128,7 @@ export function HeroSection() {
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                             </svg>
-                            Relocating to Dubai, UAE — May 2026 (Job Seeker Visa)
+                            Based in Hyderabad, India — open to Bengaluru, Chennai, Singapore &amp; Dubai
                         </p>
                     </div>
 
@@ -154,6 +154,7 @@ export function HeroSection() {
                         {[
                             "LTIMindtree",
                             "Avis Budget Group",
+                            "Ingram Micro",
                             "Tata Martrade",
                             "Allmvr Projects",
                             "Whatsscore",
