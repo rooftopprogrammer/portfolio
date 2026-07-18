@@ -4,6 +4,7 @@ import {
   HeroSection,
   StatsSection,
   PlatformArchitectureSection,
+  AIHubProjectSection,
   ExperienceSection,
   EducationSection,
   SkillsSection,
@@ -23,6 +24,7 @@ export default function Home() {
         <StatsSection />
         <PlatformArchitectureSection />
         <ExperienceSection />
+        <AIHubProjectSection />
         <SkillsSection />
         <EngineeringMindsetSection />
         <EducationSection />

@@ -11,6 +11,7 @@ const eslintConfig = defineConfig([
     ".next/**",
     "out/**",
     "build/**",
+    "claude-code-handoff/**",
     "next-env.d.ts",
   ]),
 ]);

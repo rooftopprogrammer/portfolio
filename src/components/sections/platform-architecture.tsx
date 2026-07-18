@@ -4,28 +4,28 @@ import { useEffect, useState, useRef } from "react";
 
 const architectureItems = [
     {
-        title: "Microservices Architecture",
-        description: "Decomposed monolith into independently deployable services across 15+ regional markets.",
+        title: "Rendering Strategy",
+        description: "Applied Next.js App Router with SSR, SSG, and route-level rendering decisions for SEO, load performance, and Core Web Vitals.",
     },
     {
-        title: "Backend-for-Frontend (BFF)",
-        description: "NestJS services aggregating 8+ APIs into optimized frontend-specific endpoints.",
+        title: "Clean NestJS BFF",
+        description: "Structured BFF services with Controller → Service → Repository boundaries and production REST / GraphQL integrations.",
     },
     {
-        title: "Caching & CDN Strategy",
-        description: "Redis + AWS CloudFront delivering ~50% page load reduction across global markets.",
+        title: "Secure Platform Access",
+        description: "Implemented JWT/OAuth2 authentication, token and session handling, protected routes, and role-based access control.",
     },
     {
-        title: "Zero-Downtime Deployments",
-        description: "Bi-weekly → multiple daily releases via CI/CD pipelines and blue-green patterns.",
+        title: "Data Flow & Caching",
+        description: "Used Redis for caching and sessions, MongoDB for production workflows, and relational data integrations across API-backed journeys.",
     },
     {
-        title: "Quality Engineering",
-        description: "85%+ code coverage with Jest, Playwright, and React Testing Library.",
+        title: "Measured Performance",
+        description: "Improved Lighthouse ~45 → ~80, page load ~6s → ~3s, LCP ~4.5s → ~2.2s, and initial JS ~1.2 MB → ~800 KB.",
     },
     {
-        title: "SSR/ISR Optimization",
-        description: "Next.js App Router with server-side rendering and incremental static regeneration.",
+        title: "Quality & Delivery",
+        description: "Used Jest, React Testing Library, integration testing, Docker, and GitHub Actions for production delivery.",
     },
 ];
 
@@ -54,7 +54,7 @@ export function PlatformArchitectureSection() {
             <div className="max-w-6xl mx-auto px-6">
                 {/* Section header */}
                 <div className={`max-w-3xl mb-12 scroll-reveal ${isVisible ? 'visible' : ''}`}>
-                    <p className="text-[11px] text-[#9CA3AF] uppercase tracking-widest mb-2">Featured Project</p>
+                    <p className="text-[11px] text-[#9CA3AF] uppercase tracking-widest mb-2">Featured Platform</p>
                     <h2 className="text-2xl lg:text-3xl font-bold text-[#1A1A2E]">
                         Platform Architecture at Scale
                     </h2>
@@ -62,7 +62,7 @@ export function PlatformArchitectureSection() {
                         Avis Budget Group — Global Digital Platform
                     </p>
                     <p className="text-xs text-[#9CA3AF] mt-1">
-                        15+ Countries • Millions of Monthly Users • 99.9% SLA
+                        Customer-facing digital experiences across 15+ country markets
                     </p>
                 </div>
 
@@ -88,10 +88,10 @@ export function PlatformArchitectureSection() {
                     <p className="text-[11px] text-[#9CA3AF] uppercase tracking-widest mb-5 text-center">System Overview</p>
                     <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-2">
                         {[
-                            { label: "React / Next.js", sub: "SSR • ISR • App Router", accent: true },
-                            { label: "NestJS BFF", sub: "API Aggregation • 8+ Services", accent: false },
-                            { label: "Redis + CloudFront", sub: "Caching • CDN • ~50% Faster", accent: false },
-                            { label: "Microservices", sub: "Docker • K8s • AWS", accent: false },
+                            { label: "React / Next.js", sub: "SSR • SSG • App Router", accent: true },
+                            { label: "NestJS BFF", sub: "Controller • Service • Repository", accent: false },
+                            { label: "Auth & Data", sub: "JWT/OAuth2 • RBAC • Redis", accent: false },
+                            { label: "Delivery", sub: "Docker • GitHub Actions", accent: false },
                         ].map((node, i) => (
                             <div key={node.label} className="flex items-center gap-2 sm:gap-2">
                                 <div className="flex flex-col items-center gap-1">

@@ -9,20 +9,20 @@ const principles = [
         description: "Every decision starts with measurable impact — Core Web Vitals, load times, UX metrics.",
     },
     {
-        title: "System Design Thinking",
-        description: "Designing for scale, failure isolation, and observability before writing code.",
+        title: "Secure by Design",
+        description: "Authentication, authorization, protected routes, and secure data handling are part of the architecture from the start.",
     },
     {
-        title: "Deployment Independence",
-        description: "Microservices and modular frontends deployed, tested, and scaled independently.",
+        title: "Clean Service Boundaries",
+        description: "Controller, service, and repository layers keep BFF logic clear, testable, and maintainable.",
     },
     {
         title: "Reduced Coupling via BFF",
         description: "BFF services decouple frontend delivery from backend complexity.",
     },
     {
-        title: "Business-Aligned Engineering",
-        description: "Every technical decision maps to faster time-to-market or lower cost.",
+        title: "AI-Assisted, Human-Reviewed",
+        description: "Claude and GitHub Copilot support planning, debugging, refactoring, test ideation, and documentation, with every suggestion manually reviewed.",
     },
 ];
 
@@ -48,7 +48,7 @@ export function EngineeringMindsetSection() {
                 <div className={`max-w-3xl mb-10 scroll-reveal ${isVisible ? 'visible' : ''}`}>
                     <p className="text-[11px] text-[#9CA3AF] uppercase tracking-widest mb-2">Approach</p>
                     <h2 className="text-2xl lg:text-3xl font-bold text-[#1A1A2E]">
-                        Engineering Philosophy
+                        Engineering Approach
                     </h2>
                 </div>
 
@@ -80,7 +80,7 @@ export function EngineeringMindsetSection() {
                             </svg>
                             Download CV
                         </Link>
-                        <p className="text-[11px] text-[#9CA3AF] mt-2">PDF • Updated Feb 2026</p>
+                        <p className="text-[11px] text-[#9CA3AF] mt-2">PDF • Updated Jun 2026</p>
                     </div>
                 </div>
             </div>

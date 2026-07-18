@@ -5,19 +5,23 @@ import { useEffect, useState, useRef } from "react";
 const skillCategories = [
     {
         title: "Frontend Architecture",
-        skills: ["React.js", "Next.js (App Router, SSR/SSG/ISR)", "TypeScript", "Redux Toolkit", "Zustand", "React Query / TanStack Query", "Tailwind CSS", "Material UI", "HTML5", "CSS3 / SCSS", "Responsive Design", "Core Web Vitals"],
+        skills: ["React.js", "Next.js (App Router, SSR/SSG)", "TypeScript", "JavaScript ES6+", "Redux", "Zustand", "React Query", "Tailwind CSS", "Shadcn UI", "HTML5", "CSS3", "Responsive Design", "Accessibility", "Core Web Vitals"],
     },
     {
-        title: "Backend & APIs",
-        skills: ["Node.js", "NestJS", "Express.js", "REST APIs", "GraphQL", "Microservices", "BFF Pattern", "System Design", "WebSockets", "Firebase"],
+        title: "Backend, APIs & Security",
+        skills: ["Node.js", "NestJS", "Express.js", "REST APIs", "GraphQL", "Microservices Integration", "BFF Pattern", "Clean Architecture", "JWT/OAuth2", "RBAC", "Secure Data Flows"],
     },
     {
-        title: "Data & Infrastructure",
-        skills: ["PostgreSQL", "MySQL", "MongoDB", "Redis", "Kafka", "Docker", "Kubernetes", "AWS (EC2, S3, Lambda, CloudFront)", "Nginx"],
+        title: "Data, Search & Infrastructure",
+        skills: ["PostgreSQL", "MySQL", "MongoDB", "Redis", "Prisma", "Typesense", "Indexing", "Query Optimization", "Transactions", "Docker", "AWS (EC2, S3, CloudFront)"],
     },
     {
-        title: "Engineering Practices",
-        skills: ["Jest", "Playwright", "Cypress", "React Testing Library", "TDD", "CI/CD (GitHub Actions, Jenkins)", "Git", "Storybook", "Figma", "Agile / Scrum"],
+        title: "DevOps & Quality",
+        skills: ["Git", "GitHub Actions", "CI/CD", "Jest", "React Testing Library", "Integration Testing", "Vitest", "Playwright", "Webpack", "Vite", "Jira", "Artifactory"],
+    },
+    {
+        title: "AI-Assisted Engineering",
+        skills: ["Claude Code", "Claude for VS Code", "GitHub Copilot", "GenAI Certification", "Implementation Planning", "Debugging", "Refactoring", "Test Ideation", "Documentation", "AI-Assisted Code Review"],
     },
 ];
 
@@ -51,7 +55,7 @@ export function SkillsSection() {
                     {skillCategories.map((category, i) => (
                         <div
                             key={category.title}
-                            className={`p-5 rounded-xl bg-white border border-[#F3F4F6] hover:border-[#FFE8E0] hover:shadow-sm transition-all duration-200 flex flex-col scroll-reveal stagger-${Math.min(i + 1, 4)} ${isVisible ? 'visible' : ''}`}
+                            className={`p-5 rounded-xl bg-white border border-[#F3F4F6] hover:border-[#FFE8E0] hover:shadow-sm transition-all duration-200 flex flex-col scroll-reveal stagger-${Math.min(i + 1, 5)} ${isVisible ? 'visible' : ''}`}
                         >
                             <h3 className="text-sm font-semibold text-[#1A1A2E] mb-3">
                                 {category.title}

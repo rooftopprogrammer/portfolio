@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils";
 const navItems = [
     { name: "Architecture", href: "#architecture" },
     { name: "Experience", href: "#experience" },
+    { name: "AI POC", href: "#project" },
     { name: "Skills", href: "#skills" },
     { name: "Contact", href: "#contact" },
 ];
@@ -15,16 +16,12 @@ export function Header() {
     const [isScrolled, setIsScrolled] = useState(false);
     const [activeSection, setActiveSection] = useState("");
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-    const [mounted, setMounted] = useState(false);
-
     useEffect(() => {
-        setMounted(true);
-
         const handleScroll = () => {
             setIsScrolled(window.scrollY > 50);
 
             // Update active section
-            const sections = ["architecture", "experience", "skills", "contact"];
+            const sections = ["architecture", "experience", "project", "skills", "contact"];
             for (const section of sections.reverse()) {
                 const element = document.getElementById(section);
                 if (element) {
@@ -37,15 +34,19 @@ export function Header() {
             }
         };
 
+        const frame = window.requestAnimationFrame(handleScroll);
         window.addEventListener("scroll", handleScroll);
-        return () => window.removeEventListener("scroll", handleScroll);
+        return () => {
+            window.cancelAnimationFrame(frame);
+            window.removeEventListener("scroll", handleScroll);
+        };
     }, []);
 
     return (
         <header
             className={cn(
                 "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-                mounted && isScrolled
+                isScrolled
                     ? "bg-white/90 backdrop-blur-lg shadow-sm py-3"
                     : "bg-transparent py-5"
             )}
@@ -67,13 +68,13 @@ export function Header() {
                                 href={item.href}
                                 className={cn(
                                     "relative px-4 py-2 text-sm font-medium transition-colors rounded-full",
-                                    mounted && activeSection === item.href.slice(1)
+                                    activeSection === item.href.slice(1)
                                         ? "text-[#FF6B35]"
                                         : "text-[#4B5563] hover:text-[#1A1A2E]"
                                 )}
                             >
                                 {item.name}
-                                {mounted && activeSection === item.href.slice(1) && (
+                                {activeSection === item.href.slice(1) && (
                                     <span className="absolute inset-0 bg-[#FF6B35]/10 rounded-full" />
                                 )}
                             </Link>

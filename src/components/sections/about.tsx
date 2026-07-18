@@ -35,10 +35,10 @@ export function AboutSection() {
     const { ref: imageRef, isVisible: imageVisible } = useScrollReveal<HTMLDivElement>({ threshold: 0.3 });
 
     const stats = [
-        { value: "8.5+", label: "Years Experience", color: "text-[#FF6B35]" },
-        { value: "5+", label: "Companies", color: "text-[#FF8F6B]" },
-        { value: "10+", label: "Projects Delivered", color: "text-[#8B5CF6]" },
-        { value: "UAE", label: "Target Market", color: "text-[#E879F9]" },
+        { value: "8.6", label: "Years Experience", color: "text-[#FF6B35]" },
+        { value: "15+", label: "Country Markets", color: "text-[#FF8F6B]" },
+        { value: "4", label: "Career Chapters", color: "text-[#8B5CF6]" },
+        { value: "Now", label: "Available", color: "text-[#E879F9]" },
     ];
 
     return (
@@ -63,7 +63,7 @@ export function AboutSection() {
                             <div className="w-full h-full rounded-3xl bg-white overflow-hidden">
                                 <Image
                                     src="/profile-photo.jpg"
-                                    alt="Ravi Kumar Nersu - Senior Full-Stack Engineer"
+                                    alt="Ravi Kumar Nersu - Senior Frontend and Full-Stack Engineer"
                                     width={500}
                                     height={500}
                                     className="w-full h-full object-cover rounded-3xl hover:scale-105 transition-transform duration-500"
@@ -79,19 +79,19 @@ export function AboutSection() {
                     {/* Content - Staff-level positioning */}
                     <div className="space-y-6">
                         <p className={`text-lg text-[#1A1A2E] leading-relaxed font-medium scroll-reveal stagger-1 ${isVisible ? 'visible' : ''}`}>
-                            Full-stack architecture owner with 8.5+ years delivering high-traffic, performance-critical web platforms across 15+ global markets.
+                            Senior Frontend / Full-Stack Engineer with 8.6 years building production-grade web platforms across 15+ country markets.
                         </p>
 
                         <p className={`text-[#6B7280] leading-relaxed scroll-reveal stagger-2 ${isVisible ? 'visible' : ''}`}>
-                            I&apos;ve worked across the full stack — React.js, Next.js, Node.js, Express, and NestJS — driving ~50% page load reduction and ~40% developer velocity improvement through microservices adoption, BFF architecture, and SSR optimization on platforms serving millions of monthly users. Deep expertise in System Design, with a track record across automotive, logistics, enterprise IT, and e-commerce domains.
+                            I&apos;ve worked across React.js, Next.js, TypeScript, Node.js, Express, and NestJS, improving Lighthouse from ~45 to ~80, page load from ~6s to ~3s, and LCP from ~4.5s to ~2.2s through rendering decisions, route-level code splitting, image optimization, and payload reduction.
                         </p>
 
                         <p className={`text-[#6B7280] leading-relaxed scroll-reveal stagger-3 ${isVisible ? 'visible' : ''}`}>
-                            I&apos;ve led feature development end-to-end — from technical design to production — enabling teams to ship faster without regression risk. I focus on delivering outcomes that matter: faster products, cleaner systems, and measurable business value.
+                            My work spans frontend architecture, clean NestJS BFF services, JWT/OAuth2 and RBAC, API contracts, caching, testing, CI/CD delivery, PR reviews, and mentoring.
                         </p>
 
                         <p className={`text-[#FF6B35] font-medium leading-relaxed scroll-reveal stagger-3 ${isVisible ? 'visible' : ''}`}>
-                            Relocating to Dubai, UAE in May 2026 on a Job Seeker Visa. Seeking Senior Full-Stack Engineer, Senior Frontend Engineer, or Senior Software Engineer roles — open to permanent, contract, or freelance.
+                            Based in Hyderabad, India and available immediately for Senior Frontend, Senior Full-Stack, and Senior Software Engineer opportunities.
                         </p>
 
                         {/* Quick facts with animated counters */}

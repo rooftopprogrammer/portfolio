@@ -9,7 +9,8 @@ export function HeroSection() {
     const [isVisible, setIsVisible] = useState(false);
 
     useEffect(() => {
-        setIsVisible(true);
+        const frame = window.requestAnimationFrame(() => setIsVisible(true));
+        return () => window.cancelAnimationFrame(frame);
     }, []);
 
     return (
@@ -31,7 +32,7 @@ export function HeroSection() {
                                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
                                 <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
                             </span>
-                            Open to Senior Roles — Remote &amp; Relocation
+                            Available Immediately — Open to Senior Roles
                         </div>
 
                         {/* Name */}
@@ -62,9 +63,9 @@ export function HeroSection() {
                             {[
                                 "8.6 Years",
                                 "15+ Markets",
-                                "~50% Faster",
-                                "~40% Dev Velocity",
-                                "99.9% SLA",
+                                "Lighthouse ~45 → ~80",
+                                "Page Load ~6s → ~3s",
+                                "Available Now",
                             ].map((pill) => (
                                 <span
                                     key={pill}
@@ -128,7 +129,7 @@ export function HeroSection() {
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                             </svg>
-                            Based in Hyderabad, India — open to Bengaluru, Chennai, Singapore &amp; Dubai
+                            Based in Hyderabad, India — available immediately
                         </p>
                     </div>
 
@@ -137,7 +138,7 @@ export function HeroSection() {
                         <div className="w-64 h-64 sm:w-72 sm:h-72 lg:w-[320px] lg:h-[320px] rounded-2xl overflow-hidden border border-[#E5E7EB] shadow-lg">
                             <Image
                                 src="/profile-photo.jpg"
-                                alt="Ravi Kumar Nersu — Senior Full-Stack Engineer"
+                                alt="Ravi Kumar Nersu — Senior Frontend and Full-Stack Engineer"
                                 width={400}
                                 height={400}
                                 className="w-full h-full object-cover"
@@ -154,9 +155,9 @@ export function HeroSection() {
                         {[
                             "LTIMindtree",
                             "Avis Budget Group",
-                            "Ingram Micro",
-                            "Tata Martrade",
+                            "TMILL / Tata NYK Logistics",
                             "Allmvr Projects",
+                            "Xelpro",
                             "Whatsscore",
                         ].map((client) => (
                             <span

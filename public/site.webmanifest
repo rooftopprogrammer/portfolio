@@ -1,11 +1,11 @@
 {
-    "name": "Ravi Kumar Nersu | Software Engineering Specialist",
+    "name": "Ravi Kumar Nersu | Senior Frontend / Full-Stack Engineer",
     "short_name": "Ravi Nersu",
-    "description": "Full Stack Developer specializing in React, Next.js, and Node.js with 8.5 years of experience building scalable enterprise web applications.",
+    "description": "Senior Frontend / Full-Stack Engineer with 8.6 years of experience building production-grade web platforms with React, Next.js, TypeScript, and Node.js / NestJS.",
     "start_url": "/",
     "display": "standalone",
-    "background_color": "#09090b",
-    "theme_color": "#3b82f6",
+    "background_color": "#FFFBF8",
+    "theme_color": "#FF6B35",
     "icons": [
         {
             "src": "/icon-192.png",

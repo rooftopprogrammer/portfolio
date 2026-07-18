@@ -267,7 +267,7 @@ export function ContactSection() {
                         <span className="text-[#FF6B35]">Together</span>
                     </h2>
                     <p className={`text-[#6B7280] mb-12 max-w-2xl mx-auto scroll-reveal stagger-1 ${isVisible ? 'visible' : ''}`}>
-                        If you&apos;re hiring a senior full-stack engineer, let&apos;s connect. Based in Hyderabad, India and open to relocation across Bengaluru, Chennai, Singapore &amp; Dubai — available for remote roles and on-site opportunities. Open to interviews now.
+                        If you&apos;re hiring a Senior Frontend or Full-Stack Engineer, let&apos;s connect. I&apos;m based in Hyderabad, India, available immediately, and open to senior product and platform engineering roles.
                     </p>
 
                     <div className="grid md:grid-cols-2 gap-6 mb-12 max-w-2xl mx-auto perspective-container">

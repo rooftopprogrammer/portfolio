@@ -38,16 +38,14 @@ export const metadata: Metadata = {
     // Specific role + name combinations
     "Ravi Kumar Nersu software engineer",
     "Ravi Nersu full stack engineer",
+    "Ravi Kumar Nersu senior frontend engineer",
     "Ravi Kumar Nersu React developer",
     "Ravi Kumar Nersu LTIMindtree",
     // Location-specific name searches
     "Ravi Kumar Nersu Hyderabad",
+    "Senior Frontend Engineer Hyderabad",
     "Senior Full-Stack Engineer Hyderabad",
-    "Senior Full-Stack Engineer India",
-    "Ravi Nersu Bengaluru",
-    "Ravi Kumar Nersu Chennai",
-    "Ravi Kumar Nersu Singapore",
-    "Ravi Kumar Nersu Dubai",
+    "AI-assisted software engineering",
   ],
   authors: [{ name: siteConfig.name, url: siteConfig.url }],
   creator: siteConfig.name,
@@ -116,9 +114,6 @@ export const metadata: Metadata = {
   category: "technology",
   classification: "Portfolio Website",
   referrer: "origin-when-cross-origin",
-  verification: {
-    google: "google-site-verification-code", // Replace with actual code when available
-  },
 };
 
 // JSON-LD Structured Data for SEO
@@ -144,14 +139,12 @@ const jsonLd = {
     "Microservices",
     "System Design",
     "BFF Architecture",
+    "JWT/OAuth2",
+    "Role-Based Access Control",
+    "AI-Assisted Engineering",
     "AWS",
     "Docker",
-    "Kubernetes",
   ],
-  worksFor: {
-    "@type": "Organization",
-    name: "LTIMindtree",
-  },
   alumniOf: {
     "@type": "CollegeOrUniversity",
     name: "KL University",
