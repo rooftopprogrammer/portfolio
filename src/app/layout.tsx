@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { siteConfig } from "@/config/site";
+import { GITHUB_URL, LINKEDIN_URL, siteConfig, summary } from "@/config/site";
 import { AnalyticsProvider } from "@/components/analytics-provider";
 import { Toaster } from "sonner";
 
@@ -11,41 +11,34 @@ const inter = Inter({
   display: "swap",
 });
 
+const pageTitle = `${siteConfig.name} | Senior Software Engineer | React, Next.js, Node.js, AWS`;
+
 export const viewport: Viewport = {
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#FFFBF8" },
-    { media: "(prefers-color-scheme: dark)", color: "#FFFBF8" },
-  ],
+  themeColor: "#FFFBF8",
   width: "device-width",
   initialScale: 1,
-  maximumScale: 5,
 };
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: `${siteConfig.name} | ${siteConfig.title}`,
+    default: pageTitle,
     template: `%s | ${siteConfig.name}`,
   },
   description: siteConfig.description,
   keywords: [
-    // Primary name variations - main focus
     "Ravi Kumar Nersu",
     "Ravi Nersu",
     "Ravi Kumar Nersu portfolio",
-    "Ravi Nersu developer",
-    "ravikumarnersu",
-    // Specific role + name combinations
-    "Ravi Kumar Nersu software engineer",
-    "Ravi Nersu full stack engineer",
-    "Ravi Kumar Nersu senior frontend engineer",
-    "Ravi Kumar Nersu React developer",
-    "Ravi Kumar Nersu LTIMindtree",
-    // Location-specific name searches
-    "Ravi Kumar Nersu Hyderabad",
-    "Senior Frontend Engineer Hyderabad",
-    "Senior Full-Stack Engineer Hyderabad",
-    "AI-assisted software engineering",
+    "Senior Software Engineer Hyderabad",
+    "React developer Hyderabad",
+    "Next.js engineer Hyderabad",
+    "Frontend focused full stack engineer",
+    "Node.js BFF architecture",
+    "TypeScript engineer India",
+    "AWS frontend engineer",
+    "Web performance engineer",
+    "Web accessibility engineer",
   ],
   authors: [{ name: siteConfig.name, url: siteConfig.url }],
   creator: siteConfig.name,
@@ -62,33 +55,30 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: siteConfig.url,
-    title: `${siteConfig.name} | ${siteConfig.title}`,
+    title: pageTitle,
     description: siteConfig.description,
     siteName: siteConfig.name,
     images: [
       {
-        url: "/og-image.png",
+        url: siteConfig.ogImage,
         width: 1200,
         height: 630,
-        alt: `${siteConfig.name} - ${siteConfig.title}`,
+        alt: `${siteConfig.name} — Senior Software Engineer`,
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: `${siteConfig.name} | ${siteConfig.title}`,
+    title: pageTitle,
     description: siteConfig.description,
-    images: ["/og-image.png"],
-    creator: "@ravikumarnersu",
+    images: [siteConfig.ogImage],
   },
   robots: {
     index: true,
     follow: true,
-    nocache: false,
     googleBot: {
       index: true,
       follow: true,
-      noimageindex: false,
       "max-video-preview": -1,
       "max-image-preview": "large",
       "max-snippet": -1,
@@ -102,48 +92,49 @@ export const metadata: Metadata = {
       { url: "/icon-512.png", sizes: "512x512", type: "image/png" },
     ],
     apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
-    other: [
-      {
-        rel: "mask-icon",
-        url: "/favicon.svg",
-        color: "#FF6B35",
-      },
-    ],
+    other: [{ rel: "mask-icon", url: "/favicon.svg", color: "#C2410C" }],
   },
   manifest: "/site.webmanifest",
   category: "technology",
-  classification: "Portfolio Website",
   referrer: "origin-when-cross-origin",
 };
 
-// JSON-LD Structured Data for SEO
+// Person structured data. No phone number and no unverified credentials.
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",
   name: siteConfig.name,
   url: siteConfig.url,
-  jobTitle: siteConfig.title,
-  description: siteConfig.description,
-  sameAs: [
-    "https://github.com/ravikumarnersu",
-    "https://www.linkedin.com/in/ravi-kumar-nersu-8a00b3163",
-  ],
+  jobTitle: "Senior Software Engineer",
+  description: summary,
+  image: new URL("/profile-photo.jpg", siteConfig.url).toString(),
+  email: `mailto:${siteConfig.email}`,
+  sameAs: [GITHUB_URL, LINKEDIN_URL],
   knowsAbout: [
     "React.js",
     "Next.js",
     "TypeScript",
+    "JavaScript",
     "Node.js",
     "NestJS",
-    "JavaScript",
-    "Full Stack Development",
-    "Microservices",
-    "System Design",
+    "Express.js",
     "BFF Architecture",
-    "JWT/OAuth2",
-    "Role-Based Access Control",
-    "AI-Assisted Engineering",
+    "Microfrontends",
+    "Monorepo",
+    "REST APIs",
+    "GraphQL",
+    "PostgreSQL",
+    "MongoDB",
+    "DynamoDB",
     "AWS",
     "Docker",
+    "Kubernetes",
+    "Accessibility",
+    "Web Performance",
+    "Core Web Vitals",
+    "Playwright",
+    "Cypress",
+    "Jest",
   ],
   alumniOf: {
     "@type": "CollegeOrUniversity",
@@ -155,7 +146,6 @@ const jsonLd = {
     addressRegion: "Telangana",
     addressCountry: "IN",
   },
-  email: "raviknersu96@gmail.com",
 };
 
 export default function RootLayout({
@@ -164,11 +154,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning>
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -179,12 +166,13 @@ export default function RootLayout({
         suppressHydrationWarning
       >
         {/* Gradient background overlays */}
-        <div className="fixed inset-0 -z-10 bg-gradient-to-br from-[#FFFBF8] via-[#FFF8F5] to-[#FFF2EE]" />
-        <div className="fixed inset-0 -z-10 bg-gradient-to-bl from-transparent via-transparent to-purple-500/5" />
+        <div
+          className="fixed inset-0 -z-10 bg-gradient-to-br from-[#FFFBF8] via-[#FFF8F5] to-[#FFF2EE]"
+          aria-hidden="true"
+        />
 
-        <AnalyticsProvider>
-          {children}
-        </AnalyticsProvider>
+        <AnalyticsProvider>{children}</AnalyticsProvider>
+
         <Toaster
           theme="light"
           position="bottom-right"
@@ -192,10 +180,10 @@ export default function RootLayout({
           closeButton
           toastOptions={{
             style: {
-              background: 'rgba(255, 255, 255, 0.95)',
-              border: '1px solid rgba(255, 232, 224, 0.8)',
-              backdropFilter: 'blur(12px)',
-              color: '#1A1A2E',
+              background: "rgba(255, 255, 255, 0.95)",
+              border: "1px solid rgba(255, 232, 224, 0.8)",
+              backdropFilter: "blur(12px)",
+              color: "#1A1A2E",
             },
           }}
         />

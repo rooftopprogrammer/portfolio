@@ -1,29 +1,44 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from "next/server";
 
-// Server-side only - these are never exposed to the browser
-const ANALYTICS_BACKEND_URL = process.env.ANALYTICS_BACKEND_URL || 'https://notesapp-one-tau.vercel.app/api/portfolio-analytics/';
-const ANALYTICS_SECRET = process.env.ANALYTICS_SECRET || '';
+// Server-side only — never exposed to the browser.
+const ANALYTICS_BACKEND_URL = process.env.ANALYTICS_BACKEND_URL ?? "";
+const ANALYTICS_SECRET = process.env.ANALYTICS_SECRET ?? "";
 
-// Allowed analytics event types
 const ALLOWED_EVENT_TYPES = [
-    'page_view',
-    'scroll_depth',
-    'time_spent',
-    'resume_download',
-    'linkedin_click',
-    'email_click',
-    'phone_click',
-    'email_copy',
-    'phone_copy'
+    "page_view",
+    "scroll_depth",
+    "time_spent",
+    "resume_download",
+    "linkedin_click",
+    "email_click",
+    "email_copy",
 ];
 
-// Rate limiting: Track requests per session
+// Best-effort per-instance rate limiting.
 const requestCounts = new Map<string, { count: number; resetTime: number }>();
-const RATE_LIMIT = 100; // Max requests per window
-const RATE_WINDOW = 60 * 1000; // 1 minute window
+const RATE_LIMIT = 100;
+const RATE_WINDOW = 60 * 1000;
+const MAX_TRACKED_SESSIONS = 5_000;
 
 function isRateLimited(sessionId: string): boolean {
     const now = Date.now();
+
+    // Drop expired entries so the map cannot grow without bound.
+    if (requestCounts.size > MAX_TRACKED_SESSIONS) {
+        for (const [key, value] of requestCounts) {
+            if (now > value.resetTime) requestCounts.delete(key);
+        }
+        // Still oversized: the oldest entries go first.
+        if (requestCounts.size > MAX_TRACKED_SESSIONS) {
+            const excess = requestCounts.size - MAX_TRACKED_SESSIONS;
+            let removed = 0;
+            for (const key of requestCounts.keys()) {
+                if (removed++ >= excess) break;
+                requestCounts.delete(key);
+            }
+        }
+    }
+
     const record = requestCounts.get(sessionId);
 
     if (!record || now > record.resetTime) {
@@ -31,82 +46,89 @@ function isRateLimited(sessionId: string): boolean {
         return false;
     }
 
-    if (record.count >= RATE_LIMIT) {
-        return true;
-    }
+    if (record.count >= RATE_LIMIT) return true;
 
     record.count++;
     return false;
 }
 
-// Validate event data
 function validateEvent(data: Record<string, unknown>): { valid: boolean; error?: string } {
     if (!data.type || !ALLOWED_EVENT_TYPES.includes(data.type as string)) {
-        return { valid: false, error: 'Invalid event type' };
+        return { valid: false, error: "Invalid event type" };
     }
 
-    if (!data.sessionId || typeof data.sessionId !== 'string') {
-        return { valid: false, error: 'Invalid session ID' };
+    if (!data.sessionId || typeof data.sessionId !== "string" || data.sessionId.length > 128) {
+        return { valid: false, error: "Invalid session ID" };
     }
 
-    if (!data.date || typeof data.date !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(data.date)) {
-        return { valid: false, error: 'Invalid date format' };
+    if (
+        !data.date ||
+        typeof data.date !== "string" ||
+        !/^\d{4}-\d{2}-\d{2}$/.test(data.date)
+    ) {
+        return { valid: false, error: "Invalid date format" };
     }
 
-    // Validate numeric fields if present
-    if (data.scrollPercentage !== undefined && (typeof data.scrollPercentage !== 'number' || data.scrollPercentage < 0 || data.scrollPercentage > 100)) {
-        return { valid: false, error: 'Invalid scroll percentage' };
+    if (
+        data.scrollPercentage !== undefined &&
+        (typeof data.scrollPercentage !== "number" ||
+            data.scrollPercentage < 0 ||
+            data.scrollPercentage > 100)
+    ) {
+        return { valid: false, error: "Invalid scroll percentage" };
     }
 
-    if (data.timeSpentSeconds !== undefined && (typeof data.timeSpentSeconds !== 'number' || data.timeSpentSeconds < 0)) {
-        return { valid: false, error: 'Invalid time spent' };
+    if (
+        data.timeSpentSeconds !== undefined &&
+        (typeof data.timeSpentSeconds !== "number" || data.timeSpentSeconds < 0)
+    ) {
+        return { valid: false, error: "Invalid time spent" };
     }
 
     return { valid: true };
 }
 
 export async function POST(request: NextRequest) {
+    // Without a configured backend there is nothing to forward to. Accept and
+    // drop, rather than failing open against an unauthenticated endpoint.
+    if (!ANALYTICS_BACKEND_URL || !ANALYTICS_SECRET) {
+        return NextResponse.json({ success: true });
+    }
+
     try {
-        // Parse the event data
         const eventData = await request.json();
 
-        // Validate the event data
         const validation = validateEvent(eventData);
         if (!validation.valid) {
             return NextResponse.json({ error: validation.error }, { status: 400 });
         }
 
-        // Rate limiting check
         if (isRateLimited(eventData.sessionId)) {
-            return NextResponse.json({ error: 'Rate limit exceeded' }, { status: 429 });
+            return NextResponse.json({ error: "Rate limit exceeded" }, { status: 429 });
         }
 
-        // Forward to the backend with secret authentication
         const response = await fetch(ANALYTICS_BACKEND_URL, {
-            method: 'POST',
+            method: "POST",
             headers: {
-                'Content-Type': 'application/json',
-                'X-Analytics-Secret': ANALYTICS_SECRET,
-                'X-Forwarded-For': request.headers.get('x-forwarded-for') || 'unknown',
+                "Content-Type": "application/json",
+                "X-Analytics-Secret": ANALYTICS_SECRET,
+                "X-Forwarded-For": request.headers.get("x-forwarded-for") ?? "unknown",
             },
             body: JSON.stringify(eventData),
         });
 
         if (!response.ok) {
-            console.error('Analytics backend error:', response.status);
-            // Don't expose backend errors to client
-            return NextResponse.json({ success: true }); // Fail silently
+            console.error("Analytics backend error:", response.status);
         }
 
         return NextResponse.json({ success: true });
     } catch (error) {
-        console.error('Analytics proxy error:', error);
-        // Don't expose errors to client
-        return NextResponse.json({ success: true }); // Fail silently
+        console.error("Analytics proxy error:", error);
+        // Never surface internals to the client.
+        return NextResponse.json({ success: true });
     }
 }
 
-// Reject other methods
 export async function GET() {
-    return NextResponse.json({ error: 'Method not allowed' }, { status: 405 });
+    return NextResponse.json({ error: "Method not allowed" }, { status: 405 });
 }

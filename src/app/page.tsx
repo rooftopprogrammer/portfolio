@@ -1,10 +1,11 @@
 import { Header } from "@/components/header";
 import { ParticleBackground } from "@/components/particle-background";
+import { RevealObserver } from "@/components/reveal-observer";
 import {
   HeroSection,
   StatsSection,
   PlatformArchitectureSection,
-  AIHubProjectSection,
+  ProjectsSection,
   ExperienceSection,
   EducationSection,
   SkillsSection,
@@ -16,15 +17,19 @@ import {
 export default function Home() {
   return (
     <>
+      <a href="#main-content" className="skip-link">
+        Skip to main content
+      </a>
+
       <ParticleBackground />
       <Header />
 
-      <main>
+      <main id="main-content">
         <HeroSection />
         <StatsSection />
         <PlatformArchitectureSection />
         <ExperienceSection />
-        <AIHubProjectSection />
+        <ProjectsSection />
         <SkillsSection />
         <EngineeringMindsetSection />
         <EducationSection />
@@ -32,6 +37,7 @@ export default function Home() {
       </main>
 
       <Footer />
+      <RevealObserver />
     </>
   );
 }

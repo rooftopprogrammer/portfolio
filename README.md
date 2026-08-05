@@ -1,36 +1,72 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ravikumarnersu.com
 
-## Getting Started
+Personal portfolio for Ravi Kumar Nersu — Senior Software Engineer, frontend-focused full stack.
 
-First, run the development server:
+Live: <https://www.ravikumarnersu.com/>
+
+## Stack
+
+- Next.js 16 (App Router) with React 19 and TypeScript
+- Tailwind CSS v4
+- Deployed on Vercel
+
+## Getting started
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The site runs at <http://localhost:3000>.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Command | Purpose |
+| --- | --- |
+| `npm run dev` | Start the dev server |
+| `npm run build` | Production build |
+| `npm run start` | Serve the production build |
+| `npm run lint` | ESLint |
+| `npx tsc --noEmit` | Type check |
 
-## Learn More
+## Content is data, not markup
 
-To learn more about Next.js, take a look at the following resources:
+Every user-facing claim — positioning, experience, projects, skills, metrics,
+contact links and the résumé path — lives in [`src/config/site.ts`](src/config/site.ts).
+Sections, SEO metadata and the Person JSON-LD all read from that one file so
+employer names, dates and metrics cannot drift apart.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+**Change content there, not in components.**
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Assets
 
-## Deploy on Vercel
+- `public/Ravi-Kumar-Nersu-Senior-Software-Engineer-Resume.pdf` — the résumé every
+  "Download Resume" action points at. Referenced via `resume.href` in the config.
+- `public/og-image.png` — 1200×630 social card. Regenerate with:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+  ```bash
+  node scripts/generate-og-image.mjs
+  ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Favicons are generated from `public/favicon.svg`:
+
+  ```bash
+  node scripts/generate-favicons.mjs
+  ```
+
+## Accessibility and motion
+
+- Content is fully opaque at first paint. `.reveal` applies a transform offset
+  only, so the page stays legible with JavaScript disabled, in print and in
+  full-page screenshots.
+- `RevealObserver` is progressive enhancement and honours
+  `prefers-reduced-motion: reduce`.
+- Text colours are held to WCAG AA. `--orange-accent` (`#C2410C`) is the
+  text- and button-safe orange; `--orange-brand` (`#FF6B35`) is decorative only.
+
+## Analytics
+
+Client events post to `/api/analytics`, which forwards them to a backend using
+server-side environment variables (see `.env.example`). If
+`ANALYTICS_BACKEND_URL` or `ANALYTICS_SECRET` is unset, events are accepted and
+dropped rather than forwarded unauthenticated.

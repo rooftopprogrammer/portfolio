@@ -1,45 +1,17 @@
 import type { MetadataRoute } from "next";
 import { siteConfig } from "@/config/site";
 
+/**
+ * Only the canonical root page is listed. URL fragments such as #experience are
+ * not independently indexable, so they are deliberately excluded.
+ */
 export default function sitemap(): MetadataRoute.Sitemap {
-    const baseUrl = siteConfig.url;
-
     return [
         {
-            url: baseUrl,
+            url: siteConfig.url,
             lastModified: new Date(),
             changeFrequency: "monthly",
             priority: 1,
-        },
-        {
-            url: `${baseUrl}/#architecture`,
-            lastModified: new Date(),
-            changeFrequency: "monthly",
-            priority: 0.8,
-        },
-        {
-            url: `${baseUrl}/#experience`,
-            lastModified: new Date(),
-            changeFrequency: "monthly",
-            priority: 0.8,
-        },
-        {
-            url: `${baseUrl}/#project`,
-            lastModified: new Date(),
-            changeFrequency: "monthly",
-            priority: 0.8,
-        },
-        {
-            url: `${baseUrl}/#skills`,
-            lastModified: new Date(),
-            changeFrequency: "monthly",
-            priority: 0.8,
-        },
-        {
-            url: `${baseUrl}/#contact`,
-            lastModified: new Date(),
-            changeFrequency: "yearly",
-            priority: 0.7,
         },
     ];
 }

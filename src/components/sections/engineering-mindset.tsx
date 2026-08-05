@@ -1,87 +1,41 @@
-"use client";
-
-import { useEffect, useState, useRef } from "react";
-import Link from "next/link";
-
-const principles = [
-    {
-        title: "Performance-First",
-        description: "Every decision starts with measurable impact — Core Web Vitals, load times, UX metrics.",
-    },
-    {
-        title: "Secure by Design",
-        description: "Authentication, authorization, protected routes, and secure data handling are part of the architecture from the start.",
-    },
-    {
-        title: "Clean Service Boundaries",
-        description: "Controller, service, and repository layers keep BFF logic clear, testable, and maintainable.",
-    },
-    {
-        title: "Reduced Coupling via BFF",
-        description: "BFF services decouple frontend delivery from backend complexity.",
-    },
-    {
-        title: "AI-Assisted, Human-Reviewed",
-        description: "Claude and GitHub Copilot support planning, debugging, refactoring, test ideation, and documentation, with every suggestion manually reviewed.",
-    },
-];
+import { principles, resume } from "@/config/site";
+import { ResumeDownloadLink } from "@/components/resume-download-link";
 
 export function EngineeringMindsetSection() {
-    const [isVisible, setIsVisible] = useState(false);
-    const sectionRef = useRef<HTMLElement>(null);
-
-    useEffect(() => {
-        const observer = new IntersectionObserver(
-            ([entry]) => {
-                if (entry.isIntersecting) setIsVisible(true);
-            },
-            { threshold: 0.1 }
-        );
-
-        if (sectionRef.current) observer.observe(sectionRef.current);
-        return () => observer.disconnect();
-    }, []);
-
     return (
-        <section ref={sectionRef} className="py-16 lg:py-24 bg-white border-y border-[#F3F4F6]">
+        <section
+            aria-labelledby="approach-heading"
+            className="py-16 lg:py-24 bg-white border-y border-[#E5E7EB]"
+        >
             <div className="max-w-6xl mx-auto px-6">
-                <div className={`max-w-3xl mb-10 scroll-reveal ${isVisible ? 'visible' : ''}`}>
-                    <p className="text-[11px] text-[#9CA3AF] uppercase tracking-widest mb-2">Approach</p>
-                    <h2 className="text-2xl lg:text-3xl font-bold text-[#1A1A2E]">
+                <div className="max-w-3xl mb-10">
+                    <p className="text-[11px] text-[#6B7280] uppercase tracking-widest mb-2 font-semibold">
+                        Approach
+                    </p>
+                    <h2 id="approach-heading" className="text-2xl lg:text-3xl font-bold text-[#1A1A2E]">
                         Engineering Approach
                     </h2>
                 </div>
 
-                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                <ul className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
                     {principles.map((item, i) => (
-                        <div
+                        <li
                             key={item.title}
-                            className={`p-5 rounded-xl border border-[#F3F4F6] hover:border-[#FFE8E0] transition-colors flex flex-col scroll-reveal stagger-${Math.min(i + 1, 5)} ${isVisible ? 'visible' : ''}`}
+                            className={`p-5 rounded-xl border border-[#E5E7EB] hover:border-[#FFB399] transition-colors flex flex-col reveal reveal-delay-${Math.min(i + 1, 4)}`}
                         >
-                            <h3 className="text-sm font-semibold text-[#1A1A2E] mb-1">
+                            <h3 className="text-sm font-semibold text-[#1A1A2E] mb-1.5">
                                 {item.title}
                             </h3>
-                            <p className="text-sm text-[#6B7280] leading-relaxed flex-1">
+                            <p className="text-sm text-[#4B5563] leading-relaxed flex-1">
                                 {item.description}
                             </p>
-                        </div>
+                        </li>
                     ))}
+                </ul>
 
-                    {/* Download CV card */}
-                    <div className={`p-5 rounded-xl border border-[#F3F4F6] flex flex-col items-center justify-center scroll-reveal stagger-6 ${isVisible ? 'visible' : ''}`}>
-                        <Link
-                            href="/Resume.pdf"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#FF6B35] text-white font-semibold rounded-full hover:bg-[#E65A2E] transition-colors text-sm"
-                        >
-                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                            </svg>
-                            Download CV
-                        </Link>
-                        <p className="text-[11px] text-[#9CA3AF] mt-2">PDF • Updated Jun 2026</p>
-                    </div>
+                <div className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-3 reveal">
+                    <ResumeDownloadLink className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#C2410C] text-white font-semibold rounded-full hover:bg-[#9A3412] transition-colors text-sm" />
+                    <p className="text-[11px] text-[#6B7280]">{resume.meta}</p>
                 </div>
             </div>
         </section>

@@ -80,6 +80,9 @@ export function ParticleBackground() {
         const drawParticles = (currentTime: number) => {
             animationFrameId = requestAnimationFrame(drawParticles);
 
+            // Don't burn frames on a backgrounded tab
+            if (document.hidden) return;
+
             // Throttle to target FPS
             const deltaTime = currentTime - lastTime;
             if (deltaTime < frameInterval) return;

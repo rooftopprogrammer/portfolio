@@ -3,7 +3,4 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://ravikumarnersu.vercel.app/sitemap.xml
-
-# Crawl-delay for respectful crawling
-Crawl-delay: 1
+Sitemap: https://www.ravikumarnersu.com/sitemap.xml
