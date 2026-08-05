@@ -1,7 +1,7 @@
 "use client";
 
 import { toast } from "sonner";
-import { EMAIL, GITHUB_URL, LINKEDIN_URL, resume, siteConfig } from "@/config/site";
+import { EMAIL, GITHUB_URL, LINKEDIN_URL, resume } from "@/config/site";
 import {
     CopyIcon,
     DownloadIcon,
@@ -148,9 +148,6 @@ export function ContactSection() {
                     </li>
                 </ul>
 
-                <p className="text-xs text-[#6B7280] mt-6">
-                    {siteConfig.location} · {siteConfig.availability} · {resume.meta}
-                </p>
             </div>
         </section>
     );

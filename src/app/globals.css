@@ -57,15 +57,27 @@
     @apply bg-background text-foreground;
   }
 
-  /* Visible keyboard focus on every interactive element */
-  a:focus-visible,
-  button:focus-visible,
-  [tabindex]:focus-visible,
-  summary:focus-visible {
-    outline: 2px solid var(--orange-accent);
-    outline-offset: 3px;
-    border-radius: 4px;
-  }
+}
+
+/* ------------------------------------------------------------------ *
+ * Keyboard focus
+ *
+ * Deliberately unlayered so it outranks every Tailwind utility layer —
+ * a focus ring must never be beaten by a utility class. Applies to nav
+ * links, buttons, resume and social links, project links, contact cards,
+ * the copy-email button and the mobile-menu button alike. The browser
+ * outline is never removed anywhere in this stylesheet.
+ * ------------------------------------------------------------------ */
+a:focus-visible,
+button:focus-visible,
+[tabindex]:focus-visible,
+summary:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--orange-accent);
+  outline-offset: 3px;
+  border-radius: 4px;
 }
 
 /* ------------------------------------------------------------------ *

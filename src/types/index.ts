@@ -57,6 +57,15 @@ export interface Project {
     context?: string;
     description: string;
     technologies: string[];
+    /**
+     * Optional evidence links. Client work is under NDA and has none, so the UI
+     * renders an action only when a real value is present — never a disabled
+     * button, empty placeholder or "coming soon" label.
+     */
+    repositoryUrl?: string;
+    liveUrl?: string;
+    caseStudyUrl?: string;
+    image?: string;
 }
 
 export interface Principle {
@@ -75,9 +84,13 @@ export interface ResumeAsset {
 
 export interface SiteConfig {
     name: string;
+    /** Visible hero role heading. */
     title: string;
     headline: string;
     description: string;
+    /** Short document/Open Graph/Twitter title. */
+    seoTitle: string;
+    /** Canonical homepage URL, including the trailing slash. */
     url: string;
     ogImage: string;
     location: string;

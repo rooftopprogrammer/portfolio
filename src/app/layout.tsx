@@ -11,7 +11,7 @@ const inter = Inter({
   display: "swap",
 });
 
-const pageTitle = `${siteConfig.name} | Senior Software Engineer | React, Next.js, Node.js, AWS`;
+const pageTitle = siteConfig.seoTitle;
 
 export const viewport: Viewport = {
   themeColor: "#FFFBF8",
@@ -48,13 +48,13 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-  alternates: {
-    canonical: siteConfig.url,
-  },
+  // NOTE: no `alternates.canonical` here. Next resolves it against
+  // `trailingSlash: false` and strips the trailing slash, which would disagree
+  // with the sitemap. The canonical <link> is emitted verbatim in <head> below.
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: siteConfig.url,
+    // `url` is emitted in <head> instead, for the same trailing-slash reason.
     title: pageTitle,
     description: siteConfig.description,
     siteName: siteConfig.name,
@@ -156,6 +156,9 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        {/* Emitted by hand so the trailing slash survives — see metadata above. */}
+        <link rel="canonical" href={siteConfig.url} />
+        <meta property="og:url" content={siteConfig.url} />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

@@ -37,13 +37,20 @@ export const siteConfig: SiteConfig = {
     description:
         "Senior Software Engineer in Hyderabad with 8+ years in React, Next.js, TypeScript, Node.js, AWS, BFF architecture and web performance.",
     /**
-     * Canonical origin, without a trailing slash.
-     *
-     * Next normalises metadata URLs against `trailingSlash: false`, so this is
-     * the exact string emitted for <link rel="canonical"> and og:url. The
-     * sitemap and JSON-LD reuse it so all four agree byte for byte.
+     * Document / Open Graph / Twitter title. Kept short so it is not truncated
+     * in search results or social cards. This is not the visible hero heading —
+     * that stays `title` above.
      */
-    url: "https://www.ravikumarnersu.com",
+    seoTitle: "Ravi Kumar Nersu | Senior Software Engineer | React & Node.js",
+    /**
+     * Canonical homepage URL, with the trailing slash.
+     *
+     * Next strips trailing slashes when it resolves `alternates.canonical`
+     * under `trailingSlash: false`, so layout.tsx emits the canonical <link>
+     * by hand to keep this exact string. The sitemap, og:url and JSON-LD all
+     * reuse it, so every surface agrees byte for byte.
+     */
+    url: "https://www.ravikumarnersu.com/",
     ogImage: "/og-image.png",
     location: "Hyderabad, Telangana, India",
     availability: "Available to join within 15 days",
@@ -117,18 +124,24 @@ export const metrics: Metric[] = [
     },
 ];
 
+/**
+ * Six architecture themes. Descriptions are held to ~25-35 words and each card
+ * carries only 4-6 representative chips — the full technology inventory lives
+ * in `skillGroups` below, so repeating it here adds length without adding
+ * information.
+ */
 export const architecturePillars: ArchitecturePillar[] = [
     {
         title: "Microfrontends and Monorepo",
         description:
-            "Built React.js and Next.js experiences within a microfrontend architecture and monorepo, using reusable components and shared engineering standards across multiple market journeys.",
+            "Built reusable React.js and Next.js experiences within a microfrontend architecture and monorepo, supporting shared engineering standards and consistent customer journeys across multiple markets.",
         skills: ["React.js", "Next.js", "TypeScript", "Microfrontends", "Monorepo"],
     },
     {
         title: "Rendering and Web Performance",
         description:
-            "Applied SSR, SSG, route-level code splitting, image optimization and bundle analysis to improve SEO, Core Web Vitals and delivery performance.",
-        skills: ["SSR", "SSG", "Core Web Vitals", "Accessibility", "Webpack", "Vite", "Babel"],
+            "Applied SSR, SSG, code splitting, image optimization and bundle analysis to improve SEO, accessibility, Core Web Vitals and frontend delivery performance.",
+        skills: ["SSR", "SSG", "Core Web Vitals", "Accessibility", "Webpack", "Vite"],
     },
     {
         title: "Backend-for-Frontend and APIs",
@@ -139,35 +152,20 @@ export const architecturePillars: ArchitecturePillar[] = [
     {
         title: "Data and Security",
         description:
-            "Implemented PostgreSQL, MongoDB and DynamoDB data integrations with ORM-based database modelling, OAuth 2.0, OpenID Connect, JWT and role-based access control.",
-        skills: ["PostgreSQL", "MongoDB", "DynamoDB", "ORM", "OAuth 2.0", "OIDC", "JWT", "RBAC"],
+            "Integrated relational and NoSQL data through ORM-based models, with OAuth 2.0, OpenID Connect, JWT and role-based access control protecting application workflows.",
+        skills: ["PostgreSQL", "MongoDB", "DynamoDB", "OAuth 2.0", "JWT", "RBAC"],
     },
     {
         title: "AWS and Reliability",
         description:
-            "Worked with AWS EC2, Lambda, API Gateway, IAM, S3, Elastic Beanstalk, RDS, CloudFront and CloudWatch, including serverless workloads, cross-account deployments, monitoring, production debugging and incident resolution.",
-        skills: [
-            "AWS",
-            "Serverless",
-            "CloudWatch",
-            "Observability",
-            "Monitoring",
-            "Incident Resolution",
-        ],
+            "Delivered AWS-backed applications using compute, serverless, API, storage, database, CDN and monitoring services, including observability, production debugging and incident resolution.",
+        skills: ["AWS", "Serverless", "CloudWatch", "Observability", "Incident Resolution"],
     },
     {
         title: "Quality and Delivery",
         description:
-            "Used Jest, React Testing Library, Playwright and Cypress with CI/CD pipelines, Docker and Kubernetes. Delivered through Agile/Scrum using Jira, Git and Bitbucket.",
-        skills: [
-            "Jest",
-            "React Testing Library",
-            "Playwright",
-            "Cypress",
-            "CI/CD",
-            "Docker",
-            "Kubernetes",
-        ],
+            "Used automated testing, CI/CD, containers and Agile/Scrum delivery practices to maintain quality across multi-developer production releases.",
+        skills: ["Jest", "Playwright", "Cypress", "CI/CD", "Docker", "Kubernetes"],
     },
 ];
 
@@ -275,14 +273,8 @@ export const projects: Project[] = [
             "Next.js",
             "TypeScript",
             "Node.js",
-            "NestJS",
-            "Express.js",
             "BFF",
-            "PostgreSQL",
-            "MongoDB",
-            "DynamoDB",
             "AWS",
-            "Jest",
             "Playwright",
             "Cypress",
         ],
@@ -296,12 +288,8 @@ export const projects: Project[] = [
             "React.js",
             "TypeScript",
             "Material UI",
-            "Redux",
             "Node.js",
-            "Express.js",
             "PostgreSQL",
-            "MongoDB",
-            "MySQL",
             "AWS",
             "Docker",
             "Kubernetes",
@@ -318,7 +306,6 @@ export const projects: Project[] = [
             "Redux Toolkit",
             "Material UI",
             "REST APIs",
-            "SQL",
             "MySQL",
         ],
     },

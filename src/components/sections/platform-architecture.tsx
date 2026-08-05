@@ -42,65 +42,6 @@ export function PlatformArchitectureSection() {
                         </li>
                     ))}
                 </ul>
-
-                <div className="mt-8 p-6 rounded-xl bg-[#FAFAFA] border border-[#E5E7EB] reveal">
-                    <h3 className="text-[11px] text-[#6B7280] uppercase tracking-widest mb-5 text-center font-semibold">
-                        System Overview
-                    </h3>
-                    <ol className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-2">
-                        {[
-                            { label: "React / Next.js", sub: "SSR • SSG • Microfrontends", accent: true },
-                            { label: "BFF Services", sub: "Node.js • NestJS • Express.js", accent: false },
-                            { label: "Data & Security", sub: "OAuth 2.0 • OIDC • JWT • RBAC", accent: false },
-                            { label: "AWS & Delivery", sub: "Serverless • CI/CD • CloudWatch", accent: false },
-                        ].map((node, i, nodes) => (
-                            <li key={node.label} className="flex items-center gap-2">
-                                <div className="flex flex-col items-center gap-1">
-                                    <span
-                                        className={`px-4 py-2 rounded-lg border text-sm font-medium ${
-                                            node.accent
-                                                ? "bg-white border-[#FFB399] text-[#C2410C]"
-                                                : "bg-white border-[#E5E7EB] text-[#374151]"
-                                        }`}
-                                    >
-                                        {node.label}
-                                    </span>
-                                    <span className="text-[10px] text-[#6B7280] text-center">
-                                        {node.sub}
-                                    </span>
-                                </div>
-                                {i < nodes.length - 1 && (
-                                    <>
-                                        <svg
-                                            className="w-5 h-3 text-[#9CA3AF] hidden sm:block flex-shrink-0"
-                                            viewBox="0 0 20 12"
-                                            aria-hidden="true"
-                                        >
-                                            <path
-                                                d="M0 6h16M13 3l3 3-3 3"
-                                                stroke="currentColor"
-                                                strokeWidth="1.5"
-                                                fill="none"
-                                            />
-                                        </svg>
-                                        <svg
-                                            className="w-3 h-5 text-[#9CA3AF] sm:hidden flex-shrink-0"
-                                            viewBox="0 0 12 20"
-                                            aria-hidden="true"
-                                        >
-                                            <path
-                                                d="M6 0v16M3 13l3 3 3-3"
-                                                stroke="currentColor"
-                                                strokeWidth="1.5"
-                                                fill="none"
-                                            />
-                                        </svg>
-                                    </>
-                                )}
-                            </li>
-                        ))}
-                    </ol>
-                </div>
             </div>
         </section>
     );

@@ -1,4 +1,4 @@
-import { principles, resume } from "@/config/site";
+import { principles } from "@/config/site";
 import { ResumeDownloadLink } from "@/components/resume-download-link";
 
 export function EngineeringMindsetSection() {
@@ -33,9 +33,9 @@ export function EngineeringMindsetSection() {
                     ))}
                 </ul>
 
-                <div className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-3 reveal">
+                {/* Format/date detail is stated once, in the hero. */}
+                <div className="mt-6 flex items-center justify-center reveal">
                     <ResumeDownloadLink className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#C2410C] text-white font-semibold rounded-full hover:bg-[#9A3412] transition-colors text-sm" />
-                    <p className="text-[11px] text-[#6B7280]">{resume.meta}</p>
                 </div>
             </div>
         </section>

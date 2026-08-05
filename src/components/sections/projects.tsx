@@ -1,4 +1,37 @@
+import type { Project } from "@/types";
 import { independentProject, projects } from "@/config/site";
+
+/**
+ * Evidence links for a project. Renders nothing at all when the project has no
+ * links — no disabled buttons, no placeholders.
+ */
+function ProjectLinks({ project }: { project: Project }) {
+    const links = [
+        { href: project.liveUrl, label: "Live site" },
+        { href: project.repositoryUrl, label: "Repository" },
+        { href: project.caseStudyUrl, label: "Case study" },
+    ].filter((link): link is { href: string; label: string } => Boolean(link.href));
+
+    if (links.length === 0) return null;
+
+    return (
+        <ul className="flex flex-wrap gap-3 mt-4">
+            {links.map((link) => (
+                <li key={link.label}>
+                    <a
+                        href={link.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-xs font-semibold text-[#C2410C] hover:text-[#9A3412] underline underline-offset-2"
+                    >
+                        {link.label}
+                        <span className="sr-only"> for {project.title} (opens in a new tab)</span>
+                    </a>
+                </li>
+            ))}
+        </ul>
+    );
+}
 
 export function ProjectsSection() {
     return (
@@ -38,6 +71,7 @@ export function ProjectsSection() {
                                     </li>
                                 ))}
                             </ul>
+                            <ProjectLinks project={project} />
                         </li>
                     ))}
                 </ul>
