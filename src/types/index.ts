@@ -55,7 +55,12 @@ export interface Project {
     title: string;
     /** Employer or client the work was delivered for. */
     context?: string;
-    description: string;
+    /** What was wrong or missing before the work started. */
+    challenge: string;
+    /** What was built or changed. */
+    approach: string;
+    /** The result, in verified numbers where they exist. */
+    outcome: string;
     technologies: string[];
     /**
      * Optional evidence links. Client work is under NDA and has none, so the UI

@@ -42,6 +42,14 @@ employer names, dates and metrics cannot drift apart.
 
 - `public/Ravi-Kumar-Nersu-Senior-Software-Engineer-Resume.pdf` — the résumé every
   "Download Resume" action points at. Referenced via `resume.href` in the config.
+  Its source is [`resume/resume.html`](resume/resume.html); keep it in step with
+  `src/config/site.ts` and print it to a one-page A4 PDF with headless Chrome:
+
+  ```bash
+  "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless \
+    --no-pdf-header-footer --print-to-pdf=public/Ravi-Kumar-Nersu-Senior-Software-Engineer-Resume.pdf \
+    "file://$PWD/resume/resume.html"
+  ```
 - `public/og-image.png` — 1200×630 social card. Regenerate with:
 
   ```bash

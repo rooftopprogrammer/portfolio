@@ -27,7 +27,7 @@ export const resume: ResumeAsset = {
     href: "/Ravi-Kumar-Nersu-Senior-Software-Engineer-Resume.pdf",
     fileName: "Ravi-Kumar-Nersu-Senior-Software-Engineer-Resume.pdf",
     label: "Download Resume",
-    meta: "ATS-friendly PDF • Updated Aug 2026",
+    meta: "One-page ATS-friendly PDF • Updated Nov 2026",
 };
 
 export const siteConfig: SiteConfig = {
@@ -176,11 +176,12 @@ export const experiences: Experience[] = [
         period: "Jan 2024 – Apr 2026",
         location: "Hyderabad, Telangana, India",
         highlights: [
-            "Owned frontend architecture and full-stack delivery for Avis Budget Group booking, search, forms, dashboards and CMS-driven experiences across 15+ country markets using React.js, Next.js, TypeScript and JavaScript within a microfrontend architecture and monorepo.",
-            "Improved Lighthouse performance from approximately 45 to 80, page-load time from approximately 6 seconds to 3 seconds, LCP from approximately 4.5 seconds to 2.2 seconds and initial JavaScript payload from approximately 1.2 MB to 800 KB.",
-            "Built reusable accessible components, Node.js, NestJS and Express.js BFF services, REST and GraphQL APIs, and PostgreSQL, MongoDB and DynamoDB integrations.",
-            "Worked with AWS EC2, Lambda, API Gateway, IAM, S3, Elastic Beanstalk, RDS, CloudFront and CloudWatch, automated testing, CI/CD, production debugging, observability, monitoring and incident resolution.",
-            "Mentored two junior engineers and delivered through Agile/Scrum using Jira, Git and Bitbucket.",
+            "Owned frontend architecture and full-stack delivery for booking, search, forms, dashboards and CMS-driven rental experiences across 15+ country markets, built with React.js, Next.js and TypeScript in a microfrontend monorepo.",
+            "Raised Lighthouse performance from ~45 to ~80 and cut page load from ~6s to ~3s, LCP from ~4.5s to ~2.2s and initial JavaScript from ~1.2 MB to ~800 KB through rendering changes, route-level code splitting, image optimisation and bundle analysis.",
+            "Built reusable, accessible React components and design-system patterns from Figma; maintained Webpack, Vite and Babel builds.",
+            "Developed Node.js and NestJS Backend-for-Frontend services and REST/GraphQL APIs secured with OAuth 2.0/OpenID Connect, JWT and RBAC, backed by PostgreSQL, MongoDB and DynamoDB.",
+            "Deployed and supported serverless and cross-account AWS workloads (Lambda, API Gateway, S3, CloudFront, CloudWatch) and handled production debugging, monitoring and incident resolution.",
+            "Added unit, integration and E2E coverage with Jest, React Testing Library, Playwright and Cypress in GitHub Actions CI/CD; mentored two junior engineers and reviewed code.",
         ],
         technologies: [
             "React.js",
@@ -190,12 +191,12 @@ export const experiences: Experience[] = [
             "Monorepo",
             "Node.js",
             "NestJS",
-            "Express.js",
             "GraphQL",
             "PostgreSQL",
             "MongoDB",
             "DynamoDB",
             "AWS",
+            "Playwright",
             "CI/CD",
         ],
     },
@@ -206,11 +207,10 @@ export const experiences: Experience[] = [
         client: "TM International Logistics Limited (TMILL)",
         location: "Hyderabad, Telangana, India",
         highlights: [
-            "Delivered a business-critical Railways application for TMILL, including a responsive 10-step Material UI workflow to create, edit, review and approve logistics jobs within a monolithic application architecture.",
-            "Built accessible React.js and TypeScript interfaces, reusable components, Redux and Redux Thunk state flows, and Node.js and Express.js services with REST APIs.",
-            "Implemented OAuth 2.0, OpenID Connect, JWT/RBAC, ORM-based data access and database modelling across PostgreSQL, MongoDB, MySQL and DynamoDB.",
-            "Worked with AWS EC2, Lambda, API Gateway, IAM, S3, Elastic Beanstalk, RDS, CloudFront and CloudWatch, plus Docker, Kubernetes and CI/CD.",
-            "Used Jest, Playwright and Cypress and supported production debugging, observability, monitoring, incident resolution and Agile/Scrum delivery.",
+            "Delivered a business-critical Railways application for TMILL, including a responsive 10-step Material UI workflow to create, edit, review and approve logistics jobs.",
+            "Built accessible React.js and TypeScript interfaces with reusable components and Redux/Redux Thunk state flows from Figma designs.",
+            "Developed Node.js and Express.js REST APIs with OAuth 2.0/OpenID Connect and JWT/RBAC, using ORM-based data access over PostgreSQL and MySQL.",
+            "Deployed services on AWS (EC2, Elastic Beanstalk, RDS, S3) with Docker, Kubernetes and CI/CD; wrote automated tests with Jest, Playwright and Cypress.",
         ],
         technologies: [
             "React.js",
@@ -220,9 +220,7 @@ export const experiences: Experience[] = [
             "Node.js",
             "Express.js",
             "PostgreSQL",
-            "MongoDB",
             "MySQL",
-            "DynamoDB",
             "AWS",
             "Docker",
             "Kubernetes",
@@ -234,10 +232,9 @@ export const experiences: Experience[] = [
         period: "Aug 2019 – Aug 2020",
         location: "Vijayawada, India",
         highlights: [
-            "Built customer-facing and administrative React.js applications for a local-commerce platform connecting customers with nearby stores and restaurants.",
-            "Developed responsive React and TypeScript components using JavaScript, React Router, Redux, Redux Toolkit, Redux Thunk, Material UI, HTML5 and CSS3.",
-            "Implemented registration and authentication workflows, store administration, product-catalog CRUD, order-history capabilities and REST API integrations.",
-            "Delivered through Agile/Scrum using Jira, Git and Bitbucket with SQL/MySQL-backed application data.",
+            "Built customer-facing and admin React.js applications for a local-commerce platform connecting customers with nearby stores and restaurants.",
+            "Developed responsive React and TypeScript components with React Router, Redux Toolkit and Material UI, including multi-level registration and authentication flows.",
+            "Delivered store administration, catalogue CRUD and order history over REST APIs backed by MySQL.",
         ],
         technologies: [
             "React.js",
@@ -254,75 +251,39 @@ export const experiences: Experience[] = [
         period: "Jun 2017 – Jul 2019",
         location: "Hyderabad, Telangana, India",
         highlights: [
-            "Built sports web and mobile features using React.js, JavaScript, React Router, Redux, Redux Toolkit, Redux Thunk, HTML5, CSS3 and SASS.",
-            "Developed reusable components and centralized state flows for tournament configuration, participant registration, scorer assignment, matches, rounds, draws, player dashboards and tournament-information management.",
-            "Delivered maintainable frontend functionality through Agile/Scrum using Jira, Git and Bitbucket with SQL-backed application data.",
+            "Built sports-tournament web and mobile features with React.js, JavaScript, Redux, React Router and SASS.",
+            "Developed reusable components and Redux state for tournament setup, registration, scorer assignment, matches, draws and player dashboards.",
         ],
-        technologies: ["React.js", "JavaScript", "Redux Toolkit", "HTML5", "CSS3", "SASS", "SQL"],
+        technologies: ["React.js", "JavaScript", "Redux", "React Router", "SASS"],
     },
 ];
 
+/**
+ * Case studies of client work. Experience above already lists every job, so
+ * these tell the story of the two biggest deliveries instead of repeating it.
+ */
 export const projects: Project[] = [
     {
-        title: "Avis Budget Group Multi-Market Digital Platform",
+        title: "Halving page load on a 15-market rental platform",
         context: "LTIMindtree · Client: Avis Budget Group",
-        description:
-            "Delivered booking, search, forms, dashboards and CMS-driven experiences across 15+ country markets using React.js, Next.js, TypeScript, microfrontends and a monorepo. Built BFF/API integrations, AWS workloads, automated tests and measurable web-performance improvements.",
-        technologies: [
-            "React.js",
-            "Next.js",
-            "TypeScript",
-            "Node.js",
-            "BFF",
-            "AWS",
-            "Playwright",
-            "Cypress",
-        ],
+        challenge:
+            "The customer-facing rental platform, shared across 15+ country markets, scored around 45 on Lighthouse, took about 6 seconds to load and shipped roughly 1.2 MB of initial JavaScript.",
+        approach:
+            "Reworked rendering, added route-level code splitting, optimised images and used bundle analysis to cut what each route loaded, inside a React.js and Next.js microfrontend monorepo.",
+        outcome:
+            "Lighthouse ~45 → ~80, page load ~6s → ~3s, LCP ~4.5s → ~2.2s and initial JavaScript ~1.2 MB → ~800 KB.",
+        technologies: ["React.js", "Next.js", "TypeScript", "Microfrontends", "Core Web Vitals", "Webpack", "Vite"],
     },
     {
-        title: "TMILL Railways and Logistics Workflow",
+        title: "A guided approval workflow for railway logistics",
         context: "MSRCosmos LLC · Client: TM International Logistics Limited",
-        description:
-            "Delivered a business-critical Railways workflow for TM International Logistics Limited, including a responsive 10-step Material UI process for creating, editing, reviewing and approving logistics jobs within a monolithic application.",
-        technologies: [
-            "React.js",
-            "TypeScript",
-            "Material UI",
-            "Node.js",
-            "PostgreSQL",
-            "AWS",
-            "Docker",
-            "Kubernetes",
-        ],
-    },
-    {
-        title: "Allmvr Local Commerce Customer and Admin Platform",
-        context: "Allmvr",
-        description:
-            "Built customer and administration applications for a local-commerce platform connecting customers with nearby stores and restaurants, including registration, authentication, catalog management and order-history workflows.",
-        technologies: [
-            "React.js",
-            "TypeScript",
-            "Redux Toolkit",
-            "Material UI",
-            "REST APIs",
-            "MySQL",
-        ],
-    },
-    {
-        title: "WhatsScore Sports Tournament Platform",
-        context: "WhatsScore Pvt Ltd",
-        description:
-            "Built React.js web and mobile features for tournament configuration, participant registration, scoring, matches, rounds, draws, player dashboards and tournament-information management.",
-        technologies: [
-            "React.js",
-            "JavaScript",
-            "Redux Toolkit",
-            "HTML5",
-            "CSS3",
-            "SASS",
-            "SQL",
-        ],
+        challenge:
+            "TMILL's business-critical Railways application needed one place to create, edit, review and approve logistics jobs.",
+        approach:
+            "Built a responsive 10-step Material UI workflow in React.js and TypeScript with Redux state, backed by Node.js and Express.js REST APIs secured with OAuth 2.0/OpenID Connect and role-based access.",
+        outcome:
+            "Every logistics job moves through one guided flow from creation to approval, with each step open only to the roles allowed to act on it.",
+        technologies: ["React.js", "TypeScript", "Material UI", "Redux", "Node.js", "Express.js", "PostgreSQL"],
     },
 ];
 

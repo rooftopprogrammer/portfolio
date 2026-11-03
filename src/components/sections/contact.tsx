@@ -54,7 +54,7 @@ export function ContactSection() {
                 </h2>
                 <p className="text-[#4B5563] mb-12 max-w-2xl mx-auto leading-relaxed">
                     I&apos;m open to Senior Software Engineer and frontend-focused full-stack
-                    opportunities in Hyderabad. I bring 8+ years of React experience, four years of
+                    opportunities in Hyderabad. I bring 8+ years of React experience, 4+ years of
                     hands-on full-stack and AWS delivery, and a strong focus on accessibility,
                     performance and production reliability.
                 </p>

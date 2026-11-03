@@ -42,7 +42,7 @@ export function ProjectsSection() {
                         Delivery
                     </p>
                     <h2 className="text-2xl lg:text-3xl font-bold text-[#1A1A2E]">
-                        Selected Projects
+                        Case Studies
                     </h2>
                 </div>
 
@@ -58,9 +58,22 @@ export function ProjectsSection() {
                             {project.context && (
                                 <p className="text-xs text-[#6B7280] mt-1">{project.context}</p>
                             )}
-                            <p className="text-sm text-[#4B5563] leading-relaxed mt-3 flex-1">
-                                {project.description}
-                            </p>
+                            <dl className="mt-4 space-y-3 flex-1">
+                                {[
+                                    { term: "Challenge", detail: project.challenge },
+                                    { term: "Approach", detail: project.approach },
+                                    { term: "Outcome", detail: project.outcome },
+                                ].map(({ term, detail }) => (
+                                    <div key={term}>
+                                        <dt className="text-[11px] font-semibold uppercase tracking-widest text-[#C2410C]">
+                                            {term}
+                                        </dt>
+                                        <dd className="text-sm text-[#4B5563] leading-relaxed mt-1">
+                                            {detail}
+                                        </dd>
+                                    </div>
+                                ))}
+                            </dl>
                             <ul className="flex flex-wrap gap-1.5 mt-4">
                                 {project.technologies.map((tech) => (
                                     <li
