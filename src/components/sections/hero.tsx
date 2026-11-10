@@ -21,7 +21,7 @@ function TraceCard({ className = "" }: { className?: string }) {
             <div className="flex items-start justify-between gap-4">
                 <div>
                     <p className="text-sm font-semibold text-ink">Page load</p>
-                    <p className="eyebrow !text-[10.5px] mt-0.5">Avis Budget Group · 15+ markets</p>
+                    <p className="eyebrow !text-[10.5px] mt-0.5">Avis Budget Group</p>
                 </div>
                 <span className="font-mono text-[11px] font-semibold text-good-text bg-good-soft rounded-full px-2 py-0.5">
                     −50%
