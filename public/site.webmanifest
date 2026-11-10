@@ -1,11 +1,11 @@
 {
-    "name": "Ravi Kumar Nersu | Senior Software Engineer",
+    "name": "Ravi Kumar Nersu | Senior Full-Stack Software Engineer",
     "short_name": "Ravi Nersu",
-    "description": "Senior Software Engineer in Hyderabad with 8+ years in React, Next.js, TypeScript, Node.js, AWS, BFF architecture and web performance.",
+    "description": "Senior Full-Stack Software Engineer in Hyderabad: React, Next.js, TypeScript, Node.js, Python and production GenAI.",
     "start_url": "/",
     "display": "standalone",
-    "background_color": "#FFFBF8",
-    "theme_color": "#C2410C",
+    "background_color": "#F6F4EE",
+    "theme_color": "#F6F4EE",
     "icons": [
         {
             "src": "/icon-192.png",

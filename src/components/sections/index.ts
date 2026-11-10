@@ -1,8 +1,7 @@
-export { HeroSection, StatsSection } from "./hero";
-export { PlatformArchitectureSection } from "./platform-architecture";
-export { ProjectsSection } from "./projects";
-export { EngineeringMindsetSection } from "./engineering-mindset";
-export { ExperienceSection, EducationSection } from "./experience";
+export { HeroSection, EmployerMarquee } from "./hero";
+export { ImpactSection, CapabilitiesSection } from "./impact";
+export { ExperienceSection } from "./experience";
+export { AiProjectsSection } from "./ai-projects";
 export { SkillsSection } from "./skills";
 export { ContactSection } from "./contact";
 export { Footer } from "./footer";

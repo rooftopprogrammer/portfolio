@@ -127,11 +127,33 @@ export function SocialIcon({
     className?: string;
 }) {
     switch (icon) {
-        case "github":
-            return <GitHubIcon className={className} />;
         case "linkedin":
             return <LinkedInIcon className={className} />;
         case "mail":
             return <MailIcon className={className} />;
     }
+}
+
+export function CheckIcon({ className = "w-4 h-4" }: IconProps) {
+    return (
+        <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+        </svg>
+    );
+}
+
+export function ArrowUpRightIcon({ className = "w-4 h-4" }: IconProps) {
+    return (
+        <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 17L17 7M9 7h8v8" />
+        </svg>
+    );
+}
+
+export function PlusIcon({ className = "w-4 h-4" }: IconProps) {
+    return (
+        <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path strokeLinecap="round" strokeWidth={2} d="M12 5v14M5 12h14" />
+        </svg>
+    );
 }

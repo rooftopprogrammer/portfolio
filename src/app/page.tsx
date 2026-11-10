@@ -1,43 +1,41 @@
 import { Header } from "@/components/header";
-import { ParticleBackground } from "@/components/particle-background";
 import { RevealObserver } from "@/components/reveal-observer";
+import { Spotlight } from "@/components/spotlight";
 import {
-  HeroSection,
-  StatsSection,
-  PlatformArchitectureSection,
-  ProjectsSection,
-  ExperienceSection,
-  EducationSection,
-  SkillsSection,
-  EngineeringMindsetSection,
-  ContactSection,
-  Footer,
+    AiProjectsSection,
+    CapabilitiesSection,
+    ContactSection,
+    EmployerMarquee,
+    ExperienceSection,
+    Footer,
+    HeroSection,
+    ImpactSection,
+    SkillsSection,
 } from "@/components/sections";
 
 export default function Home() {
-  return (
-    <>
-      <a href="#main-content" className="skip-link">
-        Skip to main content
-      </a>
+    return (
+        <>
+            <a href="#main-content" className="skip-link">
+                Skip to main content
+            </a>
 
-      <ParticleBackground />
-      <Header />
+            <Header />
 
-      <main id="main-content">
-        <HeroSection />
-        <StatsSection />
-        <PlatformArchitectureSection />
-        <ExperienceSection />
-        <ProjectsSection />
-        <SkillsSection />
-        <EngineeringMindsetSection />
-        <EducationSection />
-        <ContactSection />
-      </main>
+            <main id="main-content">
+                <HeroSection />
+                <EmployerMarquee />
+                <ImpactSection />
+                <CapabilitiesSection />
+                <ExperienceSection />
+                <AiProjectsSection />
+                <SkillsSection />
+                <ContactSection />
+            </main>
 
-      <Footer />
-      <RevealObserver />
-    </>
-  );
+            <Footer />
+            <RevealObserver />
+            <Spotlight />
+        </>
+    );
 }

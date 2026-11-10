@@ -1,453 +1,328 @@
 import type {
-    ArchitecturePillar,
+    AiProject,
+    Capability,
     Education,
     Experience,
-    Metric,
-    Principle,
-    Project,
+    ImpactMetric,
     ResumeAsset,
     SiteConfig,
     SkillGroup,
+    Stat,
 } from "@/types";
 
 /**
  * Single source of truth for every user-facing claim on the site.
  *
- * Hero, experience, projects, skills, SEO metadata, JSON-LD and the contact
- * section all read from this file so employer names, dates and metrics cannot
- * drift apart. Nothing here may be changed without a verified source.
+ * Every fact here comes from the résumé in public/ (the Nov 2026 full-stack
+ * edition). Sections, SEO metadata and the Person JSON-LD all read from this
+ * file, so change content here and nowhere else.
  */
 
 export const EMAIL = "raviknersu96@gmail.com";
-
-export const GITHUB_URL = "https://github.com/ravikumarnersu";
 export const LINKEDIN_URL = "https://www.linkedin.com/in/ravi-kumar-nersu-8a00b3163";
 
 export const resume: ResumeAsset = {
-    href: "/Ravi-Kumar-Nersu-Senior-Software-Engineer-Resume.pdf",
-    fileName: "Ravi-Kumar-Nersu-Senior-Software-Engineer-Resume.pdf",
+    href: "/Ravi-Kumar-Nersu-Senior-Full-Stack-Engineer-Resume.pdf",
+    fileName: "Ravi-Kumar-Nersu-Senior-Full-Stack-Engineer-Resume.pdf",
     label: "Download Resume",
-    meta: "One-page ATS-friendly PDF • Updated Nov 2026",
+    meta: "2-page PDF · Updated Nov 2026",
 };
 
 export const siteConfig: SiteConfig = {
     name: "Ravi Kumar Nersu",
-    title: "Senior Software Engineer | Frontend-Focused Full Stack",
-    headline: "React.js • Next.js • TypeScript • Node.js • BFF • AWS • Web Performance",
+    title: "Senior Full-Stack Software Engineer",
+    headline: "React · Next.js · TypeScript · Node.js · Python · GenAI",
     description:
-        "Senior Software Engineer in Hyderabad with 8+ years in React, Next.js, TypeScript, Node.js, AWS, BFF architecture and web performance.",
-    /**
-     * Document / Open Graph / Twitter title. Kept short so it is not truncated
-     * in search results or social cards. This is not the visible hero heading —
-     * that stays `title` above.
-     */
-    seoTitle: "Ravi Kumar Nersu | Senior Software Engineer | React & Node.js",
-    /**
-     * Canonical homepage URL, with the trailing slash.
-     *
-     * Next strips trailing slashes when it resolves `alternates.canonical`
-     * under `trailingSlash: false`, so layout.tsx emits the canonical <link>
-     * by hand to keep this exact string. The sitemap, og:url and JSON-LD all
-     * reuse it, so every surface agrees byte for byte.
-     */
+        "Senior Full-Stack Software Engineer in Hyderabad with 8+ years in React, Next.js and TypeScript, 5+ years full stack with Node.js/NestJS and Python, and 2+ years shipping production GenAI features.",
+    seoTitle: "Ravi Kumar Nersu | Senior Full-Stack Engineer | React, Node.js & GenAI",
     url: "https://www.ravikumarnersu.com/",
     ogImage: "/og-image.png",
-    location: "Hyderabad, Telangana, India",
+    location: "Hyderabad, India",
     availability: "Available to join within 15 days",
-    availabilityShort: "Available within 15 days",
     email: EMAIL,
     links: [
-        { name: "GitHub", url: GITHUB_URL, icon: "github", external: true },
         { name: "LinkedIn", url: LINKEDIN_URL, icon: "linkedin", external: true },
         { name: "Email", url: `mailto:${EMAIL}`, icon: "mail", external: false },
     ],
 };
 
-/** Long-form positioning statement used in the hero and the About-style copy. */
+export const heroStatus = "Open to Senior Full-Stack & GenAI engineering roles";
+
+/** The one-sentence pitch under the name. Words in `highlight` get the accent. */
+export const heroPitch = {
+    before: "I build fast",
+    highlight1: "React & Next.js products",
+    middle: ", the Node.js and Python services behind them, and",
+    highlight2: "GenAI features that cite their sources.",
+};
+
 export const summary =
-    "Senior Software Engineer with 8+ years of experience building accessible, production-grade web platforms with React.js, Next.js, TypeScript and Node.js. Experienced in frontend architecture, Backend-for-Frontend services, AWS, automated testing, web performance and multi-market delivery across 15+ country markets.";
+    "Senior Software Engineer with 8+ years building React, Next.js and TypeScript applications, including 5+ years of full-stack work with Node.js/NestJS and Python and 2+ years shipping production GenAI features (RAG, tool-calling agents). Strongest in frontend performance, Backend-for-Frontend APIs, microfrontends and production ownership.";
 
-export const heroStatus =
-    "Open to Senior Software Engineer and frontend-focused full-stack roles";
-
-export const heroBadges = [
-    "8+ Years",
-    "15+ Markets",
-    "React / Next.js",
-    "Node.js / BFF",
-    "AWS",
+export const heroFacts = [
+    "8+ yrs React · Next.js · TypeScript",
+    "5+ yrs full stack · Node.js · Python",
+    "2+ yrs production GenAI",
 ];
 
-/** Employers and clients, in the wording approved for public display. */
+/** Employers and clients, in the wording used on the résumé. */
 export const employers = [
     "LTIMindtree",
     "Avis Budget Group",
-    "MSRCosmos LLC",
-    "TM International Logistics Limited",
+    "Ingram Micro",
+    "MSRCosmos",
+    "TM International Logistics",
     "Allmvr",
-    "WhatsScore Pvt Ltd",
+    "WhatsScore",
 ];
 
-/** Verified delivery metrics only. */
-export const metrics: Metric[] = [
-    {
-        metric: "15+",
-        label: "Country Markets",
-        accessibleLabel: "More than 15 country markets",
-    },
-    {
-        metric: "~45 → ~80",
-        label: "Lighthouse",
-        accessibleLabel: "Lighthouse performance improved from approximately 45 to approximately 80",
-    },
-    {
-        metric: "~6s → ~3s",
-        label: "Page Load",
-        accessibleLabel: "Page load improved from approximately 6 seconds to approximately 3 seconds",
-    },
-    {
-        metric: "~4.5s → ~2.2s",
-        label: "LCP",
-        accessibleLabel:
-            "Largest Contentful Paint improved from approximately 4.5 seconds to approximately 2.2 seconds",
-    },
-    {
-        metric: "~1.2 MB → ~800 KB",
-        label: "Initial JavaScript",
-        accessibleLabel:
-            "Initial JavaScript payload reduced from approximately 1.2 megabytes to approximately 800 kilobytes",
-    },
-    {
-        metric: "2",
-        label: "Junior Engineers Mentored",
-        accessibleLabel: "Mentored 2 junior engineers",
-    },
+export const impact = {
+    kicker: "Avis Budget Group",
+    title: "Halved page load on a car-rental platform used in 15+ countries.",
+    how: ["Code splitting", "Lazy loading", "Asset optimisation", "Rendering improvements"],
+    metrics: [
+        {
+            label: "Page load",
+            before: 6,
+            after: 3,
+            beforeText: "~6s",
+            afterText: "~3s",
+            better: "lower",
+            accessibleLabel: "Page load time cut from about 6 seconds to about 3 seconds",
+        },
+        {
+            label: "Largest Contentful Paint",
+            before: 4.5,
+            after: 2.2,
+            beforeText: "~4.5s",
+            afterText: "2.2s",
+            better: "lower",
+            accessibleLabel: "Largest Contentful Paint cut from about 4.5 seconds to 2.2 seconds",
+        },
+        {
+            label: "Lighthouse performance",
+            before: 45,
+            after: 80,
+            beforeText: "~45",
+            afterText: "~80",
+            better: "higher",
+            accessibleLabel: "Lighthouse performance score raised from about 45 to about 80",
+        },
+        {
+            label: "Initial JavaScript",
+            before: 1200,
+            after: 800,
+            beforeText: "~1.2 MB",
+            afterText: "~800 KB",
+            better: "lower",
+            accessibleLabel: "Initial JavaScript cut from about 1.2 megabytes to about 800 kilobytes",
+        },
+    ] satisfies ImpactMetric[],
+};
+
+export const stats: Stat[] = [
+    { value: "8+", label: "years building with React" },
+    { value: "15+", label: "country markets served" },
+    { value: "2+", label: "years of GenAI in production" },
+    { value: "2", label: "junior engineers mentored" },
 ];
 
-/**
- * Six architecture themes. Descriptions are held to ~25-35 words and each card
- * carries only 4-6 representative chips — the full technology inventory lives
- * in `skillGroups` below, so repeating it here adds length without adding
- * information.
- */
-export const architecturePillars: ArchitecturePillar[] = [
+export const capabilities: Capability[] = [
     {
-        title: "Microfrontends and Monorepo",
+        kicker: "01 · Frontend",
+        title: "Frontend architecture & performance",
         description:
-            "Built reusable React.js and Next.js experiences within a microfrontend architecture and monorepo, supporting shared engineering standards and consistent customer journeys across multiple markets.",
-        skills: ["React.js", "Next.js", "TypeScript", "Microfrontends", "Monorepo"],
+            "Owned the frontend architecture of a 15-market platform, from microfrontends and design systems to Core Web Vitals.",
+        points: [
+            "Microfrontends and design systems",
+            "SSR, code splitting, lazy loading",
+            "Accessibility and Core Web Vitals",
+        ],
+        tools: ["React", "Next.js", "TypeScript", "AEM Headless", "Storybook"],
     },
     {
-        title: "Rendering and Web Performance",
+        kicker: "02 · Backend",
+        title: "APIs & Backend-for-Frontend",
         description:
-            "Applied SSR, SSG, code splitting, image optimization and bundle analysis to improve SEO, accessibility, Core Web Vitals and frontend delivery performance.",
-        skills: ["SSR", "SSG", "Core Web Vitals", "Accessibility", "Webpack", "Vite"],
+            "Node.js/NestJS and Python services that aggregate REST and GraphQL APIs behind one clean, secure contract.",
+        points: [
+            "DTO validation, OAuth 2.0, JWT, RBAC",
+            "Timeouts, retries and fallbacks",
+            "Caching and SQL indexing",
+        ],
+        tools: ["Node.js", "NestJS", "Python", "FastAPI", "PostgreSQL"],
     },
     {
-        title: "Backend-for-Frontend and APIs",
+        kicker: "03 · GenAI",
+        title: "GenAI features & agents",
         description:
-            "Built Node.js, NestJS and Express.js BFF services with REST and GraphQL integrations, validation, resilient error handling and secure frontend-facing API boundaries.",
-        skills: ["Node.js", "NestJS", "Express.js", "BFF", "REST APIs", "GraphQL"],
-    },
-    {
-        title: "Data and Security",
-        description:
-            "Integrated relational and NoSQL data through ORM-based models, with OAuth 2.0, OpenID Connect, JWT and role-based access control protecting application workflows.",
-        skills: ["PostgreSQL", "MongoDB", "DynamoDB", "OAuth 2.0", "JWT", "RBAC"],
-    },
-    {
-        title: "AWS and Reliability",
-        description:
-            "Delivered AWS-backed applications using compute, serverless, API, storage, database, CDN and monitoring services, including observability, production debugging and incident resolution.",
-        skills: ["AWS", "Serverless", "CloudWatch", "Observability", "Incident Resolution"],
-    },
-    {
-        title: "Quality and Delivery",
-        description:
-            "Used automated testing, CI/CD, containers and Agile/Scrum delivery practices to maintain quality across multi-developer production releases.",
-        skills: ["Jest", "Playwright", "Cypress", "CI/CD", "Docker", "Kubernetes"],
+            "RAG answers linked to their sources, and tool-calling agents with limits, fallbacks and a human in the loop.",
+        points: [
+            "Hybrid and vector search",
+            "LangGraph, MCP and tool calling",
+            "Evaluation, tracing and injection safeguards",
+        ],
+        tools: ["Azure OpenAI", "Azure AI Search", "LangGraph", "MCP", "Embeddings"],
     },
 ];
 
 export const experiences: Experience[] = [
     {
         company: "LTIMindtree",
-        role: "Senior Frontend Engineer (Specialist Software Engineer) — Client: Avis Budget Group",
+        role: "Specialist Software Engineer",
         period: "Jan 2024 – Apr 2026",
-        location: "Hyderabad, Telangana, India",
-        highlights: [
-            "Owned frontend architecture and full-stack delivery for booking, search, forms, dashboards and CMS-driven rental experiences across 15+ country markets, built with React.js, Next.js and TypeScript in a microfrontend monorepo.",
-            "Raised Lighthouse performance from ~45 to ~80 and cut page load from ~6s to ~3s, LCP from ~4.5s to ~2.2s and initial JavaScript from ~1.2 MB to ~800 KB through rendering changes, route-level code splitting, image optimisation and bundle analysis.",
-            "Built reusable, accessible React components and design-system patterns from Figma; maintained Webpack, Vite and Babel builds.",
-            "Developed Node.js and NestJS Backend-for-Frontend services and REST/GraphQL APIs secured with OAuth 2.0/OpenID Connect, JWT and RBAC, backed by PostgreSQL, MongoDB and DynamoDB.",
-            "Deployed and supported serverless and cross-account AWS workloads (Lambda, API Gateway, S3, CloudFront, CloudWatch) and handled production debugging, monitoring and incident resolution.",
-            "Added unit, integration and E2E coverage with Jest, React Testing Library, Playwright and Cypress in GitHub Actions CI/CD; mentored two junior engineers and reviewed code.",
-        ],
-        technologies: [
-            "React.js",
-            "Next.js",
-            "TypeScript",
-            "Microfrontends",
-            "Monorepo",
-            "Node.js",
-            "NestJS",
-            "GraphQL",
-            "PostgreSQL",
-            "MongoDB",
-            "DynamoDB",
-            "AWS",
-            "Playwright",
-            "CI/CD",
+        location: "Hyderabad, India",
+        engagements: [
+            {
+                client: "Avis Budget Group",
+                role: "Senior Full-Stack Engineer",
+                period: "Mar 2025 – Apr 2026",
+                summary:
+                    "Owned frontend architecture for an AEM Headless car-rental platform across 15+ international markets.",
+                highlights: [
+                    "Developed scalable booking, vehicle search, reservation and CMS-driven experiences using React, Next.js, TypeScript and microfrontends.",
+                    "Cut page load from ~6s to ~3s and LCP from ~4.5s to 2.2s, raised Lighthouse performance from ~45 to ~80 and trimmed initial JavaScript from ~1.2 MB to ~800 KB through code splitting, lazy loading, asset optimisation and rendering improvements.",
+                    "Designed Node.js/NestJS Backend-for-Frontend services that aggregate downstream REST and GraphQL APIs, with DTO validation, OAuth 2.0/JWT authorization and consistent response handling.",
+                    "Improved reliability of booking services with request timeouts, retry strategies and fallbacks, and supported production monitoring, debugging and incident resolution on AWS.",
+                    "Added caching for frequently accessed reference data, maintained automated tests and CI/CD, reviewed code and mentored 2 junior engineers.",
+                ],
+                technologies: ["React", "Next.js", "TypeScript", "Microfrontends", "AEM Headless", "NestJS", "GraphQL", "AWS"],
+            },
+            {
+                client: "Ingram Micro",
+                role: "Full-Stack Developer",
+                period: "Jan 2024 – Feb 2025",
+                summary:
+                    "Built full-stack and GenAI features for the Xvantage B2B digital-commerce platform used by resellers.",
+                highlights: [
+                    "Developed reseller product-discovery and business-workflow features with React, Next.js, TypeScript, Node.js, NestJS, Python and PostgreSQL.",
+                    "Built Retrieval-Augmented Generation for product-document help, using Python services, embeddings and vector search to give source-grounded answers.",
+                    "Developed LLM agent workflows with tool calling into internal APIs for availability, pricing and orders, with execution limits, error handling and human-support fallbacks.",
+                    "Designed the contract between Python AI services and NestJS backends: REST, streamed responses, timeouts, retries and standard errors for the React apps.",
+                    "Kept answers grounded: live pricing and inventory come from PostgreSQL rather than the model, document answers link to their sources, and responses are checked against test cases.",
+                ],
+                technologies: ["React", "Next.js", "NestJS", "Python", "RAG", "Embeddings", "Tool calling", "PostgreSQL"],
+            },
         ],
     },
     {
         company: "MSRCosmos LLC",
         role: "Senior Software Engineer",
         period: "Aug 2020 – Jan 2024",
+        location: "Hyderabad, India",
         client: "TM International Logistics Limited (TMILL)",
-        location: "Hyderabad, Telangana, India",
+        summary:
+            "Delivered a business-critical railways logistics application, end to end.",
         highlights: [
-            "Delivered a business-critical Railways application for TMILL, including a responsive 10-step Material UI workflow to create, edit, review and approve logistics jobs.",
-            "Built accessible React.js and TypeScript interfaces with reusable components and Redux/Redux Thunk state flows from Figma designs.",
-            "Developed Node.js and Express.js REST APIs with OAuth 2.0/OpenID Connect and JWT/RBAC, using ORM-based data access over PostgreSQL and MySQL.",
-            "Deployed services on AWS (EC2, Elastic Beanstalk, RDS, S3) with Docker, Kubernetes and CI/CD; wrote automated tests with Jest, Playwright and Cypress.",
+            "Built a responsive 10-step Material UI workflow to create, edit, review and approve logistics jobs.",
+            "Built Node.js/Express.js and Python REST APIs secured with OAuth 2.0/OpenID Connect and JWT-based RBAC, with ORM data access over PostgreSQL and MySQL.",
+            "Developed accessible React/TypeScript interfaces and deployed services on AWS (EC2, Elastic Beanstalk, RDS, S3) with Docker, Kubernetes and CI/CD.",
         ],
-        technologies: [
-            "React.js",
-            "TypeScript",
-            "Material UI",
-            "Redux",
-            "Node.js",
-            "Express.js",
-            "PostgreSQL",
-            "MySQL",
-            "AWS",
-            "Docker",
-            "Kubernetes",
-        ],
+        technologies: ["React", "TypeScript", "Material UI", "Node.js", "Python", "PostgreSQL", "AWS", "Kubernetes"],
     },
     {
         company: "Allmvr",
         role: "Frontend Web Developer",
         period: "Aug 2019 – Aug 2020",
         location: "Vijayawada, India",
+        summary:
+            "Customer and admin React apps for a local-commerce platform connecting people with nearby stores and restaurants.",
         highlights: [
-            "Built customer-facing and admin React.js applications for a local-commerce platform connecting customers with nearby stores and restaurants.",
-            "Developed responsive React and TypeScript components with React Router, Redux Toolkit and Material UI, including multi-level registration and authentication flows.",
-            "Delivered store administration, catalogue CRUD and order history over REST APIs backed by MySQL.",
+            "Built responsive React/TypeScript components, multilevel authentication, store administration, catalogue CRUD and order history over REST APIs backed by MySQL.",
         ],
-        technologies: [
-            "React.js",
-            "TypeScript",
-            "Redux Toolkit",
-            "Material UI",
-            "REST APIs",
-            "MySQL",
-        ],
+        technologies: ["React", "TypeScript", "REST APIs", "MySQL"],
     },
     {
         company: "WhatsScore Pvt Ltd",
         role: "Software Engineer",
         period: "Jun 2017 – Jul 2019",
-        location: "Hyderabad, Telangana, India",
+        location: "Hyderabad, India",
+        summary:
+            "Sports-tournament product: setup, registration, scorer assignment, matches, draws and player dashboards.",
         highlights: [
-            "Built sports-tournament web and mobile features with React.js, JavaScript, Redux, React Router and SASS.",
-            "Developed reusable components and Redux state for tournament setup, registration, scorer assignment, matches, draws and player dashboards.",
+            "Built reusable React, Redux, React Router and SASS features across the tournament flow.",
         ],
-        technologies: ["React.js", "JavaScript", "Redux", "React Router", "SASS"],
+        technologies: ["React", "Redux", "React Router", "SASS"],
     },
 ];
 
-/**
- * Case studies of client work. Experience above already lists every job, so
- * these tell the story of the two biggest deliveries instead of repeating it.
- */
-export const projects: Project[] = [
+/** Independent builds from the résumé, kept clearly apart from client work. */
+export const aiProjects: AiProject[] = [
     {
-        title: "Halving page load on a 15-market rental platform",
-        context: "LTIMindtree · Client: Avis Budget Group",
-        challenge:
-            "The customer-facing rental platform, shared across 15+ country markets, scored around 45 on Lighthouse, took about 6 seconds to load and shipped roughly 1.2 MB of initial JavaScript.",
-        approach:
-            "Reworked rendering, added route-level code splitting, optimised images and used bundle analysis to cut what each route loaded, inside a React.js and Next.js microfrontend monorepo.",
-        outcome:
-            "Lighthouse ~45 → ~80, page load ~6s → ~3s, LCP ~4.5s → ~2.2s and initial JavaScript ~1.2 MB → ~800 KB.",
-        technologies: ["React.js", "Next.js", "TypeScript", "Microfrontends", "Core Web Vitals", "Webpack", "Vite"],
+        name: "FinDocs",
+        tagline: "Financial-document Q&A with page-level citations",
+        year: "2026",
+        note: "Independent project",
+        highlights: [
+            "Streaming chat over SEC 10-K filings and fund documents. Every answer links to its source page and paragraph, and it says “not found” when the evidence isn’t there.",
+            "FastAPI backend with an event-driven ingestion pipeline and hybrid keyword, semantic and vector retrieval; the model can be switched between Azure OpenAI and Claude.",
+            "Evaluation harness of ~50 known-answer questions tracking correctness, citation support, latency and cost per query.",
+        ],
+        stack: ["Next.js", "TypeScript", "Python", "FastAPI", "Azure OpenAI", "Azure AI Search", "Azure Functions", "Container Apps", "Entra ID"],
     },
     {
-        title: "A guided approval workflow for railway logistics",
-        context: "MSRCosmos LLC · Client: TM International Logistics Limited",
-        challenge:
-            "TMILL's business-critical Railways application needed one place to create, edit, review and approve logistics jobs.",
-        approach:
-            "Built a responsive 10-step Material UI workflow in React.js and TypeScript with Redux state, backed by Node.js and Express.js REST APIs secured with OAuth 2.0/OpenID Connect and role-based access.",
-        outcome:
-            "Every logistics job moves through one guided flow from creation to approval, with each step open only to the roles allowed to act on it.",
-        technologies: ["React.js", "TypeScript", "Material UI", "Redux", "Node.js", "Express.js", "PostgreSQL"],
+        name: "ClaimPilot",
+        tagline: "Human-approved healthcare claims agent",
+        year: "2026",
+        note: "Independent project · synthetic data",
+        highlights: [
+            "LangGraph agent that extracts claim fields, retrieves coverage policy through FinDocs, checks a synthetic member database and recommends approve, deny or needs-more-information with reasons and a draft letter.",
+            "Tools exposed through a Python MCP server with step limits, retries, decision logs and personal-data redaction; background work runs on Azure Service Bus.",
+            "A person must approve or edit every recommendation before anything happens. Measured on ~30 synthetic cases for decision accuracy and tool choice.",
+        ],
+        stack: ["React", "TypeScript", "Python", "LangGraph", "MCP", "Azure Service Bus", "PostgreSQL", "Cosmos DB"],
     },
 ];
-
-/** Personal build, kept clearly separated from client production experience. */
-export const independentProject = {
-    title: "AI Hub Platform",
-    disclaimer: "Independent enterprise workflow POC — not client production experience",
-    description:
-        "A self-directed enterprise workflow proof of concept covering structured demand intake, governance, discovery and approval experiences.",
-    capabilities: [
-        "Demand intake forms",
-        "Governance dashboards",
-        "AI use-case catalogue",
-        "Role-based access screens",
-        "Approval workflow patterns",
-    ],
-    technologies: ["React", "TypeScript", "Node.js", "PostgreSQL", "Tailwind CSS"],
-};
 
 export const skillGroups: SkillGroup[] = [
     {
-        title: "Frontend Architecture",
+        title: "Frontend",
         skills: [
-            "React.js",
-            "Next.js",
-            "TypeScript",
-            "JavaScript",
-            "Redux Toolkit",
-            "Redux Thunk",
-            "TanStack Query",
-            "Material UI",
-            "Storybook",
-            "HTML5",
-            "CSS3",
-            "Responsive Design",
-            "Accessibility",
-            "Core Web Vitals",
-            "Microfrontends",
-            "Monorepo",
+            "React", "Next.js", "TypeScript", "JavaScript (ES6+)", "Redux Toolkit", "TanStack Query",
+            "Material UI", "Storybook", "HTML5", "CSS3", "Microfrontends", "Design Systems",
+            "Accessibility", "Core Web Vitals", "AEM Headless",
         ],
     },
     {
-        title: "Backend and APIs",
+        title: "Backend & Data",
         skills: [
-            "Node.js",
-            "NestJS",
-            "Express.js",
-            "Backend-for-Frontend",
-            "MERN",
-            "REST APIs",
-            "GraphQL",
-            "Microservices",
-            "Monolithic Architecture",
+            "Node.js", "NestJS", "Express.js", "Python", "asyncio", "FastAPI", "Pydantic", "REST", "GraphQL",
+            "Backend-for-Frontend", "Microservices", "Caching", "OAuth 2.0", "OpenID Connect", "JWT", "RBAC",
+            "PostgreSQL", "MySQL", "SQL Indexing",
         ],
     },
     {
-        title: "Data and Security",
+        title: "GenAI & Agents",
         skills: [
-            "PostgreSQL",
-            "MongoDB",
-            "DynamoDB",
-            "MySQL",
-            "ORM",
-            "Database Modelling",
-            "OAuth 2.0",
-            "OpenID Connect",
-            "JWT",
-            "RBAC",
+            "LLMs", "RAG", "Embeddings", "Hybrid & Vector Search", "Prompt Engineering", "LangGraph", "MCP",
+            "Tool Calling", "Human-in-the-Loop", "RAG Evaluation", "LLM Evaluation", "LLM Tracing",
+            "Prompt-Injection Safeguards",
         ],
     },
     {
-        title: "AWS and Infrastructure",
+        title: "Cloud & DevOps",
         skills: [
-            "AWS EC2",
-            "Lambda",
-            "API Gateway",
-            "IAM",
-            "S3",
-            "Elastic Beanstalk",
-            "RDS",
-            "CloudFront",
-            "CloudWatch",
-            "Serverless Architecture",
-            "Cross-Account Deployments",
-            "Docker",
-            "Kubernetes",
+            "AWS EC2", "Elastic Beanstalk", "RDS", "S3", "Azure OpenAI", "Azure AI Search", "Azure Functions",
+            "Container Apps", "Service Bus", "Entra ID", "Application Insights", "Docker", "Kubernetes",
+            "GitHub Actions", "Azure DevOps", "CI/CD",
         ],
     },
     {
-        title: "Testing and Build Tooling",
-        skills: [
-            "Jest",
-            "React Testing Library",
-            "Playwright",
-            "Cypress",
-            "Webpack",
-            "Vite",
-            "Babel",
-            "GitHub Actions",
-            "CI/CD",
-        ],
-    },
-    {
-        title: "Engineering Delivery",
-        skills: [
-            "Production Debugging",
-            "Observability",
-            "Monitoring",
-            "Incident Resolution",
-            "Web Performance",
-            "Agile",
-            "Scrum",
-            "Jira",
-            "Git",
-            "Bitbucket",
-            "Figma",
-            "Mentoring",
-        ],
+        title: "Testing & Tooling",
+        skills: ["Jest", "React Testing Library", "pytest", "Webpack", "Vite", "Git", "Jira", "Agile/Scrum"],
     },
 ];
 
-/** Secondary tooling. Deliberately kept out of the primary positioning. */
-export const developmentWorkflow = {
-    title: "Development Workflow",
-    note: "AI-assisted tooling supports code exploration, refactoring and documentation, with every suggestion manually reviewed.",
-    skills: ["Claude Code", "Claude for VS Code", "GitHub Copilot"],
+export const education: Education = {
+    institution: "KL University",
+    degree: "B.Tech, Computer Science and Engineering",
+    period: "2013 – 2017",
 };
 
-export const principles: Principle[] = [
-    {
-        title: "Performance and Accessibility",
-        description:
-            "Rendering strategy, code splitting and image optimization are measured against Core Web Vitals, and components are built to be keyboard and screen-reader accessible.",
-    },
-    {
-        title: "Secure API Boundaries",
-        description:
-            "BFF services keep frontend-facing contracts narrow, with OAuth 2.0, OpenID Connect, JWT and role-based access control enforced at the boundary.",
-    },
-    {
-        title: "Production Reliability",
-        description:
-            "Automated tests, CI/CD, observability and monitoring support production debugging and incident resolution after release, not just before it.",
-    },
-    {
-        title: "Mentoring and Delivery",
-        description:
-            "Mentored two junior engineers and delivered through Agile/Scrum using Jira, Git and Bitbucket across multi-market release cycles.",
-    },
-];
-
-export const education: Education[] = [
-    {
-        institution: "KL University",
-        degree: "Bachelor of Technology",
-        field: "Computer Science and Engineering",
-        period: "2013 – 2017",
-    },
-];
-
 export const navItems = [
-    { name: "Architecture", href: "#architecture" },
+    { name: "Impact", href: "#impact" },
     { name: "Experience", href: "#experience" },
-    { name: "Projects", href: "#projects" },
+    { name: "AI Projects", href: "#ai-projects" },
     { name: "Skills", href: "#skills" },
     { name: "Contact", href: "#contact" },
 ];

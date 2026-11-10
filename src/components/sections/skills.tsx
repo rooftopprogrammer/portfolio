@@ -1,59 +1,46 @@
-import { developmentWorkflow, skillGroups } from "@/config/site";
+import { skillGroups } from "@/config/site";
 
 export function SkillsSection() {
     return (
-        <section id="skills" className="py-20 lg:py-28">
-            <div className="max-w-6xl mx-auto px-6">
-                <div className="mb-12">
-                    <p className="text-[11px] text-[#6B7280] uppercase tracking-widest mb-2 font-semibold">
-                        Capabilities
-                    </p>
-                    <h2 className="text-2xl lg:text-3xl font-bold text-[#1A1A2E]">
-                        Technical Skills
+        <section id="skills" aria-labelledby="skills-heading" className="py-20 sm:py-28">
+            <div className="max-w-6xl mx-auto px-5 sm:px-6">
+                <div className="reveal max-w-2xl mb-10 sm:mb-12">
+                    <p className="eyebrow eyebrow-dot">Toolbox</p>
+                    <h2
+                        id="skills-heading"
+                        className="mt-3 font-display font-bold tracking-[-0.025em] text-[clamp(1.75rem,3.5vw,2.5rem)] text-ink"
+                    >
+                        Technical skills
                     </h2>
                 </div>
 
-                <ul className="grid sm:grid-cols-2 gap-4">
+                <dl className="card divide-y divide-line overflow-hidden">
                     {skillGroups.map((group, i) => (
-                        <li
+                        <div
                             key={group.title}
-                            className={`p-5 rounded-xl bg-white border border-[#E5E7EB] hover:border-[#FFB399] transition-colors flex flex-col reveal reveal-delay-${Math.min(i + 1, 6)}`}
+                            className={`reveal reveal-d${(i % 4) + 1} grid md:grid-cols-[220px_1fr] gap-3 md:gap-8 p-4 sm:p-6 transition-colors hover:bg-paper/70`}
                         >
-                            <h3 className="text-sm font-semibold text-[#1A1A2E] mb-3">
-                                {group.title}
-                            </h3>
-                            <ul className="flex flex-wrap gap-1.5 flex-1">
-                                {group.skills.map((skill) => (
-                                    <li
-                                        key={skill}
-                                        className="px-2.5 py-1 text-xs text-[#4B5563] rounded-md bg-[#F9FAFB] border border-[#E5E7EB]"
-                                    >
-                                        {skill}
-                                    </li>
-                                ))}
-                            </ul>
-                        </li>
+                            <dt className="flex items-center gap-3 md:items-start md:pt-1">
+                                <span className="font-mono text-xs text-signal-text">0{i + 1}</span>
+                                <span className="font-display text-lg font-bold tracking-tight text-ink">
+                                    {group.title}
+                                </span>
+                            </dt>
+                            <dd>
+                                <ul className="flex flex-wrap gap-1.5 sm:gap-2">
+                                    {group.skills.map((skill) => (
+                                        <li
+                                            key={skill}
+                                            className="chip !text-xs sm:!text-[0.8125rem] transition-colors hover:border-ink hover:text-ink"
+                                        >
+                                            {skill}
+                                        </li>
+                                    ))}
+                                </ul>
+                            </dd>
+                        </div>
                     ))}
-                </ul>
-
-                <div className="mt-4 p-5 rounded-xl border border-[#E5E7EB] bg-[#FAFAFA] reveal">
-                    <h3 className="text-sm font-semibold text-[#1A1A2E] mb-2">
-                        {developmentWorkflow.title}
-                    </h3>
-                    <p className="text-sm text-[#4B5563] leading-relaxed mb-3">
-                        {developmentWorkflow.note}
-                    </p>
-                    <ul className="flex flex-wrap gap-1.5">
-                        {developmentWorkflow.skills.map((skill) => (
-                            <li
-                                key={skill}
-                                className="px-2.5 py-1 text-xs text-[#4B5563] rounded-md bg-white border border-[#E5E7EB]"
-                            >
-                                {skill}
-                            </li>
-                        ))}
-                    </ul>
-                </div>
+                </dl>
             </div>
         </section>
     );

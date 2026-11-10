@@ -1,6 +1,6 @@
 # ravikumarnersu.com
 
-Personal portfolio for Ravi Kumar Nersu — Senior Software Engineer, frontend-focused full stack.
+Personal portfolio for Ravi Kumar Nersu — Senior Full-Stack Software Engineer (React, Next.js, Node.js, Python, GenAI).
 
 Live: <https://www.ravikumarnersu.com/>
 
@@ -40,16 +40,12 @@ employer names, dates and metrics cannot drift apart.
 
 ## Assets
 
-- `public/Ravi-Kumar-Nersu-Senior-Software-Engineer-Resume.pdf` — the résumé every
-  "Download Resume" action points at. Referenced via `resume.href` in the config.
-  Its source is [`resume/resume.html`](resume/resume.html); keep it in step with
-  `src/config/site.ts` and print it to a one-page A4 PDF with headless Chrome:
-
-  ```bash
-  "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless \
-    --no-pdf-header-footer --print-to-pdf=public/Ravi-Kumar-Nersu-Senior-Software-Engineer-Resume.pdf \
-    "file://$PWD/resume/resume.html"
-  ```
+- `public/Ravi-Kumar-Nersu-Senior-Full-Stack-Engineer-Resume.pdf` — the résumé every
+  "Download Resume" action points at (`resume.href` in the config). To update it,
+  replace the file under the same name and keep `src/config/site.ts` in step
+  with it. PDFs are served with `max-age=0, must-revalidate`, so a new copy
+  reaches visitors straight away. The old `…-Senior-Software-Engineer-Resume.pdf`
+  URL redirects to it (see `next.config.ts`).
 - `public/og-image.png` — 1200×630 social card. Regenerate with:
 
   ```bash
@@ -62,15 +58,19 @@ employer names, dates and metrics cannot drift apart.
   node scripts/generate-favicons.mjs
   ```
 
-## Accessibility and motion
+## Design and motion
 
-- Content is fully opaque at first paint. `.reveal` applies a transform offset
-  only, so the page stays legible with JavaScript disabled, in print and in
-  full-page screenshots.
-- `RevealObserver` is progressive enhancement and honours
-  `prefers-reduced-motion: reduce`.
-- Text colours are held to WCAG AA. `--orange-accent` (`#C2410C`) is the
-  text- and button-safe orange; `--orange-brand` (`#FF6B35`) is decorative only.
+- Paper/ink palette with one vermilion signal colour and one green for
+  improvements; tokens live at the top of `src/app/globals.css`. Every `*-text`
+  colour clears WCAG AA; the bright variants are for fills and large type only.
+- Type: Bricolage Grotesque (display), Geist (body), Geist Mono (labels).
+- Content is fully painted on the first frame. `.rise` and `.reveal` animate
+  transform only, so the page stays legible with JavaScript off, in print and
+  in full-page screenshots.
+- The FinDocs and ClaimPilot demos (`src/components/ai-demos.tsx`) are
+  decorative illustrations, run only while on screen, and show a still frame
+  under `prefers-reduced-motion: reduce`. Their boxes have fixed heights to
+  avoid layout shift — re-check them if you change the demo text.
 
 ## Analytics
 

@@ -1,12 +1,25 @@
 import type { Metadata, Viewport } from "next";
-import { Inter } from "next/font/google";
+import { Bricolage_Grotesque, Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { GITHUB_URL, LINKEDIN_URL, siteConfig, summary } from "@/config/site";
+import { LINKEDIN_URL, siteConfig, summary } from "@/config/site";
 import { AnalyticsProvider } from "@/components/analytics-provider";
 import { Toaster } from "sonner";
 
-const inter = Inter({
-  variable: "--font-inter",
+const display = Bricolage_Grotesque({
+  variable: "--font-display",
+  subsets: ["latin"],
+  display: "swap",
+  weight: ["600", "700", "800"],
+});
+
+const body = Geist({
+  variable: "--font-body",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+const mono = Geist_Mono({
+  variable: "--font-mono",
   subsets: ["latin"],
   display: "swap",
 });
@@ -14,7 +27,7 @@ const inter = Inter({
 const pageTitle = siteConfig.seoTitle;
 
 export const viewport: Viewport = {
-  themeColor: "#FFFBF8",
+  themeColor: "#F6F4EE",
   width: "device-width",
   initialScale: 1,
 };
@@ -30,15 +43,14 @@ export const metadata: Metadata = {
     "Ravi Kumar Nersu",
     "Ravi Nersu",
     "Ravi Kumar Nersu portfolio",
+    "Senior Full-Stack Engineer Hyderabad",
     "Senior Software Engineer Hyderabad",
-    "React developer Hyderabad",
-    "Next.js engineer Hyderabad",
-    "Frontend focused full stack engineer",
-    "Node.js BFF architecture",
-    "TypeScript engineer India",
-    "AWS frontend engineer",
-    "Web performance engineer",
-    "Web accessibility engineer",
+    "React Next.js engineer",
+    "Node.js NestJS Python developer",
+    "GenAI engineer RAG",
+    "LLM agents LangGraph MCP",
+    "Backend-for-Frontend BFF",
+    "Web performance Core Web Vitals",
   ],
   authors: [{ name: siteConfig.name, url: siteConfig.url }],
   creator: siteConfig.name,
@@ -63,7 +75,7 @@ export const metadata: Metadata = {
         url: siteConfig.ogImage,
         width: 1200,
         height: 630,
-        alt: `${siteConfig.name} — Senior Software Engineer`,
+        alt: `${siteConfig.name} — ${siteConfig.title}`,
       },
     ],
   },
@@ -92,7 +104,7 @@ export const metadata: Metadata = {
       { url: "/icon-512.png", sizes: "512x512", type: "image/png" },
     ],
     apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
-    other: [{ rel: "mask-icon", url: "/favicon.svg", color: "#C2410C" }],
+    other: [{ rel: "mask-icon", url: "/favicon.svg", color: "#FF5B36" }],
   },
   manifest: "/site.webmanifest",
   category: "technology",
@@ -105,36 +117,32 @@ const jsonLd = {
   "@type": "Person",
   name: siteConfig.name,
   url: siteConfig.url,
-  jobTitle: "Senior Software Engineer",
+  jobTitle: siteConfig.title,
   description: summary,
   image: new URL("/profile-photo.jpg", siteConfig.url).toString(),
   email: `mailto:${siteConfig.email}`,
-  sameAs: [GITHUB_URL, LINKEDIN_URL],
+  sameAs: [LINKEDIN_URL],
   knowsAbout: [
-    "React.js",
+    "React",
     "Next.js",
     "TypeScript",
-    "JavaScript",
     "Node.js",
     "NestJS",
-    "Express.js",
-    "BFF Architecture",
+    "Python",
+    "FastAPI",
+    "Backend-for-Frontend",
     "Microfrontends",
-    "Monorepo",
-    "REST APIs",
     "GraphQL",
     "PostgreSQL",
-    "MongoDB",
-    "DynamoDB",
+    "Retrieval-Augmented Generation",
+    "LLM agents",
+    "LangGraph",
+    "Model Context Protocol",
+    "Azure OpenAI",
     "AWS",
-    "Docker",
-    "Kubernetes",
-    "Accessibility",
     "Web Performance",
     "Core Web Vitals",
-    "Playwright",
-    "Cypress",
-    "Jest",
+    "Accessibility",
   ],
   alumniOf: {
     "@type": "CollegeOrUniversity",
@@ -158,6 +166,8 @@ export default function RootLayout({
       <head>
         {/* Emitted by hand so the trailing slash survives — see metadata above. */}
         <link rel="canonical" href={siteConfig.url} />
+        {/* Lets CSS hold scroll-in animations back only when JS will run them. */}
+        <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />
         <meta property="og:url" content={siteConfig.url} />
         <script
           type="application/ld+json"
@@ -165,28 +175,21 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${inter.variable} font-sans antialiased bg-[#FFFBF8] text-[#1A1A2E] selection:bg-orange-500/20`}
+        className={`${display.variable} ${body.variable} ${mono.variable} font-sans antialiased`}
         suppressHydrationWarning
       >
-        {/* Gradient background overlays */}
-        <div
-          className="fixed inset-0 -z-10 bg-gradient-to-br from-[#FFFBF8] via-[#FFF8F5] to-[#FFF2EE]"
-          aria-hidden="true"
-        />
 
         <AnalyticsProvider>{children}</AnalyticsProvider>
 
         <Toaster
-          theme="light"
+          theme="dark"
           position="bottom-right"
-          richColors
           closeButton
           toastOptions={{
             style: {
-              background: "rgba(255, 255, 255, 0.95)",
-              border: "1px solid rgba(255, 232, 224, 0.8)",
-              backdropFilter: "blur(12px)",
-              color: "#1A1A2E",
+              background: "#15171C",
+              border: "1px solid #2B2F39",
+              color: "#F3F1EA",
             },
           }}
         />

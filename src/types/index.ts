@@ -1,26 +1,38 @@
-export interface CaseStudy {
-    problem: string;
-    constraints: string;
-    decision: string;
-    tradeoffs: string;
-    result: string;
+export interface SocialLink {
+    name: string;
+    url: string;
+    icon: "linkedin" | "mail";
+    external: boolean;
+}
+
+/** A client engagement inside one employer, e.g. LTIMindtree → Avis Budget Group. */
+export interface Engagement {
+    client: string;
+    role: string;
+    period: string;
+    /** One line that says what the engagement was, shown above the bullets. */
+    summary: string;
+    highlights: string[];
+    technologies: string[];
 }
 
 export interface Experience {
     company: string;
     role: string;
     period: string;
+    location: string;
+    /** Single-client roles name the client here. */
     client?: string;
-    location?: string;
-    highlights: string[];
-    technologies: string[];
-    caseStudy?: CaseStudy;
+    summary?: string;
+    highlights?: string[];
+    technologies?: string[];
+    /** Employers that placed the work with several clients list them here. */
+    engagements?: Engagement[];
 }
 
 export interface Education {
     institution: string;
     degree: string;
-    field: string;
     period: string;
 }
 
@@ -29,59 +41,44 @@ export interface SkillGroup {
     skills: string[];
 }
 
-export interface SocialLink {
-    name: string;
-    url: string;
-    icon: "github" | "linkedin" | "mail";
-    external: boolean;
-}
-
-/** A metric shown in the Enterprise Impact strip. */
-export interface Metric {
-    /** Compact visual label, e.g. "~45 → ~80". */
-    metric: string;
+/** One before/after measurement from the Avis Budget Group performance work. */
+export interface ImpactMetric {
     label: string;
-    /** Spelled-out equivalent announced to assistive technology. */
+    before: number;
+    after: number;
+    /** How the numbers are written, e.g. "~6s". */
+    beforeText: string;
+    afterText: string;
+    /** "lower" when a smaller number is the improvement (load time, bytes). */
+    better: "lower" | "higher";
+    /** Spelled-out sentence for assistive technology. */
     accessibleLabel: string;
 }
 
-export interface ArchitecturePillar {
-    title: string;
-    description: string;
-    skills: string[];
+export interface Stat {
+    value: string;
+    label: string;
 }
 
-export interface Project {
+export interface Capability {
     title: string;
-    /** Employer or client the work was delivered for. */
-    context?: string;
-    /** What was wrong or missing before the work started. */
-    challenge: string;
-    /** What was built or changed. */
-    approach: string;
-    /** The result, in verified numbers where they exist. */
-    outcome: string;
-    technologies: string[];
-    /**
-     * Optional evidence links. Client work is under NDA and has none, so the UI
-     * renders an action only when a real value is present — never a disabled
-     * button, empty placeholder or "coming soon" label.
-     */
-    repositoryUrl?: string;
-    liveUrl?: string;
-    caseStudyUrl?: string;
-    image?: string;
+    kicker: string;
+    description: string;
+    points: string[];
+    tools: string[];
 }
 
-export interface Principle {
-    title: string;
-    description: string;
+export interface AiProject {
+    name: string;
+    tagline: string;
+    year: string;
+    note: string;
+    highlights: string[];
+    stack: string[];
 }
 
 export interface ResumeAsset {
-    /** Public path served by Next.js. */
     href: string;
-    /** Value for the anchor's download attribute. */
     fileName: string;
     label: string;
     meta: string;
@@ -89,18 +86,15 @@ export interface ResumeAsset {
 
 export interface SiteConfig {
     name: string;
-    /** Visible hero role heading. */
     title: string;
     headline: string;
     description: string;
-    /** Short document/Open Graph/Twitter title. */
     seoTitle: string;
     /** Canonical homepage URL, including the trailing slash. */
     url: string;
     ogImage: string;
     location: string;
     availability: string;
-    availabilityShort: string;
     email: string;
     links: SocialLink[];
 }
