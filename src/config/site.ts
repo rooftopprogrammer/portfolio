@@ -18,7 +18,7 @@ import type {
  * file, so change content here and nowhere else.
  */
 
-export const EMAIL = "raviknersu96@gmail.com";
+export const EMAIL = "raviknersu1996@gmail.com";
 export const LINKEDIN_URL = "https://www.linkedin.com/in/ravi-kumar-nersu-8a00b3163";
 
 export const resume: ResumeAsset = {
@@ -287,7 +287,7 @@ export const skillGroups: SkillGroup[] = [
         title: "Backend & Data",
         skills: [
             "Node.js", "NestJS", "Express.js", "Python", "asyncio", "FastAPI", "Pydantic", "REST", "GraphQL",
-            "Backend-for-Frontend", "Microservices", "Caching", "OAuth 2.0", "OpenID Connect", "JWT", "RBAC",
+            "Backend-for-Frontend", "Microservices", "Caching (Redis)", "OAuth 2.0", "OpenID Connect", "JWT", "RBAC",
             "PostgreSQL", "MySQL", "SQL Indexing",
         ],
     },
