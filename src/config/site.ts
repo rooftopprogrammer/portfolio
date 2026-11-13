@@ -18,7 +18,7 @@ import type {
  * file, so change content here and nowhere else.
  */
 
-export const EMAIL = "raviknersu1996@gmail.com";
+export const EMAIL = "nrkumar2701@gmail.com";
 export const LINKEDIN_URL = "https://www.linkedin.com/in/ravi-kumar-nersu-8a00b3163";
 
 export const resume: ResumeAsset = {
