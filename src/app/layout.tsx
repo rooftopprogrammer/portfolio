@@ -119,7 +119,7 @@ const jsonLd = {
   url: siteConfig.url,
   jobTitle: siteConfig.title,
   description: summary,
-  image: new URL("/profile-photo.jpg", siteConfig.url).toString(),
+  image: new URL("/ravi-kumar-nersu.jpg", siteConfig.url).toString(),
   email: `mailto:${siteConfig.email}`,
   sameAs: [LINKEDIN_URL],
   knowsAbout: [

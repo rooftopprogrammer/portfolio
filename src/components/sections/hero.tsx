@@ -68,7 +68,7 @@ export function HeroSection() {
                     <div>
                         <div className="rise flex items-center gap-3">
                             <Image
-                                src="/profile-photo.jpg"
+                                src="/ravi-kumar-nersu.jpg"
                                 alt=""
                                 width={48}
                                 height={48}
@@ -129,7 +129,7 @@ export function HeroSection() {
                     <div className="hidden lg:block relative">
                         <div className="relative mx-auto w-[360px] xl:w-[400px] aspect-[4/5] rotate-[2deg] rounded-[32px] overflow-hidden border border-line bg-paper-2 shadow-[0_40px_80px_-40px_rgba(21,23,28,0.55)] transition-transform duration-700 hover:rotate-0">
                             <Image
-                                src="/profile-photo.jpg"
+                                src="/ravi-kumar-nersu.jpg"
                                 alt="Ravi Kumar Nersu"
                                 fill
                                 sizes="(min-width: 1280px) 400px, 360px"
